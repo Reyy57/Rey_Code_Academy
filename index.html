@@ -3,77 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Code Academy | Ultimate Handbook</title>
+    <title>Rey Code Academy</title>
     <style>
-        body { margin: 0; font-family: 'Courier New', monospace; min-height: 100vh;
-               background-image: url('554375.webp'); 
-               background-size: cover; background-position: center; background-attachment: fixed;
-               color: #c9d1d9; }
-        .overlay { background: rgba(13, 17, 23, 0.98); min-height: 100vh; padding: 20px; }
-        .container { max-width: 850px; margin: auto; }
-        h1 { color: #58a6ff; text-align: center; font-size: 2.2em; margin-bottom: 40px; }
+        body { margin: 0; font-family: 'Courier New', monospace; background: #0d1117; color: #c9d1d9; padding: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        h1 { color: #58a6ff; text-align: center; }
         
-        .story-box { background: rgba(88, 166, 255, 0.05); padding: 30px; border-radius: 20px; 
-                     margin-bottom: 40px; border: 1px solid #58a6ff; }
+        /* Box Story */
+        .story-box { background: rgba(88, 166, 255, 0.1); padding: 20px; border-radius: 15px; 
+                     margin-bottom: 30px; border-left: 5px solid #58a6ff; }
         
-        .code-card { background: rgba(22, 27, 34, 0.9); border: 1px solid #30363d; 
-                     padding: 30px; border-radius: 20px; margin-bottom: 25px; cursor: pointer; transition: 0.5s; }
-        .code-card:hover { border-color: #58a6ff; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .code-card { background: #161b22; border: 1px solid #30363d; padding: 20px; 
+                     border-radius: 12px; margin-bottom: 15px; cursor: pointer; transition: 0.3s; }
+        .code-card:hover { border-color: #58a6ff; }
         
         .hidden { display: none; }
-        .materi-box { background: #0d1117; padding: 50px; border-radius: 30px; border: 1px solid #58a6ff; }
-        .btn-wa { background: #238636; color: white; padding: 22px; width: 100%; border: none; 
-                  border-radius: 15px; font-weight: bold; cursor: pointer; margin-top: 50px; font-size: 1.2em; }
+        .materi-box { background: #161b22; padding: 25px; border-radius: 15px; border: 1px solid #58a6ff; }
+        .btn-wa { background: #238636; color: white; padding: 15px; width: 100%; border: none; 
+                  border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-<div class="overlay">
-    <div class="container">
-        <h1>> REY_CODE_ACADEMY</h1>
+<div class="container">
+    <h1>> REY_CODE_ACADEMY</h1>
 
-        <div class="story-box">
-            <h3 style="margin-top: 0; color: #58a6ff;">> Filosofi di Balik Baris Kode</h3>
-            <p style="font-style: italic; line-height: 1.8;">"Dulu, gue pikir bisa memperbaiki hati yang rusak sama seperti memperbaiki bug di kodingan. Ternyata, cinta jauh lebih rumit daripada syntax manapun. Tapi dari kegagalan itu, gue sadar: daripada memikirkan yang pergi, lebih baik membangun sesuatu yang bertahan selamanya. Gue memilih menulis baris kode dan membantu lu tumbuh. Selamat datang di tempat di mana logika menang atas perasaan."</p>
+    <div class="story-box">
+        <h3 style="margin-top: 0; color: #58a6ff;">> Tentang Rey</h3>
+        <p style="font-style: italic;">"Dulu, gue pikir bisa memperbaiki hati yang rusak sama seperti memperbaiki bug di kodingan. Ternyata, cinta jauh lebih rumit daripada syntax manapun. Tapi dari kegagalan itu, gue sadar: daripada memikirkan yang pergi, lebih baik membangun sesuatu yang bertahan selamanya. Gue memilih menulis baris kode dan membantu lu tumbuh."</p>
+    </div>
+
+    <div id="home">
+        <div class="code-card" onclick="openMateri('Web Development', 'Materi: Web Dev adalah fondasi internet. Kita belajar HTML untuk struktur, CSS untuk desain, dan JavaScript untuk interaksi.')">
+            <h3>> 01. Web Development</h3>
         </div>
-
-        <div id="home">
-            <div class="code-card" onclick="openMateri('Web Development', 'ASAL USUL: Lahir 1989 di CERN. \n\nDETAIL MENDALAM: Web Dev adalah fondasi utama ekonomi digital. Kita tidak hanya belajar sintaks, tapi memahami arsitektur internet: Request-Response cycle, DNS, dan Server. \n\nROADMAP BELAJAR: \n1. Dasar: HTML5 (Semantik) & CSS3 (Layouting modern seperti Flexbox/Grid). \n2. Interaktivitas: JavaScript ES6+ (DOM Manipulation & Asynchronous programming). \n3. Framework: React.js atau Vue.js untuk skala besar. \n4. Backend: Node.js untuk menangani logika server yang intensif. \n\nWeb adalah satu-satunya platform yang bisa diakses oleh siapa saja, di mana saja, tanpa perlu instalasi.')">
-                <h3>> 01. Web Development</h3>
-                <p>Membangun infrastruktur global melalui browser.</p>
-            </div>
-            <div class="code-card" onclick="openMateri('Mobile Development', 'ASAL USUL: Revolusi Smartphone 2007. \n\nDETAIL MENDALAM: Mengembangkan aplikasi mobile adalah tantangan manajemen resource. Kita berurusan dengan UI yang harus luwes (fluid) dan penggunaan baterai yang minimal. \n\nROADMAP BELAJAR: \n1. Native: Kotlin untuk Android atau Swift untuk iOS. \n2. Cross-Platform: Flutter (Dart) untuk efisiensi satu kode dua platform. \n3. State Management: Bagaimana menjaga data tetap sinkron saat user berinteraksi. \n4. Integrasi: Menghubungkan aplikasi dengan API pihak ketiga seperti Google Maps atau Firebase. \n\nMobile Dev adalah tentang membuat aplikasi yang terasa "nyata" di genggaman.')">
-                <h3>> 02. Mobile Development</h3>
-                <p>Inovasi aplikasi untuk milyaran perangkat.</p>
-            </div>
-            <div class="code-card" onclick="openMateri('Data Science', 'ASAL USUL: Statistika terapan era Big Data. \n\nDETAIL MENDALAM: Data Science bukan cuma coding, ini tentang "bercerita dengan data". Kita harus skeptis, kritis, dan analitis. \n\nROADMAP BELAJAR: \n1. Bahasa: Python (sangat powerful karena library-nya). \n2. Data Wrangling: Pandas & NumPy untuk memproses jutaan baris data dalam hitungan detik. \n3. Visualisasi: Matplotlib atau Seaborn untuk mengubah angka jadi grafik yang dimengerti bos. \n4. ML: Membangun algoritma prediksi yang bisa belajar dari data masa lalu. \n\nData adalah tambang emas baru, dan Data Science adalah alat untuk menggalinya.')">
-                <h3>> 03. Data Science</h3>
-                <p>Mengubah kekacauan data menjadi wawasan masa depan.</p>
-            </div>
-            <div class="code-card" onclick="openMateri('Game Development', 'ASAL USUL: Eksperimen fisik 1950-an. \n\nDETAIL MENDALAM: Game Dev adalah simulasi realita paling canggih. Lu tidak hanya membuat program, tapi menciptakan sistem hukum alam. \n\nROADMAP BELAJAR: \n1. Engine: Unity (C#) atau Unreal Engine (C++/Blueprints). \n2. Matematika: Vektor, Matrix, dan Trigonometri untuk pergerakan objek 3D. \n3. Fisika: Simulasi tabrakan (Collision Detection) dan Gravitasi. \n4. Scripting: Membangun perilaku AI musuh agar game terasa menantang. \n\nIni adalah bidang di mana kode menjadi sebuah pengalaman emosional bagi pemain.')">
-                <h3>> 04. Game Development</h3>
-                <p>Menciptakan realita buatan dan hukum fisik virtual.</p>
-            </div>
-            <div class="code-card" onclick="openMateri('UI/UX Design', 'ASAL USUL: Studi Ergonomi & Apple Design. \n\nDETAIL MENDALAM: UI/UX adalah jembatan empati antara mesin yang dingin dan otak manusia yang dinamis. \n\nROADMAP BELAJAR: \n1. Psikologi: Mengapa manusia mengklik tombol ini tapi tidak tombol itu? \n2. Hierarki Visual: Cara mengarahkan mata user dengan ukuran, warna, dan spasi. \n3. Wireframing: Membangun kerangka aplikasi sebelum coding. \n4. Testing: Mendapatkan feedback langsung dari pengguna nyata. \n\nUI/UX yang buruk = aplikasi secanggih apapun akan dibuang user dalam 5 detik.')">
-                <h3>> 05. UI/UX Design</h3>
-                <p>Psikologi manusia dalam berinteraksi dengan teknologi.</p>
-            </div>
+        <div class="code-card" onclick="openMateri('Mobile Development', 'Materi: Mobile Dev membuat aplikasi smartphone yang powerfull menggunakan Flutter atau React Native.')">
+            <h3>> 02. Mobile Development</h3>
         </div>
+        <div class="code-card" onclick="openMateri('Data Science', 'Materi: Data Science adalah ilmu mengolah angka dan pola menggunakan Python untuk prediksi masa depan.')">
+            <h3>> 03. Data Science</h3>
+        </div>
+        <div class="code-card" onclick="openMateri('Game Development', 'Materi: Game Dev adalah simulasi realita dengan engine seperti Unity untuk menciptakan dunia virtual.')">
+            <h3>> 04. Game Development</h3>
+        </div>
+        <div class="code-card" onclick="openMateri('UI/UX Design', 'Materi: UI/UX adalah seni membuat aplikasi yang nyaman dipandang dan mudah digunakan oleh manusia.')">
+            <h3>> 05. UI/UX Design</h3>
+        </div>
+    </div>
 
-        <div id="materi" class="hidden">
-            <div class="materi-box">
-                <h2 id="mTitle" style="color: #58a6ff; font-size: 2em; border-bottom: 2px solid #58a6ff; padding-bottom: 20px;"></h2>
-                <p id="mDesc" style="line-height: 2; font-size: 1.2em; white-space: pre-line; color: #d1d5da;"></p>
-                <button class="btn-wa" onclick="hubungiMentor()">Konsultasi Intensif dengan Mentor Rey</button>
-                <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:40px; width:100%; cursor:pointer; font-size: 1.1em;">Kembali ke Dashboard</button>
-            </div>
+    <div id="materi" class="hidden">
+        <div class="materi-box">
+            <h2 id="mTitle" style="color: #58a6ff;"></h2>
+            <p id="mDesc"></p>
+            <button class="btn-wa" onclick="hubungiMentor()">Konsultasi dengan Mentor</button>
+            <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:20px; width:100%; cursor:pointer;">Kembali</button>
         </div>
     </div>
 </div>
 
 <script>
     let currentMateri = "";
-    const nomorWA = "628xxxxxxxxxx"; // GANTI NOMOR WA LU
+    const nomorWA = "628xxxxxxxxxx"; // GANTI NOMOR LU
 
     function openMateri(title, desc) {
         document.getElementById('home').style.display = 'none';
@@ -87,7 +77,7 @@
         document.getElementById('materi').style.display = 'none';
     }
     function hubungiMentor() {
-        window.open("https://wa.me/" + nomorWA + "?text=Halo Rey, saya ingin konsultasi lebih dalam tentang materi " + currentMateri + ".");
+        window.open("https://wa.me/" + nomorWA + "?text=Halo Rey, saya mau tanya soal materi " + currentMateri);
     }
 </script>
 </body>
