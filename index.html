@@ -9,7 +9,6 @@
         .container { max-width: 600px; margin: auto; }
         h1 { color: #58a6ff; text-align: center; }
         
-        /* Box Story */
         .story-box { background: rgba(88, 166, 255, 0.1); padding: 20px; border-radius: 15px; 
                      margin-bottom: 30px; border-left: 5px solid #58a6ff; }
         
@@ -30,23 +29,23 @@
 
     <div class="story-box">
         <h3 style="margin-top: 0; color: #58a6ff;">> Tentang Rey</h3>
-        <p style="font-style: italic;">"Dulu, gue pikir bisa memperbaiki hati yang rusak sama seperti memperbaiki bug di kodingan. Ternyata, cinta jauh lebih rumit daripada syntax manapun. Tapi dari kegagalan itu, gue sadar: daripada memikirkan yang pergi, lebih baik membangun sesuatu yang bertahan selamanya. Gue memilih menulis baris kode dan membantu lu tumbuh."</p>
+        <p style="font-style: italic;">"Dulu, gue pikir bisa memperbaiki hati yang rusak sama seperti memperbaiki bug di kodingan. Ternyata, cinta jauh lebih rumit daripada syntax manapun. Tapi dari kegagalan itu, gue sadar: daripada memikirkan yang pergi, lebih baik membangun sesuatu yang bertahan selamanya. Gue memilih menulis baris kode dan membantu lu tumbuh. Selamat datang di tempat di mana logika menang atas perasaan."</p>
     </div>
 
     <div id="home">
-        <div class="code-card" onclick="openMateri('Web Development', 'Materi: Web Dev adalah fondasi internet. Kita belajar HTML untuk struktur, CSS untuk desain, dan JavaScript untuk interaksi.')">
+        <div class="code-card" onclick="openMateri('Web Development', 'ASAL USUL: Lahir 1989 di CERN oleh Tim Berners-Lee. \n\nPENJELASAN LENGKAP: Web Development adalah arsitektur digital paling krusial. Kita membangun dari Frontend (HTML5 untuk kerangka, CSS3 untuk desain responsif, JavaScript untuk interaksi) hingga Backend (Node.js/Database) agar sistem bisa mengolah data user secara nyata. Lu akan belajar bagaimana sebuah request dari browser diolah server dan dikembalikan menjadi data yang cantik.')">
             <h3>> 01. Web Development</h3>
         </div>
-        <div class="code-card" onclick="openMateri('Mobile Development', 'Materi: Mobile Dev membuat aplikasi smartphone yang powerfull menggunakan Flutter atau React Native.')">
+        <div class="code-card" onclick="openMateri('Mobile Development', 'ASAL USUL: Dimulai dari revolusi smartphone 2007. \n\nPENJELASAN LENGKAP: Mobile Development bukan cuma soal aplikasi, tapi tentang optimasi performa di perangkat dengan resource terbatas. Kita belajar tentang siklus hidup aplikasi (Lifecycle), manajemen memori, dan penggunaan framework modern seperti Flutter (Dart) atau React Native. Lu akan belajar bagaimana membuat antarmuka yang sangat mulus di berbagai ukuran layar HP.')">
             <h3>> 02. Mobile Development</h3>
         </div>
-        <div class="code-card" onclick="openMateri('Data Science', 'Materi: Data Science adalah ilmu mengolah angka dan pola menggunakan Python untuk prediksi masa depan.')">
+        <div class="code-card" onclick="openMateri('Data Science', 'ASAL USUL: Berakar dari statistika murni yang meledak di era Big Data. \n\nPENJELASAN LENGKAP: Data Science adalah seni detektif modern. Kita tidak hanya coding, tapi mencari pola dalam kekacauan data. Lu akan belajar Python untuk Data Mining, Data Cleaning, dan Machine Learning. Kita mengubah ribuan data mentah menjadi keputusan bisnis yang cerdas yang tidak bisa dilihat oleh mata orang awam.')">
             <h3>> 03. Data Science</h3>
         </div>
-        <div class="code-card" onclick="openMateri('Game Development', 'Materi: Game Dev adalah simulasi realita dengan engine seperti Unity untuk menciptakan dunia virtual.')">
+        <div class="code-card" onclick="openMateri('Game Development', 'ASAL USUL: Eksperimen fisik lab 1950-an. \n\nPENJELASAN LENGKAP: Game Dev adalah kasta tertinggi programming. Lu harus paham matematika vektor, simulasi fisika (gravitasi, tabrakan), dan optimasi rendering agar game lancar di 60 FPS. Dengan engine seperti Unity atau Godot, lu bisa menciptakan hukum alam sendiri di dalam dunia virtual yang lu bangun dari baris kode.')">
             <h3>> 04. Game Development</h3>
         </div>
-        <div class="code-card" onclick="openMateri('UI/UX Design', 'Materi: UI/UX adalah seni membuat aplikasi yang nyaman dipandang dan mudah digunakan oleh manusia.')">
+        <div class="code-card" onclick="openMateri('UI/UX Design', 'ASAL USUL: Berawal dari studi ergonomi industri abad ke-20. \n\nPENJELASAN LENGKAP: UI/UX adalah jembatan empati antara mesin yang kaku dan otak manusia. Lu akan mempelajari psikologi kognitif, hierarki visual, dan tipografi agar user merasa nyaman. Seorang desainer yang handal tahu cara meminimalisir beban pikiran user dengan desain yang intuitif dan mudah dimengerti.')">
             <h3>> 05. UI/UX Design</h3>
         </div>
     </div>
@@ -54,7 +53,7 @@
     <div id="materi" class="hidden">
         <div class="materi-box">
             <h2 id="mTitle" style="color: #58a6ff;"></h2>
-            <p id="mDesc"></p>
+            <p id="mDesc" style="line-height: 1.6; white-space: pre-line;"></p>
             <button class="btn-wa" onclick="hubungiMentor()">Konsultasi dengan Mentor</button>
             <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:20px; width:100%; cursor:pointer;">Kembali</button>
         </div>
@@ -63,7 +62,7 @@
 
 <script>
     let currentMateri = "";
-    const nomorWA = "628xxxxxxxxxx"; // GANTI NOMOR LU
+    const nomorWA = "628xxxxxxxxxx"; // GANTI NOMOR WA LU
 
     function openMateri(title, desc) {
         document.getElementById('home').style.display = 'none';
