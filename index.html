@@ -5,28 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rey Code Academy</title>
     <style>
-        body { 
-            margin: 0; font-family: 'Courier New', monospace; min-height: 100vh;
-            background-image: url('554375.webp'); /* Pastikan nama file foto benar */
-            background-size: cover; background-position: center; background-attachment: fixed;
-            color: #c9d1d9;
-        }
-        .overlay { background: rgba(13, 17, 23, 0.85); min-height: 100vh; padding: 20px; }
+        body { margin: 0; font-family: 'Courier New', monospace; min-height: 100vh;
+               background-image: url('554375.webp'); /* Pastikan file ini ada */
+               background-size: cover; background-position: center; background-attachment: fixed;
+               color: #c9d1d9; }
+        .overlay { background: rgba(13, 17, 23, 0.9); min-height: 100vh; padding: 20px; }
         .container { max-width: 600px; margin: auto; }
-        h1 { color: #58a6ff; text-align: center; font-size: 1.8em; }
+        h1 { color: #58a6ff; text-align: center; }
         
-        .code-card { 
-            background: rgba(22, 27, 34, 0.8); border: 1px solid #30363d; 
-            padding: 20px; border-radius: 12px; margin-bottom: 15px; cursor: pointer; 
-            transition: 0.3s;
-        }
-        .code-card:hover { border-color: #58a6ff; transform: scale(1.02); }
+        .code-card { background: rgba(22, 27, 34, 0.8); border: 1px solid #30363d; 
+                     padding: 20px; border-radius: 12px; margin-bottom: 15px; cursor: pointer; }
         
-        .btn-mentor { 
-            background: #238636; color: white; padding: 15px; width: 100%; 
-            border: none; border-radius: 8px; font-weight: bold; cursor: pointer; 
-        }
         .hidden { display: none; }
+        .materi-box { background: #161b22; padding: 25px; border-radius: 15px; border: 1px solid #58a6ff; }
+        .btn-wa { background: #238636; color: white; padding: 15px; width: 100%; border: none; 
+                  border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -34,58 +27,46 @@
 <div class="overlay">
     <div class="container">
         <h1>> Rey_Code_Academy</h1>
-        <p style="text-align:center;">Membentuk generasi programmer masa depan.</p>
 
         <div id="home">
-            <div class="code-card" onclick="showDetail('Web Development', 'Mempelajari HTML, CSS, dan JavaScript untuk membuat website interaktif.')">
+            <div class="code-card" onclick="openMateri('Web Dev', 'Web Development adalah proses membangun website. HTML adalah kerangkanya, CSS adalah pakaiannya, dan JavaScript adalah otaknya.')">
                 <h3>> 01. Web Development</h3>
-                <p>Fondasi utama membangun website.</p>
+                <p>Klik untuk baca materi singkat.</p>
             </div>
-            <div class="code-card" onclick="showDetail('Mobile App', 'Belajar bikin aplikasi Android/iOS yang bisa dipakai di HP.')">
+            <div class="code-card" onclick="openMateri('Mobile App', 'Mobile development membuat aplikasi untuk smartphone. Kita menggunakan bahasa seperti Flutter atau React Native untuk Android dan iOS.')">
                 <h3>> 02. Mobile Development</h3>
-                <p>Bikin aplikasi keren di genggaman.</p>
+                <p>Klik untuk baca materi singkat.</p>
             </div>
-            <div class="code-card" onclick="showDetail('Data Science', 'Cara mengolah data menjadi informasi penting dengan Python.')">
-                <h3>> 03. Data Science</h3>
-                <p>Analisis data & kecerdasan buatan.</p>
             </div>
-            <div class="code-card" onclick="showDetail('Game Dev', 'Membangun dunia virtual dengan logika game.')">
-                <h3>> 04. Game Development</h3>
-                <p>Seru-seruan bikin game sendiri.</p>
-            </div>
-            <div class="code-card" onclick="showDetail('UI/UX Design', 'Bikin tampilan aplikasi yang nyaman dilihat user.')">
-                <h3>> 05. UI/UX Design</h3>
-                <p>Kreativitas di balik layar aplikasi.</p>
-            </div>
-        </div>
 
-        <div id="detail" class="hidden" style="background: rgba(22, 27, 34, 0.9); padding: 25px; border-radius: 15px; border: 1px solid #58a6ff;">
-            <h2 id="pName" style="color: #58a6ff;"></h2>
-            <p id="pDesc"></p>
-            <button class="btn-mentor" onclick="order()">Konsultasi dengan Mentor</button>
-            <button onclick="goBack()" style="background:none; border:none; color:grey; margin-top:15px; cursor:pointer; display:block; width:100%;">Kembali</button>
+        <div id="materi" class="hidden">
+            <div class="materi-box">
+                <h2 id="mTitle" style="color: #58a6ff;"></h2>
+                <p id="mDesc" style="line-height: 1.6;"></p>
+                <button class="btn-wa" onclick="hubungiMentor()">Tanya Mentor Lebih Lanjut</button>
+                <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:20px; width:100%; cursor:pointer;">Kembali</button>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    let pName = "";
-    // GANTI NOMOR WA LU DI SINI
-    const nomorWA = "628xxxxxxxxxx"; 
+    let currentMateri = "";
+    const nomorWA = "628xxxxxxxxxx"; // GANTI NOMOR WA LU
 
-    function showDetail(name, desc) {
+    function openMateri(title, desc) {
         document.getElementById('home').style.display = 'none';
-        document.getElementById('detail').style.display = 'block';
-        document.getElementById('pName').innerText = name;
-        document.getElementById('pDesc').innerText = desc;
-        pName = name;
+        document.getElementById('materi').style.display = 'block';
+        document.getElementById('mTitle').innerText = title;
+        document.getElementById('mDesc').innerText = desc;
+        currentMateri = title;
     }
-    function goBack() {
+    function backToHome() {
         document.getElementById('home').style.display = 'block';
-        document.getElementById('detail').style.display = 'none';
+        document.getElementById('materi').style.display = 'none';
     }
-    function order() {
-        window.open("https://wa.me/" + nomorWA + "?text=Halo Rey, saya mau tanya soal: " + pName);
+    function hubungiMentor() {
+        window.open("https://wa.me/" + nomorWA + "?text=Halo Rey, saya sudah baca materi " + currentMateri + " dan ingin bertanya lebih dalam.");
     }
 </script>
 </body>
