@@ -3,80 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Store Pro</title>
+    <title>Rey Store Professional</title>
     <style>
-        /* Desain Background Foto Lu */
-        body { 
-            font-family: 'Segoe UI', sans-serif; margin: 0; 
-            background-image: url('554375.webp'); /* Foto lu */
-            background-size: cover; background-position: center; 
-            background-attachment: fixed; color: white;
-        }
-        .overlay { background: rgba(0, 0, 0, 0.6); min-height: 100vh; padding: 20px; }
-        .header { text-align: center; padding: 20px; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; min-height: 100vh;
+               background-image: url('554375.webp'); 
+               background-size: cover; background-position: center; background-attachment: fixed; }
+        .overlay { background: rgba(0,0,0,0.7); min-height: 100vh; padding: 20px; }
         .container { max-width: 500px; margin: auto; }
+        h1 { text-align: center; color: #f1c40f; margin-bottom: 30px; text-shadow: 2px 2px 4px #000; }
         
-        /* Kartu Produk ala Takapedia */
-        .card { 
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
-            padding: 20px; border-radius: 15px; margin-bottom: 15px; 
-            cursor: pointer; border: 1px solid rgba(255,255,255,0.2); 
-        }
+        .card { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+                padding: 20px; border-radius: 15px; margin-bottom: 15px; 
+                cursor: pointer; color: white; transition: 0.3s; backdrop-filter: blur(5px); }
+        .card:hover { background: rgba(255,255,255,0.2); }
+        
         .hidden { display: none; }
-        
-        /* Halaman Detail */
-        .detail-card { 
-            background: rgba(0,0,0,0.8); padding: 30px; 
-            border-radius: 20px; text-align: center; border: 2px solid #f1c40f; 
-        }
-        button { 
-            background: #f1c40f; color: black; border: none; padding: 15px; 
-            width: 100%; border-radius: 10px; font-weight: bold; margin-top: 20px; cursor: pointer; 
-        }
+        .detail-box { background: rgba(0,0,0,0.9); padding: 30px; border-radius: 20px; 
+                      text-align: center; border: 2px solid #f1c40f; color: white; }
+        .btn-pesan { background: #f1c40f; color: black; padding: 15px; width: 100%; 
+                     border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        .btn-back { background: #555; color: white; padding: 10px; border: none; 
+                    border-radius: 5px; cursor: pointer; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <div class="overlay">
-    <div class="header"><h1>Rey Store</h1></div>
+    <div class="container">
+        <h1>Rey Store 🛒</h1>
 
-    <div id="home" class="container">
-        <div class="card" onclick="showDetail('Free Fire', 'Lengkapi skin sultan mu di sini!')">
-            <h3>Free Fire</h3>
-            <p>Proses Cepat & Otomatis</p>
+        <div id="home">
+            <div class="card" onclick="showDetail('Free Fire', 'Skin Sultan & Diamond Murah')">
+                <h3>Free Fire</h3>
+                <p>Proses Cepat & Otomatis</p>
+            </div>
+            <div class="card" onclick="showDetail('Mobile Legends', 'Joki Mythic & Diamond')">
+                <h3>Mobile Legends</h3>
+                <p>Layanan 24 Jam</p>
+            </div>
         </div>
-        <div class="card" onclick="showDetail('Mobile Legends', 'Diamond & Joki Rank')">
-            <h3>Mobile Legends</h3>
-            <p>Layanan 24 Jam</p>
-        </div>
-    </div>
 
-    <div id="detail" class="container hidden">
-        <div class="detail-card">
-            <h2 id="prodName"></h2>
-            <p id="prodDesc"></p>
-            <button onclick="order()">Pesan Sekarang!</button>
-            <button onclick="goBack()" style="background: #555; color: white; margin-top: 10px;">Kembali</button>
+        <div id="detail" class="hidden">
+            <div class="detail-box">
+                <h2 id="pName"></h2>
+                <p id="pDesc"></p>
+                <button class="btn-pesan" onclick="order()">Pesan Sekarang!</button>
+                <button class="btn-back" onclick="goBack()">Kembali</button>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    let currentProd = "";
+    let pName = "";
+    
+    // --- GANTI NOMOR DI BAWAH INI (PAKE 62) ---
+    const nomorWA = "6283136196128"; 
+
     function showDetail(name, desc) {
-        document.getElementById('home').classList.add('hidden');
-        document.getElementById('detail').classList.remove('hidden');
-        document.getElementById('prodName').innerText = name;
-        document.getElementById('prodDesc').innerText = desc;
-        currentProd = name;
+        document.getElementById('home').style.display = 'none';
+        document.getElementById('detail').style.display = 'block';
+        document.getElementById('pName').innerText = name;
+        document.getElementById('pDesc').innerText = desc;
+        pName = name;
     }
     function goBack() {
-        document.getElementById('home').classList.remove('hidden');
-        document.getElementById('detail').classList.add('hidden');
+        document.getElementById('home').style.display = 'block';
+        document.getElementById('detail').style.display = 'none';
     }
     function order() {
-        let hp = "6283136106128"; // GANTI NOMOR WA LU
-        window.open("https://wa.me/" + hp + "?text=Halo Rey, saya mau beli: " + currentProd);
+        window.open("https://wa.me/" + nomorWA + "?text=Halo Rey, saya mau beli: " + pName);
     }
 </script>
 </body>
