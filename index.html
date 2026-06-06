@@ -3,55 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Store - Digital Marketplace</title>
+    <title>Rey Store Professional</title>
     <style>
         body { 
-            font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px;
-            display: flex; justify-content: center; min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0;
             background-image: url('554375.webp'); 
             background-size: cover; background-position: center; 
-            background-attachment: fixed;
+            background-attachment: fixed; min-height: 100vh;
         }
-        .container { 
-            width: 100%; max-width: 500px; background: rgba(255, 255, 255, 0.95); 
-            padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            text-align: center;
-        }
-        h1 { color: #222; margin-bottom: 20px; }
-        .product { 
-            background: #fff; padding: 15px; margin: 15px 0; border-radius: 12px; 
-            display: flex; justify-content: space-between; align-items: center;
-            border: 1px solid #eee; transition: 0.3s;
-        }
-        .product:hover { border-color: #4a90e2; }
-        button { 
-            background: #25d366; color: white; border: none; padding: 10px 15px; 
-            border-radius: 8px; cursor: pointer; font-weight: bold;
-        }
+        .header { text-align: center; padding: 40px 20px; color: white; background: rgba(0,0,0,0.5); }
+        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px; max-width: 1000px; margin: auto; }
+        .card { background: rgba(255,255,255,0.95); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card-img { width: 100%; height: 150px; background: #ddd; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #555; }
+        .card-body { padding: 15px; text-align: center; }
+        .btn { display: block; width: 100%; padding: 12px; background: #ffcc00; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: #000; text-decoration: none; margin-top: 10px; }
     </style>
 </head>
 <body>
 
+<div class="header">
+    <h1>Rey Store Pro</h1>
+    <p>Layanan Cepat, Harga Sahabat</p>
+</div>
+
 <div class="container">
-    <h1>Rey Store 🛒</h1>
-    <p>Silakan pilih produk yang ingin dipesan:</p>
-    
-    <div class="product">
-        <span>70 Diamond ML</span>
-        <button onclick="order('70 Diamond ML')">Pesan</button>
+    <div class="card">
+        <div class="card-img">IMAGE ML</div>
+        <div class="card-body">
+            <h3>Mobile Legends</h3>
+            <p>Diamond Murah & Aman</p>
+            <a href="#" class="btn" onclick="order('Mobile Legends')">Beli Sekarang</a>
+        </div>
     </div>
-    
-    <div class="product">
-        <span>Akun FF Sultan</span>
-        <button onclick="order('Akun FF Sultan')">Pesan</button>
+    <div class="card">
+        <div class="card-img">IMAGE FF</div>
+        <div class="card-body">
+            <h3>Free Fire</h3>
+            <p>Jasa Top Up Cepat</p>
+            <a href="#" class="btn" onclick="order('Free Fire')">Beli Sekarang</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-img">IMAGE JOKI</div>
+        <div class="card-body">
+            <h3>Joki Rank</h3>
+            <p>Cepat Sampai Mythic</p>
+            <a href="#" class="btn" onclick="order('Joki Rank')">Beli Sekarang</a>
+        </div>
     </div>
 </div>
 
 <script>
     function order(item) {
-        // GANTI NOMOR DI BAWAH INI DENGAN NOMOR WA LU (PAKE 62)
-        let hp = "6283136106128"; 
-        let msg = "Halo Rey, saya mau beli: " + item;
+        let hp = "628123456789"; // GANTI NOMOR WA LU
+        let msg = "Halo Rey, saya mau order: " + item;
         window.open("https://wa.me/" + hp + "?text=" + encodeURIComponent(msg));
     }
 </script>
