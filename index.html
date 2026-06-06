@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Code Academy | Final Edition</title>
+    <title>Rey Code Academy</title>
     <style>
         body { margin: 0; font-family: 'Courier New', monospace; background: #0d1117; color: #c9d1d9; padding: 20px; }
         .container { max-width: 700px; margin: auto; }
-        h1 { color: #58a6ff; text-align: center; font-size: 2em; margin-bottom: 20px; }
+        h1 { color: #58a6ff; text-align: center; font-size: 1.8em; }
         .status { text-align: center; color: #238636; font-size: 0.9em; margin-bottom: 30px; }
         
         .story-box { background: rgba(88, 166, 255, 0.05); padding: 25px; border-radius: 15px; 
-                     margin-bottom: 30px; border-left: 5px solid #58a6ff; }
+                     margin-bottom: 30px; border-left: 5px solid #58a6ff; min-height: 150px; }
         
         .code-card { background: #161b22; border: 1px solid #30363d; padding: 25px; 
                      border-radius: 15px; margin-bottom: 20px; cursor: pointer; transition: 0.4s; }
@@ -21,7 +21,6 @@
         .materi-box { background: #0d1117; padding: 30px; border-radius: 20px; border: 1px solid #58a6ff; }
         .btn-wa { background: #238636; color: white; padding: 20px; width: 100%; border: none; 
                   border-radius: 12px; font-weight: bold; cursor: pointer; margin-top: 30px; font-size: 1.1em; }
-        footer { text-align: center; color: #444; margin-top: 50px; font-size: 0.8em; }
     </style>
 </head>
 <body>
@@ -32,23 +31,23 @@
 
     <div class="story-box">
         <h3 style="margin-top: 0; color: #58a6ff;">> Tentang Rey</h3>
-        <p style="font-style: italic; line-height: 1.6;">"Dulu, gue pikir bisa memperbaiki hati yang rusak sama seperti memperbaiki bug di kodingan. Ternyata, cinta jauh lebih rumit daripada syntax manapun. Tapi dari kegagalan itu, gue sadar: daripada memikirkan yang pergi, lebih baik membangun sesuatu yang bertahan selamanya. Gue memilih menulis baris kode dan membantu lu tumbuh. Selamat datang di tempat di mana logika menang atas perasaan."</p>
+        <p id="typing-text" style="font-style: italic; line-height: 1.6;"></p>
     </div>
 
     <div id="home">
-        <div class="code-card" onclick="openMateri('Web Development', 'ASAL USUL: Lahir 1989 di CERN. \n\nPENJELASAN MENDALAM: Web Dev adalah arsitektur digital paling krusial. Kita membangun dari Frontend (HTML5 untuk kerangka, CSS3 untuk desain responsif, JavaScript untuk interaksi) hingga Backend (Node.js/Database) agar sistem bisa mengolah data secara real-time. \n\nROADMAP: Kuasai HTML/CSS -> JavaScript ES6 -> React/Vue -> Node.js. Web adalah satu-satunya platform yang bisa diakses siapa saja di mana saja.')">
+        <div class="code-card" onclick="openMateri('Web Development', 'ASAL USUL: Lahir 1989 di CERN. \n\nPENJELASAN MENDALAM: Web Dev adalah arsitektur digital paling krusial. Kita membangun dari Frontend (HTML5, CSS3, JavaScript) hingga Backend (Node.js) agar sistem bisa mengolah data secara real-time.')">
             <h3>🚀 01. Web Development</h3>
         </div>
-        <div class="code-card" onclick="openMateri('Mobile Development', 'ASAL USUL: Revolusi Smartphone 2007. \n\nPENJELASAN MENDALAM: Mobile Development adalah tentang optimasi performa di perangkat dengan resource terbatas. Kita berurusan langsung dengan hardware fisik seperti kamera, GPS, dan sensor. \n\nROADMAP: Pilih Native (Kotlin/Swift) atau Cross-Platform (Flutter/Dart). Tantangan utamanya adalah menjaga manajemen memori tetap efisien agar aplikasi tidak lemot.')">
+        <div class="code-card" onclick="openMateri('Mobile Development', 'ASAL USUL: Revolusi Smartphone 2007. \n\nPENJELASAN MENDALAM: Fokus pada aplikasi yang berjalan di ekosistem terbatas namun powerfull. Kita belajar Native (Kotlin/Swift) atau Cross-Platform (Flutter). Tantangannya adalah manajemen memori yang ketat.')">
             <h3>📱 02. Mobile Development</h3>
         </div>
-        <div class="code-card" onclick="openMateri('Data Science', 'ASAL USUL: Statistika era Big Data. \n\nPENJELASAN MENDALAM: Data Science adalah detektif modern. Kita mengubah data mentah menjadi wawasan berharga (insight) menggunakan Python. \n\nROADMAP: Pelajari NumPy/Pandas untuk manipulasi data, Matplotlib untuk visualisasi, dan Machine Learning untuk prediksi masa depan. Setiap keputusan besar perusahaan sekarang berbasis data.')">
+        <div class="code-card" onclick="openMateri('Data Science', 'ASAL USUL: Statistika era Big Data. \n\nPENJELASAN MENDALAM: Data Science adalah detektif modern. Kita mengubah data mentah menjadi wawasan berharga menggunakan Python (NumPy, Pandas, ML) untuk prediksi masa depan.')">
             <h3>📊 03. Data Science</h3>
         </div>
-        <div class="code-card" onclick="openMateri('Game Development', 'ASAL USUL: Eksperimen fisik 1950-an. \n\nPENJELASAN MENDALAM: Game Dev adalah simulasi realita. Lu membangun hukum fisika sendiri (gravitasi, tabrakan, AI musuh). \n\nROADMAP: Gunakan engine Unity (C#) atau Unreal (C++/Blueprints). Lu akan berkutat dengan matematika vektor dan optimasi rendering 3D agar game lancar di 60 FPS.')">
+        <div class="code-card" onclick="openMateri('Game Development', 'ASAL USUL: Eksperimen fisik 1950-an. \n\nPENJELASAN MENDALAM: Game Dev adalah simulasi realita. Kita menggunakan engine (Unity/Godot) untuk membangun hukum fisika, sistem rendering 3D, dan logika AI.')">
             <h3>🎮 04. Game Development</h3>
         </div>
-        <div class="code-card" onclick="openMateri('UI/UX Design', 'ASAL USUL: Ergonomi industri & Apple Design. \n\nPENJELASAN MENDALAM: UI/UX adalah jembatan empati antara mesin dan manusia. Ini tentang psikologi kognitif dan hierarki visual. \n\nROADMAP: Fokus pada riset user persona, wireframing, dan testing. Aplikasi yang canggih tidak ada gunanya jika user bingung memakainya.')">
+        <div class="code-card" onclick="openMateri('UI/UX Design', 'ASAL USUL: Ergonomi industri & Apple Design. \n\nPENJELASAN MENDALAM: UI (Tampilan) & UX (Perasaan). Fokus pada psikologi pengguna, hierarki visual, dan efisiensi agar aplikasi terasa sangat intuitif.')">
             <h3>🎨 05. UI/UX Design</h3>
         </div>
     </div>
@@ -61,11 +60,22 @@
             <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:30px; width:100%; cursor:pointer;">Kembali ke Menu Utama</button>
         </div>
     </div>
-
-    <footer>&copy; 2026 Rey Code Academy</footer>
 </div>
 
 <script>
+    // Efek Typing
+    const text = '"Dulu, gue pikir bisa memperbaiki hati yang rusak sama seperti memperbaiki bug di kodingan. Ternyata, cinta jauh lebih rumit daripada syntax manapun. Tapi dari kegagalan itu, gue sadar: daripada memikirkan yang pergi, lebih baik membangun sesuatu yang bertahan selamanya. Gue memilih menulis baris kode dan membantu lu tumbuh. Selamat datang di tempat di mana logika menang atas perasaan."';
+    let i = 0;
+    function typeWriter() {
+        if (i < text.length) {
+            document.getElementById("typing-text").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 30);
+        }
+    }
+    window.onload = typeWriter;
+
+    // Logika Navigasi
     let currentMateri = "";
     const nomorWA = "628xxxxxxxxxx"; // GANTI NOMOR WA LU
 
