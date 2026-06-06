@@ -3,61 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Code Academy</title>
+    <title>Rey Code Academy | Final Edition</title>
     <style>
         body { margin: 0; font-family: 'Courier New', monospace; background: #0d1117; color: #c9d1d9; padding: 20px; }
-        .container { max-width: 600px; margin: auto; }
-        h1 { color: #58a6ff; text-align: center; }
+        .container { max-width: 700px; margin: auto; }
+        h1 { color: #58a6ff; text-align: center; font-size: 2em; margin-bottom: 20px; }
+        .status { text-align: center; color: #238636; font-size: 0.9em; margin-bottom: 30px; }
         
-        .story-box { background: rgba(88, 166, 255, 0.1); padding: 20px; border-radius: 15px; 
+        .story-box { background: rgba(88, 166, 255, 0.05); padding: 25px; border-radius: 15px; 
                      margin-bottom: 30px; border-left: 5px solid #58a6ff; }
         
-        .code-card { background: #161b22; border: 1px solid #30363d; padding: 20px; 
-                     border-radius: 12px; margin-bottom: 15px; cursor: pointer; transition: 0.3s; }
-        .code-card:hover { border-color: #58a6ff; }
+        .code-card { background: #161b22; border: 1px solid #30363d; padding: 25px; 
+                     border-radius: 15px; margin-bottom: 20px; cursor: pointer; transition: 0.4s; }
+        .code-card:hover { border-color: #58a6ff; transform: scale(1.02); }
         
         .hidden { display: none; }
-        .materi-box { background: #161b22; padding: 25px; border-radius: 15px; border: 1px solid #58a6ff; }
-        .btn-wa { background: #238636; color: white; padding: 15px; width: 100%; border: none; 
-                  border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        .materi-box { background: #0d1117; padding: 30px; border-radius: 20px; border: 1px solid #58a6ff; }
+        .btn-wa { background: #238636; color: white; padding: 20px; width: 100%; border: none; 
+                  border-radius: 12px; font-weight: bold; cursor: pointer; margin-top: 30px; font-size: 1.1em; }
+        footer { text-align: center; color: #444; margin-top: 50px; font-size: 0.8em; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>> REY_CODE_ACADEMY</h1>
+    <p class="status">● Mentor Aktif | Slot Terbatas</p>
 
     <div class="story-box">
         <h3 style="margin-top: 0; color: #58a6ff;">> Tentang Rey</h3>
-        <p style="font-style: italic;">"Dulu, gue pikir bisa memperbaiki hati yang rusak sama seperti memperbaiki bug di kodingan. Ternyata, cinta jauh lebih rumit daripada syntax manapun. Tapi dari kegagalan itu, gue sadar: daripada memikirkan yang pergi, lebih baik membangun sesuatu yang bertahan selamanya. Gue memilih menulis baris kode dan membantu lu tumbuh. Selamat datang di tempat di mana logika menang atas perasaan."</p>
+        <p style="font-style: italic; line-height: 1.6;">"Dulu, gue pikir bisa memperbaiki hati yang rusak sama seperti memperbaiki bug di kodingan. Ternyata, cinta jauh lebih rumit daripada syntax manapun. Tapi dari kegagalan itu, gue sadar: daripada memikirkan yang pergi, lebih baik membangun sesuatu yang bertahan selamanya. Gue memilih menulis baris kode dan membantu lu tumbuh. Selamat datang di tempat di mana logika menang atas perasaan."</p>
     </div>
 
     <div id="home">
-        <div class="code-card" onclick="openMateri('Web Development', 'ASAL USUL: Lahir 1989 di CERN oleh Tim Berners-Lee. \n\nPENJELASAN LENGKAP: Web Development adalah arsitektur digital paling krusial. Kita membangun dari Frontend (HTML5 untuk kerangka, CSS3 untuk desain responsif, JavaScript untuk interaksi) hingga Backend (Node.js/Database) agar sistem bisa mengolah data user secara nyata. Lu akan belajar bagaimana sebuah request dari browser diolah server dan dikembalikan menjadi data yang cantik.')">
-            <h3>> 01. Web Development</h3>
+        <div class="code-card" onclick="openMateri('Web Development', 'ASAL USUL: Lahir 1989 di CERN. \n\nPENJELASAN MENDALAM: Web Dev adalah arsitektur digital paling krusial. Kita membangun dari Frontend (HTML5 untuk kerangka, CSS3 untuk desain responsif, JavaScript untuk interaksi) hingga Backend (Node.js/Database) agar sistem bisa mengolah data secara real-time. \n\nROADMAP: Kuasai HTML/CSS -> JavaScript ES6 -> React/Vue -> Node.js. Web adalah satu-satunya platform yang bisa diakses siapa saja di mana saja.')">
+            <h3>🚀 01. Web Development</h3>
         </div>
-        <div class="code-card" onclick="openMateri('Mobile Development', 'ASAL USUL: Dimulai dari revolusi smartphone 2007. \n\nPENJELASAN LENGKAP: Mobile Development bukan cuma soal aplikasi, tapi tentang optimasi performa di perangkat dengan resource terbatas. Kita belajar tentang siklus hidup aplikasi (Lifecycle), manajemen memori, dan penggunaan framework modern seperti Flutter (Dart) atau React Native. Lu akan belajar bagaimana membuat antarmuka yang sangat mulus di berbagai ukuran layar HP.')">
-            <h3>> 02. Mobile Development</h3>
+        <div class="code-card" onclick="openMateri('Mobile Development', 'ASAL USUL: Revolusi Smartphone 2007. \n\nPENJELASAN MENDALAM: Mobile Development adalah tentang optimasi performa di perangkat dengan resource terbatas. Kita berurusan langsung dengan hardware fisik seperti kamera, GPS, dan sensor. \n\nROADMAP: Pilih Native (Kotlin/Swift) atau Cross-Platform (Flutter/Dart). Tantangan utamanya adalah menjaga manajemen memori tetap efisien agar aplikasi tidak lemot.')">
+            <h3>📱 02. Mobile Development</h3>
         </div>
-        <div class="code-card" onclick="openMateri('Data Science', 'ASAL USUL: Berakar dari statistika murni yang meledak di era Big Data. \n\nPENJELASAN LENGKAP: Data Science adalah seni detektif modern. Kita tidak hanya coding, tapi mencari pola dalam kekacauan data. Lu akan belajar Python untuk Data Mining, Data Cleaning, dan Machine Learning. Kita mengubah ribuan data mentah menjadi keputusan bisnis yang cerdas yang tidak bisa dilihat oleh mata orang awam.')">
-            <h3>> 03. Data Science</h3>
+        <div class="code-card" onclick="openMateri('Data Science', 'ASAL USUL: Statistika era Big Data. \n\nPENJELASAN MENDALAM: Data Science adalah detektif modern. Kita mengubah data mentah menjadi wawasan berharga (insight) menggunakan Python. \n\nROADMAP: Pelajari NumPy/Pandas untuk manipulasi data, Matplotlib untuk visualisasi, dan Machine Learning untuk prediksi masa depan. Setiap keputusan besar perusahaan sekarang berbasis data.')">
+            <h3>📊 03. Data Science</h3>
         </div>
-        <div class="code-card" onclick="openMateri('Game Development', 'ASAL USUL: Eksperimen fisik lab 1950-an. \n\nPENJELASAN LENGKAP: Game Dev adalah kasta tertinggi programming. Lu harus paham matematika vektor, simulasi fisika (gravitasi, tabrakan), dan optimasi rendering agar game lancar di 60 FPS. Dengan engine seperti Unity atau Godot, lu bisa menciptakan hukum alam sendiri di dalam dunia virtual yang lu bangun dari baris kode.')">
-            <h3>> 04. Game Development</h3>
+        <div class="code-card" onclick="openMateri('Game Development', 'ASAL USUL: Eksperimen fisik 1950-an. \n\nPENJELASAN MENDALAM: Game Dev adalah simulasi realita. Lu membangun hukum fisika sendiri (gravitasi, tabrakan, AI musuh). \n\nROADMAP: Gunakan engine Unity (C#) atau Unreal (C++/Blueprints). Lu akan berkutat dengan matematika vektor dan optimasi rendering 3D agar game lancar di 60 FPS.')">
+            <h3>🎮 04. Game Development</h3>
         </div>
-        <div class="code-card" onclick="openMateri('UI/UX Design', 'ASAL USUL: Berawal dari studi ergonomi industri abad ke-20. \n\nPENJELASAN LENGKAP: UI/UX adalah jembatan empati antara mesin yang kaku dan otak manusia. Lu akan mempelajari psikologi kognitif, hierarki visual, dan tipografi agar user merasa nyaman. Seorang desainer yang handal tahu cara meminimalisir beban pikiran user dengan desain yang intuitif dan mudah dimengerti.')">
-            <h3>> 05. UI/UX Design</h3>
+        <div class="code-card" onclick="openMateri('UI/UX Design', 'ASAL USUL: Ergonomi industri & Apple Design. \n\nPENJELASAN MENDALAM: UI/UX adalah jembatan empati antara mesin dan manusia. Ini tentang psikologi kognitif dan hierarki visual. \n\nROADMAP: Fokus pada riset user persona, wireframing, dan testing. Aplikasi yang canggih tidak ada gunanya jika user bingung memakainya.')">
+            <h3>🎨 05. UI/UX Design</h3>
         </div>
     </div>
 
     <div id="materi" class="hidden">
         <div class="materi-box">
-            <h2 id="mTitle" style="color: #58a6ff;"></h2>
-            <p id="mDesc" style="line-height: 1.6; white-space: pre-line;"></p>
-            <button class="btn-wa" onclick="hubungiMentor()">Konsultasi dengan Mentor</button>
-            <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:20px; width:100%; cursor:pointer;">Kembali</button>
+            <h2 id="mTitle" style="color: #58a6ff; border-bottom: 2px solid #58a6ff; padding-bottom: 10px;"></h2>
+            <p id="mDesc" style="line-height: 1.8; white-space: pre-line; color: #d1d5da;"></p>
+            <button class="btn-wa" onclick="hubungiMentor()">Konsultasi dengan Mentor Rey</button>
+            <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:30px; width:100%; cursor:pointer;">Kembali ke Menu Utama</button>
         </div>
     </div>
+
+    <footer>&copy; 2026 Rey Code Academy</footer>
 </div>
 
 <script>
@@ -76,7 +81,7 @@
         document.getElementById('materi').style.display = 'none';
     }
     function hubungiMentor() {
-        window.open("https://wa.me/" + nomorWA + "?text=Halo Rey, saya mau tanya soal materi " + currentMateri);
+        window.open("https://wa.me/" + nomorWA + "?text=Halo Rey, saya ingin diskusi lebih lanjut tentang materi " + currentMateri + ".");
     }
 </script>
 </body>
