@@ -9,16 +9,22 @@
                background-image: url('554375.webp'); 
                background-size: cover; background-position: center; background-attachment: fixed;
                color: #c9d1d9; }
-        .overlay { background: rgba(13, 17, 23, 0.92); min-height: 100vh; padding: 20px; }
-        .container { max-width: 700px; margin: auto; }
-        h1 { color: #58a6ff; text-align: center; font-size: 1.8em; margin-bottom: 30px; }
-        .code-card { background: rgba(22, 27, 34, 0.8); border: 1px solid #30363d; 
-                     padding: 20px; border-radius: 12px; margin-bottom: 15px; cursor: pointer; transition: 0.3s; }
-        .code-card:hover { border-color: #58a6ff; transform: translateX(5px); }
+        .overlay { background: rgba(13, 17, 23, 0.96); min-height: 100vh; padding: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        h1 { color: #58a6ff; text-align: center; font-size: 2em; margin-bottom: 30px; }
+        
+        /* Story Box */
+        .story-box { background: rgba(88, 166, 255, 0.1); padding: 25px; border-radius: 15px; 
+                     margin-bottom: 30px; border-left: 5px solid #58a6ff; }
+        
+        .code-card { background: rgba(22, 27, 34, 0.85); border: 1px solid #30363d; 
+                     padding: 25px; border-radius: 15px; margin-bottom: 20px; cursor: pointer; transition: 0.4s; }
+        .code-card:hover { border-color: #58a6ff; transform: scale(1.01); background: rgba(30, 36, 44, 0.9); }
+        
         .hidden { display: none; }
-        .materi-box { background: #161b22; padding: 30px; border-radius: 20px; border: 1px solid #58a6ff; }
-        .btn-wa { background: #238636; color: white; padding: 18px; width: 100%; border: none; 
-                  border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 30px; font-size: 1.1em; }
+        .materi-box { background: #161b22; padding: 40px; border-radius: 20px; border: 1px solid #58a6ff; }
+        .btn-wa { background: #238636; color: white; padding: 20px; width: 100%; border: none; 
+                  border-radius: 12px; font-weight: bold; cursor: pointer; margin-top: 40px; font-size: 1.1em; }
     </style>
 </head>
 <body>
@@ -27,35 +33,40 @@
     <div class="container">
         <h1>> REY_CODE_ACADEMY</h1>
 
+        <div class="story-box">
+            <h3 style="margin-top: 0; color: #58a6ff;">> Tentang Rey</h3>
+            <p style="font-style: italic; line-height: 1.6;">"Dulu, gue pikir bisa memperbaiki hati yang rusak sama seperti memperbaiki bug di kodingan. Ternyata, cinta jauh lebih rumit daripada syntax manapun. Tapi dari kegagalan itu, gue sadar: daripada memikirkan yang pergi, lebih baik membangun sesuatu yang bertahan selamanya. Gue memilih menulis baris kode dan membantu lu tumbuh. Selamat datang di tempat di mana logika menang atas perasaan."</p>
+        </div>
+
         <div id="home">
-            <div class="code-card" onclick="openMateri('Web Development', 'ASAL-USUL: Web lahir dari kebutuhan berbagi data antar ilmuwan di CERN pada 1989. Tim Berners-Lee menciptakan HTTP dan HTML sebagai solusinya. \n\nINTI PEMBELAJARAN: Web Dev bukan sekadar bikin tampilan, ini tentang membangun ekosistem digital. Kita akan membedah HTML5 sebagai struktur tulang punggung, CSS3 untuk manipulasi visual, serta JavaScript untuk membangun logika interaktif yang kompleks.')">
+            <div class="code-card" onclick="openMateri('Web Development', 'SEJARAH: Bermula pada 1989 oleh Tim Berners-Lee di CERN. \n\nPENJELASAN: Ini adalah arsitektur digital utama. Kita mempelajari tiga pilar: Frontend (HTML/CSS/JS), Backend (Server/Database), dan Deployment. Web Dev adalah wajah dari bisnis modern.')">
                 <h3>> 01. Web Development</h3>
-                <p>Membangun pondasi internet modern.</p>
+                <p>Membangun infrastruktur internet global.</p>
             </div>
-            <div class="code-card" onclick="openMateri('Mobile Development', 'ASAL-USUL: Sejak peluncuran iPhone tahun 2007, dunia berpindah dari PC ke genggaman tangan. Mobile Dev menjadi sektor paling kompetitif karena batasan resource hardware.\n\nINTI PEMBELAJARAN: Fokus kita adalah membuat aplikasi yang performancenya tinggi. Kamu akan memahami siklus hidup aplikasi (Lifecycle), manajemen memori, dan penggunaan framework modern seperti Flutter atau React Native.')">
+            <div class="code-card" onclick="openMateri('Mobile Development', 'SEJARAH: Meledak setelah iPhone (2007) dan Android (2008). \n\nPENJELASAN: Fokus pada aplikasi yang berjalan di ekosistem terbatas namun powerfull. Kita belajar Native (Kotlin/Swift) atau Cross-Platform (Flutter). Tantangannya adalah manajemen memori dan integrasi hardware.')">
                 <h3>> 02. Mobile Development</h3>
-                <p>Inovasi di balik aplikasi smartphone.</p>
+                <p>Membangun ekosistem aplikasi mobile.</p>
             </div>
-            <div class="code-card" onclick="openMateri('Data Science', 'ASAL-USUL: Berasal dari teknik statistik untuk meramal tren, namun meledak saat era Big Data dimulai. \n\nINTI PEMBELAJARAN: Data Science adalah seni mencari pola dalam kekacauan data. Kamu akan belajar bahasa Python, yang menjadi standar industri. Kita akan menempuh tahapan: Data Cleaning, Data Exploration, hingga Machine Learning untuk prediksi.')">
+            <div class="code-card" onclick="openMateri('Data Science', 'SEJARAH: Berakar dari statistika murni, populer saat era Big Data. \n\nPENJELASAN: Data Science adalah detektif modern. Prosesnya: Data Mining, Cleaning, EDA, hingga Machine Learning untuk membuat prediksi masa depan yang akurat.')">
                 <h3>> 03. Data Science</h3>
-                <p>Mengubah Big Data menjadi keputusan cerdas.</p>
+                <p>Ilmu membaca pola di era Big Data.</p>
             </div>
-            <div class="code-card" onclick="openMateri('Game Development', 'ASAL-USUL: Bermula dari kode sederhana di komputer main-frame tahun 50-an, berkembang menjadi industri hiburan triliunan dolar.\n\nINTI PEMBELAJARAN: Game Dev adalah kasta tertinggi dalam programming karena menuntut efisiensi maksimal. Kamu akan bersentuhan dengan Game Engine (Unity/Godot) dan bahasa C#. Kamu akan mempelajari matematika vektor, simulasi fisika, serta optimasi rendering.')">
+            <div class="code-card" onclick="openMateri('Game Development', 'SEJARAH: Dari mesin lab 50-an hingga industri hiburan triliunan dolar. \n\nPENJELASAN: Game Dev adalah simulasi realita. Kita menggunakan engine (Unity/Godot) untuk membangun hukum fisika, sistem rendering 3D, dan logika AI yang kompleks.')">
                 <h3>> 04. Game Development</h3>
-                <p>Menciptakan hukum fisika di dunia digital.</p>
+                <p>Membangun dunia virtual dengan hukum fisika sendiri.</p>
             </div>
-            <div class="code-card" onclick="openMateri('UI/UX Design', 'ASAL-USUL: Terinspirasi dari ergonomi industri tahun 1950-an. Design modern berfokus pada User-Centered Design.\n\nINTI PEMBELAJARAN: UI/UX adalah jembatan antara mesin yang kaku dan otak manusia. Kamu akan belajar tentang heuristik desain, hierarki visual, tipografi, dan aksesibilitas. Programmer UI/UX yang baik harus mengerti cara meminimalisir cognitive load agar aplikasi terasa intuitif.')">
+            <div class="code-card" onclick="openMateri('UI/UX Design', 'SEJARAH: Inspirasi ergonomi industri, dipopulerkan Don Norman untuk hubungan emosional manusia-mesin. \n\nPENJELASAN: UI (Tampilan) & UX (Perasaan). Fokus pada psikologi pengguna, hierarki visual, dan efisiensi interaksi agar aplikasi terasa sangat intuitif.')">
                 <h3>> 05. UI/UX Design</h3>
-                <p>Psikologi & estetika dalam teknologi.</p>
+                <p>Psikologi pengguna dan estetika sistem digital.</p>
             </div>
         </div>
 
         <div id="materi" class="hidden">
             <div class="materi-box">
-                <h2 id="mTitle" style="color: #58a6ff;"></h2>
-                <p id="mDesc" style="line-height: 1.8; font-size: 1em; white-space: pre-line;"></p>
-                <button class="btn-wa" onclick="hubungiMentor()">Diskusikan Materi Ini dengan Mentor</button>
-                <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:20px; width:100%; cursor:pointer;">Kembali ke Dashboard</button>
+                <h2 id="mTitle" style="color: #58a6ff; border-bottom: 2px solid #58a6ff; padding-bottom: 10px;"></h2>
+                <p id="mDesc" style="line-height: 1.9; font-size: 1.1em; white-space: pre-line; color: #e0e0e0;"></p>
+                <button class="btn-wa" onclick="hubungiMentor()">Konsultasi Intensif dengan Mentor</button>
+                <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:30px; width:100%; cursor:pointer; font-size: 1em;">Kembali ke Menu Utama</button>
             </div>
         </div>
     </div>
@@ -63,7 +74,7 @@
 
 <script>
     let currentMateri = "";
-    const nomorWA = "628xxxxxxxxxx"; // JANGAN LUPA GANTI NOMOR
+    const nomorWA = "628xxxxxxxxxx"; // GANTI NOMOR WA LU
 
     function openMateri(title, desc) {
         document.getElementById('home').style.display = 'none';
