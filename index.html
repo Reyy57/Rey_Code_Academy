@@ -3,48 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Code Academy</title>
+    <title>Rey Code Academy | Masterclass</title>
     <style>
         body { margin: 0; font-family: 'Courier New', monospace; min-height: 100vh;
-               background-image: url('554375.webp'); /* Pastikan file ini ada */
+               background-image: url('554375.webp'); 
                background-size: cover; background-position: center; background-attachment: fixed;
                color: #c9d1d9; }
-        .overlay { background: rgba(13, 17, 23, 0.9); min-height: 100vh; padding: 20px; }
-        .container { max-width: 600px; margin: auto; }
-        h1 { color: #58a6ff; text-align: center; }
-        
+        .overlay { background: rgba(13, 17, 23, 0.92); min-height: 100vh; padding: 20px; }
+        .container { max-width: 700px; margin: auto; }
+        h1 { color: #58a6ff; text-align: center; font-size: 1.8em; margin-bottom: 30px; }
         .code-card { background: rgba(22, 27, 34, 0.8); border: 1px solid #30363d; 
-                     padding: 20px; border-radius: 12px; margin-bottom: 15px; cursor: pointer; }
-        
+                     padding: 20px; border-radius: 12px; margin-bottom: 15px; cursor: pointer; transition: 0.3s; }
+        .code-card:hover { border-color: #58a6ff; transform: translateX(5px); }
         .hidden { display: none; }
-        .materi-box { background: #161b22; padding: 25px; border-radius: 15px; border: 1px solid #58a6ff; }
-        .btn-wa { background: #238636; color: white; padding: 15px; width: 100%; border: none; 
-                  border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        .materi-box { background: #161b22; padding: 30px; border-radius: 20px; border: 1px solid #58a6ff; }
+        .btn-wa { background: #238636; color: white; padding: 18px; width: 100%; border: none; 
+                  border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 30px; font-size: 1.1em; }
     </style>
 </head>
 <body>
 
 <div class="overlay">
     <div class="container">
-        <h1>> Rey_Code_Academy</h1>
+        <h1>> REY_CODE_ACADEMY</h1>
 
         <div id="home">
-            <div class="code-card" onclick="openMateri('Web Dev', 'Web Development adalah proses membangun website. HTML adalah kerangkanya, CSS adalah pakaiannya, dan JavaScript adalah otaknya.')">
+            <div class="code-card" onclick="openMateri('Web Development', 'ASAL-USUL: Web lahir dari kebutuhan berbagi data antar ilmuwan di CERN pada 1989. Tim Berners-Lee menciptakan HTTP dan HTML sebagai solusinya. \n\nINTI PEMBELAJARAN: Web Dev bukan sekadar bikin tampilan, ini tentang membangun ekosistem digital. Kita akan membedah HTML5 sebagai struktur tulang punggung, CSS3 untuk manipulasi visual dengan teknik Flexbox/Grid, serta JavaScript (ES6+) untuk membangun logika interaktif yang kompleks. Kamu akan belajar bagaimana sebuah request dari browser diolah oleh server dan dikembalikan dalam bentuk data yang terbaca oleh manusia. Ini adalah pintu gerbang menjadi Fullstack Developer.')">
                 <h3>> 01. Web Development</h3>
-                <p>Klik untuk baca materi singkat.</p>
+                <p>Membangun pondasi internet modern.</p>
             </div>
-            <div class="code-card" onclick="openMateri('Mobile App', 'Mobile development membuat aplikasi untuk smartphone. Kita menggunakan bahasa seperti Flutter atau React Native untuk Android dan iOS.')">
+            <div class="code-card" onclick="openMateri('Mobile Development', 'ASAL-USUL: Sejak peluncuran iPhone tahun 2007, dunia berpindah dari PC ke genggaman tangan. Mobile Dev menjadi sektor paling kompetitif karena batasan resource hardware.\n\nINTI PEMBELAJARAN: Fokus kita adalah membuat aplikasi yang performancenya tinggi. Kamu akan memahami siklus hidup aplikasi (Lifecycle), manajemen memori, dan penggunaan framework modern seperti Flutter (Dart) atau React Native. Tantangannya adalah membuat UI yang responsif di berbagai ukuran layar dan integrasi dengan fitur hardware seperti kamera, GPS, dan sensor akselerometer. Ini tentang membawa kecanggihan teknologi ke saku setiap orang.')">
                 <h3>> 02. Mobile Development</h3>
-                <p>Klik untuk baca materi singkat.</p>
+                <p>Inovasi di balik aplikasi smartphone.</p>
             </div>
+            <div class="code-card" onclick="openMateri('Data Science', 'ASAL-USUL: Berasal dari teknik statistik untuk meramal tren, namun meledak saat era Big Data dimulai. \n\nINTI PEMBELAJARAN: Data Science adalah seni mencari pola dalam kekacauan data. Kamu akan belajar bahasa Python, yang menjadi standar industri. Kita akan menempuh tahapan: Data Cleaning (membersihkan data kotor), Data Exploration (visualisasi statistik), hingga Machine Learning (membuat model prediksi). Kamu akan dilatih untuk tidak hanya melihat angka, tetapi memahami narasi di balik data tersebut untuk pengambilan keputusan bisnis yang presisi.')">
+                <h3>> 03. Data Science</h3>
+                <p>Mengubah Big Data menjadi keputusan cerdas.</p>
             </div>
+            <div class="code-card" onclick="openMateri('Game Development', 'ASAL-USUL: Bermula dari kode sederhana di komputer main-frame tahun 50-an, berkembang menjadi industri hiburan triliunan dolar.\n\nINTI PEMBELAJARAN: Game Dev adalah kasta tertinggi dalam programming karena menuntut efisiensi maksimal. Kamu akan bersentuhan dengan Game Engine (Unity/Godot) dan bahasa C#. Kamu akan mempelajari matematika vektor, simulasi fisika (gravitasi & tabrakan), serta optimasi rendering agar game berjalan mulus di 60 FPS. Ini bukan cuma soal bikin gambar bergerak, tapi soal menciptakan hukum alam di dalam dunia virtual.')">
+                <h3>> 04. Game Development</h3>
+                <p>Menciptakan hukum fisika di dunia digital.</p>
+            </div>
+            <div class="code-card" onclick="openMateri('UI/UX Design', 'ASAL-USUL: Terinspirasi dari ergonomi industri tahun 1950-an. Design modern berfokus pada "User-Centered Design".\n\nINTI PEMBELAJARAN: UI/UX adalah jembatan antara mesin yang kaku dan otak manusia yang dinamis. Kamu akan belajar tentang heuristik desain, hierarki visual, tipografi, dan aksesibilitas. Programmer UI/UX yang baik harus mengerti cara meminimalisir "cognitive load" (beban pikiran) user agar aplikasi terasa intuitif. Kita akan mendalami prototipe interaktif dan riset perilaku pengguna.')">
+                <h3>> 05. UI/UX Design</h3>
+                <p>Psikologi & estetika dalam teknologi.</p>
+            </div>
+        </div>
 
         <div id="materi" class="hidden">
             <div class="materi-box">
                 <h2 id="mTitle" style="color: #58a6ff;"></h2>
-                <p id="mDesc" style="line-height: 1.6;"></p>
-                <button class="btn-wa" onclick="hubungiMentor()">Tanya Mentor Lebih Lanjut</button>
-                <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:20px; width:100%; cursor:pointer;">Kembali</button>
+                <p id="mDesc" style="line-height: 1.8; font-size: 1em; white-space: pre-line;"></p>
+                <button class="btn-wa" onclick="hubungiMentor()">Diskusikan Materi Ini dengan Mentor</button>
+                <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:20px; width:100%; cursor:pointer;">Kembali ke Dashboard</button>
             </div>
         </div>
     </div>
@@ -66,7 +77,7 @@
         document.getElementById('materi').style.display = 'none';
     }
     function hubungiMentor() {
-        window.open("https://wa.me/" + nomorWA + "?text=Halo Rey, saya sudah baca materi " + currentMateri + " dan ingin bertanya lebih dalam.");
+        window.open("https://wa.me/" + nomorWA + "?text=Halo Rey, saya ingin diskusi lebih lanjut tentang materi " + currentMateri + ".");
     }
 </script>
 </body>
