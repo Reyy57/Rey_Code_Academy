@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rey Code Academy</title>
     <style>
-        /* Background Foto Lu dengan filter Cyber */
         body { 
             margin: 0; font-family: 'Courier New', monospace; min-height: 100vh;
-            background-image: url('554375.webp'); 
+            background-image: url('554375.webp'); /* Pastikan nama file foto benar */
             background-size: cover; background-position: center; background-attachment: fixed;
             color: #c9d1d9;
         }
@@ -38,13 +37,25 @@
         <p style="text-align:center;">Membentuk generasi programmer masa depan.</p>
 
         <div id="home">
-            <div class="code-card" onclick="showDetail('Basic HTML & CSS', 'Belajar struktur dasar dan desain visual web.')">
-                <h3>> 01. Web Foundation</h3>
-                <p>HTML & CSS untuk pemula.</p>
+            <div class="code-card" onclick="showDetail('Web Development', 'Mempelajari HTML, CSS, dan JavaScript untuk membuat website interaktif.')">
+                <h3>> 01. Web Development</h3>
+                <p>Fondasi utama membangun website.</p>
             </div>
-            <div class="code-card" onclick="showDetail('JavaScript Logic', 'Bikin webmu jadi interaktif dan cerdas.')">
-                <h3>> 02. Logic JS</h3>
-                <p>Dasar programming web dinamis.</p>
+            <div class="code-card" onclick="showDetail('Mobile App', 'Belajar bikin aplikasi Android/iOS yang bisa dipakai di HP.')">
+                <h3>> 02. Mobile Development</h3>
+                <p>Bikin aplikasi keren di genggaman.</p>
+            </div>
+            <div class="code-card" onclick="showDetail('Data Science', 'Cara mengolah data menjadi informasi penting dengan Python.')">
+                <h3>> 03. Data Science</h3>
+                <p>Analisis data & kecerdasan buatan.</p>
+            </div>
+            <div class="code-card" onclick="showDetail('Game Dev', 'Membangun dunia virtual dengan logika game.')">
+                <h3>> 04. Game Development</h3>
+                <p>Seru-seruan bikin game sendiri.</p>
+            </div>
+            <div class="code-card" onclick="showDetail('UI/UX Design', 'Bikin tampilan aplikasi yang nyaman dilihat user.')">
+                <h3>> 05. UI/UX Design</h3>
+                <p>Kreativitas di balik layar aplikasi.</p>
             </div>
         </div>
 
@@ -60,7 +71,7 @@
 <script>
     let pName = "";
     // GANTI NOMOR WA LU DI SINI
-    const nomorWA = "6283136106128"; 
+    const nomorWA = "628xxxxxxxxxx"; 
 
     function showDetail(name, desc) {
         document.getElementById('home').style.display = 'none';
