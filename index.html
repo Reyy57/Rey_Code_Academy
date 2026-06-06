@@ -3,62 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Store Professional</title>
+    <title>Rey Code Academy</title>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; min-height: 100vh;
-               background-image: url('554375.webp'); 
-               background-size: cover; background-position: center; background-attachment: fixed; }
-        .overlay { background: rgba(0,0,0,0.7); min-height: 100vh; padding: 20px; }
-        .container { max-width: 500px; margin: auto; }
-        h1 { text-align: center; color: #f1c40f; margin-bottom: 30px; text-shadow: 2px 2px 4px #000; }
+        /* Background Foto Lu dengan filter Cyber */
+        body { 
+            margin: 0; font-family: 'Courier New', monospace; min-height: 100vh;
+            background-image: url('554375.webp'); 
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: #c9d1d9;
+        }
+        .overlay { background: rgba(13, 17, 23, 0.85); min-height: 100vh; padding: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        h1 { color: #58a6ff; text-align: center; font-size: 1.8em; }
         
-        .card { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-                padding: 20px; border-radius: 15px; margin-bottom: 15px; 
-                cursor: pointer; color: white; transition: 0.3s; backdrop-filter: blur(5px); }
-        .card:hover { background: rgba(255,255,255,0.2); }
+        .code-card { 
+            background: rgba(22, 27, 34, 0.8); border: 1px solid #30363d; 
+            padding: 20px; border-radius: 12px; margin-bottom: 15px; cursor: pointer; 
+            transition: 0.3s;
+        }
+        .code-card:hover { border-color: #58a6ff; transform: scale(1.02); }
         
+        .btn-mentor { 
+            background: #238636; color: white; padding: 15px; width: 100%; 
+            border: none; border-radius: 8px; font-weight: bold; cursor: pointer; 
+        }
         .hidden { display: none; }
-        .detail-box { background: rgba(0,0,0,0.9); padding: 30px; border-radius: 20px; 
-                      text-align: center; border: 2px solid #f1c40f; color: white; }
-        .btn-pesan { background: #f1c40f; color: black; padding: 15px; width: 100%; 
-                     border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 20px; }
-        .btn-back { background: #555; color: white; padding: 10px; border: none; 
-                    border-radius: 5px; cursor: pointer; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <div class="overlay">
     <div class="container">
-        <h1>Rey Store 🛒</h1>
+        <h1>> Rey_Code_Academy</h1>
+        <p style="text-align:center;">Membentuk generasi programmer masa depan.</p>
 
         <div id="home">
-            <div class="card" onclick="showDetail('Free Fire', 'Skin Sultan & Diamond Murah')">
-                <h3>Free Fire</h3>
-                <p>Proses Cepat & Otomatis</p>
+            <div class="code-card" onclick="showDetail('Basic HTML & CSS', 'Belajar struktur dasar dan desain visual web.')">
+                <h3>> 01. Web Foundation</h3>
+                <p>HTML & CSS untuk pemula.</p>
             </div>
-            <div class="card" onclick="showDetail('Mobile Legends', 'Joki Mythic & Diamond')">
-                <h3>Mobile Legends</h3>
-                <p>Layanan 24 Jam</p>
+            <div class="code-card" onclick="showDetail('JavaScript Logic', 'Bikin webmu jadi interaktif dan cerdas.')">
+                <h3>> 02. Logic JS</h3>
+                <p>Dasar programming web dinamis.</p>
             </div>
         </div>
 
-        <div id="detail" class="hidden">
-            <div class="detail-box">
-                <h2 id="pName"></h2>
-                <p id="pDesc"></p>
-                <button class="btn-pesan" onclick="order()">Pesan Sekarang!</button>
-                <button class="btn-back" onclick="goBack()">Kembali</button>
-            </div>
+        <div id="detail" class="hidden" style="background: rgba(22, 27, 34, 0.9); padding: 25px; border-radius: 15px; border: 1px solid #58a6ff;">
+            <h2 id="pName" style="color: #58a6ff;"></h2>
+            <p id="pDesc"></p>
+            <button class="btn-mentor" onclick="order()">Konsultasi dengan Mentor</button>
+            <button onclick="goBack()" style="background:none; border:none; color:grey; margin-top:15px; cursor:pointer; display:block; width:100%;">Kembali</button>
         </div>
     </div>
 </div>
 
 <script>
     let pName = "";
-    
-    // --- GANTI NOMOR DI BAWAH INI (PAKE 62) ---
-    const nomorWA = "6283136196128"; 
+    // GANTI NOMOR WA LU DI SINI
+    const nomorWA = "6283136106128"; 
 
     function showDetail(name, desc) {
         document.getElementById('home').style.display = 'none';
@@ -72,7 +74,7 @@
         document.getElementById('detail').style.display = 'none';
     }
     function order() {
-        window.open("https://wa.me/" + nomorWA + "?text=Halo Rey, saya mau beli: " + pName);
+        window.open("https://wa.me/" + nomorWA + "?text=Halo Rey, saya mau tanya soal: " + pName);
     }
 </script>
 </body>
