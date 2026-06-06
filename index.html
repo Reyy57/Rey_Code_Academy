@@ -44,13 +44,14 @@
         const output = document.getElementById("output");
         
         if (!apiKey) { alert("Masukkan API Key dulu!"); return; }
-        if (!window.GoogleGenerativeAI) { alert("Tunggu sebentar, sedang memuat sistem..."); return; }
+        if (!window.GoogleGenerativeAI) { alert("Sistem sedang loading..."); return; }
         
         output.innerText = "Sedang memproses...";
 
         try {
             const genAI = new window.GoogleGenerativeAI(apiKey);
-            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+            // KITA PAKAI MODEL INI YANG PALING STABIL
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
             const result = await model.generateContent(prompt);
             output.innerText = result.response.text();
         } catch (error) {
