@@ -5,45 +5,45 @@
     <title>Rey Code Academy | Expert Roadmap</title>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
-        :root {--bg:#000;--text:#fff;--accent:#58a6ff;--card:rgba(255,255,255,0.08)}
+        :root {--bg:#000;--text:#fff;--accent:#58a6ff;--card:rgba(255,255,255,0.05)}
         body{margin:0;font-family:sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden}
         #bg-video{position:fixed;right:0;bottom:0;min-width:100%;min-height:100%;z-index:-3;object-fit:cover}
         #particles-js{position:fixed;width:100%;height:100%;z-index:-2}
         .container{max-width:600px;margin:auto;padding:20px}
-        .card{background:var(--card);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);padding:15px;border-radius:15px;margin:10px 0;cursor:pointer;transition:0.3s}
-        .card:hover{border-color:var(--accent)}
-        .online-dot{width:8px;height:8px;background:#25D366;border-radius:50%;display:inline-block;animation:blink 1s infinite;margin-right:8px}
-        @keyframes blink{0%{opacity:1}50%{opacity:0.3}100%{opacity:1}}
+        .card{background:var(--card);border:1px solid #30363d;padding:15px;border-radius:12px;margin:10px 0;cursor:pointer}
         .fab{position:fixed;bottom:30px;right:30px;background:#25D366;padding:15px 20px;border-radius:50px;color:#fff;text-decoration:none;font-weight:bold;z-index:1002}
         .toast{position:fixed;bottom:20px;left:20px;background:var(--accent);padding:10px;border-radius:8px;font-size:0.7em;display:none;z-index:1002}
         .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:1001;align-items:center;justify-content:center}
-        .modal-content{background:#000;padding:25px;border-radius:15px;width:90%;border:1px solid var(--accent)}
+        .modal-content{background:#000;padding:20px;border-radius:15px;width:90%;border:1px solid var(--accent)}
         .badge{background:#30363d;padding:4px 8px;border-radius:4px;font-size:0.7em;margin-right:5px;display:inline-block}
+        .online-dot { width: 8px; height: 8px; background: #25D366; border-radius: 50%; display: inline-block; animation: blink 1s infinite; margin-right: 5px; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
     </style>
 </head>
 <body>
     <div id="particles-js"></div>
     <video autoplay muted loop playsinline id="bg-video"><source src="VID_20250702_110744_839.mp4" type="video/mp4"></video>
     <div class="container">
-        <div style="overflow:hidden; white-space:nowrap;">
-            <h1 style="color:var(--accent); animation:marquee 10s linear infinite;">
+        <div style="overflow:hidden; white-space:nowrap; margin-bottom:10px;">
+            <h1 style="color:var(--accent); animation:marquee 10s linear infinite; margin:0;">
                 <span class="online-dot"></span> REY_CODE_ACADEMY
             </h1>
         </div>
-        <p id="typing-text" style="font-size:0.9em; font-style:italic;"></p>
-        <div style="margin-bottom:15px;"><div class="badge">Next.js</div><div class="badge">Node.js</div><div class="badge">Flutter</div></div>
+        <p id="typing-text" style="font-size:0.9em; min-height:3em;"></p>
+        <div style="margin-bottom:15px;"><div class="badge">Next.js</div><div class="badge">Node.js</div><div class="badge">Flutter</div><div class="badge">Python</div></div>
         <div class="card">
-            <h4 style="margin:0;">Current Project: E-Commerce SaaS</h4>
+            <h4 style="margin:0;">Project: E-Commerce SaaS</h4>
             <div style="height:5px; background:#30363d; margin-top:10px;"><div style="height:100%; background:var(--accent); width:85%;"></div></div>
         </div>
         <div id="menu-grid"></div>
-        <div class="card"><h3>FAQ</h3><p style="font-size:0.8em;">Bisa custom web? Bisa, chat admin sekarang!</p></div>
+        <div class="card"><h3>FAQ</h3><p style="font-size:0.8em;">Bisa custom web? Bisa banget, konsultasikan ide lo ke admin sekarang!</p></div>
         <a href="https://wa.me/628xxxxxxxxxx" class="fab">💬 Chat Admin</a>
     </div>
     <div id="modal" class="modal">
         <div class="modal-content">
             <h2 id="mTitle" style="color:var(--accent);"></h2>
-            <div id="mDesc" style="font-size:0.85em; line-height:1.6;"></div>
+            <div id="mDesc" style="font-size:0.8em; line-height:1.6;"></div>
             <button style="width:100%;padding:10px;margin-top:20px;background:#238636;border:none;border-radius:8px;color:#fff" onclick="hubungiMentor()">Start Consultation</button>
         </div>
     </div>
@@ -52,21 +52,20 @@
         particlesJS("particles-js", {"particles":{"number":{"value":80},"color":{"value":"#ffffff"},"opacity":{"value":0.4},"size":{"value":2},"move":{"speed":0.5}}});
         setTimeout(() => { document.getElementById('toast').style.display = 'block'; setTimeout(() => document.getElementById('toast').style.display = 'none', 3000); }, 3000);
         const mods = {
-            "Web Dev": "1. Fondasi: HTML/CSS/JS<br>2. Framework: React/Next.js<br>3. Backend: Node.js/Express<br>4. Database: Postgres<br>5. Cloud: Vercel",
-            "Mobile Dev": "1. UI/UX: Flutter<br>2. State: BLoC/Riverpod<br>3. Backend: Firebase<br>4. Performance: Optimization<br>5. Store: Deployment",
-            "Data Science": "1. Pythonic: Numpy<br>2. Viz: Seaborn/Plotly<br>3. ML: Scikit-learn<br>4. Deep Learning: PyTorch<br>5. MLOps: Docker",
-            "Game Dev": "1. Core: Unity 3D & C#<br>2. Scripting: Logic<br>3. Math: Vektor<br>4. Physics: Collision<br>5. Networking: Photon",
-            "UI/UX Design": "1. Design Thinking<br>2. Wireframing<br>3. System Design<br>4. Prototyping<br>5. Accessibility"
+            "Web Development": "1.HTML/CSS/JS<br>2.React/Next.js<br>3.Node.js/Express<br>4.Postgres<br>5.Cloud Deployment",
+            "Mobile Development": "1.Flutter<br>2.State Management<br>3.Firebase<br>4.Optimization<br>5.Deployment",
+            "Data Science": "1.Numpy<br>2.Seaborn<br>3.Scikit-learn<br>4.PyTorch<br>5.MLOps",
+            "Game Development": "1.Unity 3D<br>2.C# Scripting<br>3.Math Vector<br>4.Physics Engine<br>5.Networking",
+            "UI/UX Design": "1.Design Thinking<br>2.Wireframing<br>3.System Design<br>4.Prototyping<br>5.Accessibility"
         };
         const grid = document.getElementById('menu-grid');
         for(let k in mods){ grid.innerHTML += `<div class="card" onclick="openDetail('${k}')"><h3>🚀 ${k}</h3></div>`; }
         function openDetail(t){document.getElementById('mTitle').innerText=t;document.getElementById('mDesc').innerHTML=mods[t];document.getElementById('modal').style.display='flex';}
         function hubungiMentor(){window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya tertarik jasa "+document.getElementById('mTitle').innerText);}
         window.onclick=(e)=>{if(e.target==document.getElementById('modal'))document.getElementById('modal').style.display='none';}
-        const text = "Selamat datang di Rey Code Academy. Mari bangun masa depan digital lo.";
+        const text = "Selamat datang di Rey Code Academy. Kami hadir untuk membantu lo mengubah ide brilian menjadi produk digital yang high-performance, scalable, dan estetik. Siap untuk scale-up bersama kami?";
         let i = 0; function typeWriter() { if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 40); } }
         typeWriter();
     </script>
-    <style>@keyframes marquee{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}</style>
 </body>
 </html>
