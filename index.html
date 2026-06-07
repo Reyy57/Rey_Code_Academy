@@ -3,30 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Code Academy | Ultimate Dashboard</title>
+    <title>Rey Code Academy | Expert Dashboard</title>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #fff; background: #000; overflow-x: hidden; }
+        body { margin: 0; font-family: 'Inter', system-ui, sans-serif; color: #fff; background: #050505; overflow-x: hidden; }
         #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: -1; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.9) 100%); z-index: -1; }
 
-        .container { max-width: 700px; margin: auto; padding: 20px; }
-        header { text-align: center; margin-bottom: 30px; margin-top: 20px; }
-        h1 { color: #58a6ff; font-size: 1.8em; margin: 0; letter-spacing: 2px; text-transform: uppercase; }
-        .subtitle { color: #8b949e; font-size: 0.8em; letter-spacing: 4px; margin-top: 5px; }
+        .container { max-width: 800px; margin: auto; padding: 30px 20px; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { color: #58a6ff; font-size: 2.2em; margin: 0; text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 0 30px rgba(88, 166, 255, 0.6); }
+        .status-bar { font-size: 0.7em; color: #58a6ff; letter-spacing: 5px; margin-top: 10px; border-top: 1px solid #30363d; border-bottom: 1px solid #30363d; padding: 5px 0; }
 
-        .story-box { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); padding: 20px; border-radius: 15px; border: 1px solid rgba(88, 166, 255, 0.2); margin-bottom: 25px; text-align: center; }
-        #typing-text { font-style: italic; line-height: 1.6; font-size: 0.95em; color: #c9d1d9; min-height: 70px; }
+        .story-box { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 25px; border-radius: 20px; border: 1px solid rgba(88, 166, 255, 0.2); margin-bottom: 30px; }
+        #typing-text { font-style: italic; line-height: 1.7; font-size: 0.9em; color: #c9d1d9; }
 
-        .grid { display: grid; gap: 15px; }
-        .code-card { background: rgba(22, 27, 34, 0.5); backdrop-filter: blur(5px); border: 1px solid rgba(88, 166, 255, 0.2); padding: 20px; border-radius: 15px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; }
-        .code-card:hover { border-color: #58a6ff; background: rgba(88, 166, 255, 0.1); transform: scale(1.02); }
-        .code-card h3 { margin: 0; font-size: 1.1em; color: #58a6ff; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .card { background: rgba(13, 17, 23, 0.7); backdrop-filter: blur(10px); border: 1px solid #30363d; padding: 20px; border-radius: 15px; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden; }
+        .card:hover { border-color: #58a6ff; box-shadow: 0 0 20px rgba(88, 166, 255, 0.2); transform: scale(1.01); }
+        .card h3 { margin: 0 0 10px 0; font-size: 1.2em; color: #fff; }
+        .tech-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+        .tag { font-size: 0.7em; background: #161b22; padding: 4px 10px; border-radius: 4px; color: #58a6ff; border: 1px solid #30363d; }
 
-        .music-btn { position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding: 10px 15px; background: rgba(88,166,255,0.2); border: 1px solid #58a6ff; border-radius: 50px; cursor: pointer; color: white; font-size: 0.8em; }
-
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1001; justify-content: center; align-items: center; overflow-y: auto; padding: 20px; }
-        .modal-content { background: #0d1117; padding: 30px; border-radius: 20px; max-width: 600px; width: 100%; border: 1px solid #58a6ff; }
-        .btn-wa { background: #238636; color: white; padding: 15px; width: 100%; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 25px; }
+        /* Modal Lebih Padat */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1001; align-items: center; justify-content: center; }
+        .modal-content { background: #0d1117; padding: 40px; border-radius: 20px; max-width: 600px; width: 85%; border: 1px solid #58a6ff; position: relative; max-height: 80vh; overflow-y: auto; }
+        .modal-h2 { color: #58a6ff; border-bottom: 2px solid #30363d; padding-bottom: 10px; margin-top: 0; }
+        .modal-desc { font-size: 0.95em; line-height: 1.8; color: #c9d1d9; }
+        .btn-wa { background: #238636; color: white; padding: 15px; width: 100%; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 30px; transition: 0.3s; }
+        .btn-wa:hover { background: #2ea043; }
     </style>
 </head>
 <body>
@@ -36,12 +40,10 @@
 </video>
 <div class="overlay"></div>
 
-<button class="music-btn" onclick="toggleMusic()" id="music-btn">🎵 Music</button>
-
 <div class="container">
     <header>
         <h1>REY_CODE_ACADEMY</h1>
-        <div class="subtitle">MENTORSHIP & LOGIC LAB</div>
+        <div class="status-bar">SYSTEM_OPERATIONAL_READY</div>
     </header>
 
     <div class="story-box">
@@ -49,23 +51,38 @@
     </div>
 
     <div class="grid">
-        <div class="code-card" onclick="openDetail('Web Development', 'Materi: Web Development\n\nBukan cuma bikin web statis, di sini kita bedah arsitektur Modern Web:\n1. Arsitektur: Deep dive ke sistem Client-Server, RESTful APIs, hingga implementasi GraphQL & Microservices.\n2. Frontend Engine: Fokus pada React.js/Next.js untuk rendering performa tinggi (SSR/SSG), state management kompleks, dan optimasi Core Web Vitals.\n3. Backend & Cloud: Membangun sistem scalable dengan Node.js/Python, database (PostgreSQL/MongoDB), serta integrasi pipeline CI/CD di AWS/Vercel.\n4. Security: Implementasi protokol keamanan OWASP Top 10 dan otentikasi JWT/OAuth.')"><h3>🚀 01. Web Development</h3></div>
-        
-        <div class="code-card" onclick="openDetail('Mobile Development', 'Materi: Mobile Development\n\nMembangun aplikasi mobile kelas enterprise dengan performa native:\n1. Clean Architecture: Menerapkan pola BLoC/Riverpod atau Redux untuk manajemen state yang bisa di-maintain.\n2. Cross-Platform Expertise: Optimalisasi performa Flutter atau React Native agar mencapai 60 FPS pada skenario kompleks.\n3. Hardware Integration: Eksplorasi mendalam sensor perangkat (Bluetooth Low Energy, GPS, Biometrik) untuk fitur inovatif.\n4. App Lifecycle: Strategi manajemen memori, background processing, dan proses publikasi ke App Store & Play Store yang efisien.')"><h3>📱 02. Mobile Development</h3></div>
+        <div class="card" onclick="openDetail('Web Development', 'Materi Mendalam:\n\n1. Arsitektur: RESTful API vs GraphQL, Microservices pattern, dan Serverless functions.\n2. Frontend: Deep dive ke Next.js 14, State Management (Redux Toolkit/Zustand), Framer Motion untuk UX, dan TailwindCSS.\n3. Backend: Database Schema Design (PostgreSQL/MongoDB), Redis Caching, Auth (JWT/OAuth2).\n4. DevOps: Containerization (Docker), CI/CD Pipeline (GitHub Actions), dan Cloud Deployment (AWS/Vercel).', 'React.js, Next.js, Node.js, SQL, Docker')">
+            <h3>🚀 01. Web Development</h3>
+            <div class="tech-tags"><span class="tag">Next.js</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span></div>
+        </div>
 
-        <div class="code-card" onclick="openDetail('Data Science', 'Materi: Data Science\n\nMengubah data mentah menjadi keputusan bisnis yang presisi:\n1. Data Pipeline: Teknik ETL (Extract, Transform, Load) tingkat lanjut menggunakan Pandas, NumPy, dan SQL.\n2. Feature Engineering: Mengolah variabel mentah menjadi fitur yang meningkatkan akurasi model prediktif secara signifikan.\n3. Advanced ML: Implementasi deep learning menggunakan PyTorch atau TensorFlow untuk kasus klasifikasi/regresi/klastering.\n4. Data Storytelling: Visualisasi dashboard interaktif yang menceritakan insight bisnis bukan sekadar angka.')"><h3>📊 03. Data Science</h3></div>
+        <div class="card" onclick="openDetail('Mobile Development', 'Materi Mendalam:\n\n1. Clean Architecture: Menerapkan MVVM pattern, Dependency Injection (GetIt/Hilt), dan Unit Testing.\n2. UI Mastery: Jetpack Compose (Android) atau SwiftUI (iOS) untuk deklaratif UI.\n3. Hardware & Network: Integrasi WebSocket untuk real-time data, Bluetooth, dan sensor kamera.\n4. Performance: Optimasi memory leaks, background threading (Isolates/Coroutines), dan rilis strategy (OTA updates).', 'Flutter, Swift, Kotlin, Firebase, KMM')">
+            <h3>📱 02. Mobile Development</h3>
+            <div class="tech-tags"><span class="tag">Flutter</span><span class="tag">Kotlin</span><span class="tag">SwiftUI</span><span class="tag">Firebase</span></div>
+        </div>
 
-        <div class="code-card" onclick="openDetail('Game Development', 'Materi: Game Development\n\nCiptakan dunia virtual dengan logika fisik yang akurat:\n1. Game Engine Mastery: Eksplorasi mendalam C# pada Unity atau C++/Blueprints pada Unreal Engine.\n2. Rendering & Math: Penguasaan Vektor, Matriks, Trigonometri, dan Shader untuk optimasi grafis yang memukau.\n3. Advanced Physics: Simulasi gravitasi, collision detection, dan optimasi hitboxes.\n4. Systems Design: AI untuk NPC, arsitektur multiplayer/netcode, dan manajemen memori untuk aset 3D yang berat.')"><h3>🎮 04. Game Development</h3></div>
+        <div class="card" onclick="openDetail('Data Science', 'Materi Mendalam:\n\n1. Engineering: Advanced Data Wrangling dengan PySpark & Dask untuk Big Data.\n2. Modeling: Deep Learning (TensorFlow/PyTorch), Computer Vision, & NLP (LLMs).\n3. Deployment: MLOps dengan MLflow, Dockerizing model, dan API serving.\n4. Analytics: Advanced SQL (Window Functions), PowerBI/Tableau, dan Statistical Hypothesis Testing.', 'Python, PyTorch, SQL, Pandas, Scikit-Learn')">
+            <h3>📊 03. Data Science</h3>
+            <div class="tech-tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">SQL</span><span class="tag">Pandas</span></div>
+        </div>
 
-        <div class="code-card" onclick="openDetail('UI/UX Design', 'Materi: UI/UX Design\n\nDesain yang berpusat pada manusia dan konversi tinggi:\n1. Design Systems: Membangun library komponen yang skalabel untuk konsistensi produk.\n2. Accessibility (A11y): Standarisasi WCAG agar aplikasi inklusif untuk semua pengguna.\n3. Interactive Prototyping: Menguasai Figma untuk animasi micro-interaction dan testing usabilitas.\n4. User Psychology: Penerapan hukum Gestalt dan bias kognitif dalam desain untuk meningkatkan retensi pengguna.')"><h3>🎨 05. UI/UX Design</h3></div>
+        <div class="card" onclick="openDetail('Game Development', 'Materi Mendalam:\n\n1. Physics Engine: Custom collision algorithm, rigid body simulation, & Inverse Kinematics (IK).\n2. Graphics: Shader Graph/HLSL untuk visual effects & Post-processing.\n3. Network: Deterministic Networking, Netcode (Photon/Mirror), & Server-Authoritative architecture.\n4. Optimization: Asset batching, memory profiling, dan Level of Detail (LOD) management.', 'Unity, C#, Unreal Engine, C++, Blender')">
+            <h3>🎮 04. Game Development</h3>
+            <div class="tech-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Unreal</span><span class="tag">C++</span></div>
+        </div>
+
+        <div class="card" onclick="openDetail('UI/UX Design', 'Materi Mendalam:\n\n1. Design Systems: Atomic Design, Global Tokens (Spacing, Color, Type), & Component Documentation.\n2. UX Strategy: User flow mapping, heuristic evaluation, & accessibility testing (WCAG 2.1).\n3. Prototyping: High-fidelity interactive prototyping (Figma Variables & Auto Layout).\n4. Psychology: Cognitive Load Reduction, Eye-tracking principles, & Conversion-focused design.', 'Figma, Adobe XD, Framer, User Research')">
+            <h3>🎨 05. UI/UX Design</h3>
+            <div class="tech-tags"><span class="tag">Figma</span><span class="tag">Prototyping</span><span class="tag">UX Research</span></div>
+        </div>
     </div>
 </div>
 
 <div id="modal" class="modal" onclick="closeModal()">
     <div class="modal-content" onclick="event.stopPropagation()">
-        <h2 id="mTitle" style="color: #58a6ff; margin-top:0;"></h2>
-        <p id="mDesc" style="line-height: 1.8; white-space: pre-line; color:#c9d1d9; font-size: 0.95em;"></p>
-        <button class="btn-wa" onclick="hubungiMentor()">Konsultasi Intensif dengan Mentor</button>
+        <h2 id="mTitle" class="modal-h2"></h2>
+        <p id="mDesc" class="modal-desc"></p>
+        <button class="btn-wa" onclick="hubungiMentor()">Start Consultation</button>
     </div>
 </div>
 
@@ -76,22 +93,18 @@
         if (i < text.length) {
             document.getElementById("typing-text").innerHTML += text.charAt(i);
             i++;
-            setTimeout(typeWriter, 30);
+            setTimeout(typeWriter, 20);
         }
     }
     window.onload = typeWriter;
 
-    function toggleMusic() {
-        // Karena audio gak dipakai, tombol ini buat kasih efek "siap" aja
-        alert("Sistem siap. Siap untuk ngoding?");
-    }
-    function openDetail(title, desc) {
+    function openDetail(title, desc, stack) {
         document.getElementById('mTitle').innerText = title;
         document.getElementById('mDesc').innerText = desc;
         document.getElementById('modal').style.display = 'flex';
     }
     function closeModal() { document.getElementById('modal').style.display = 'none'; }
-    function hubungiMentor() { window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi mendalam tentang " + document.getElementById('mTitle').innerText); }
+    function hubungiMentor() { window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi lebih lanjut tentang " + document.getElementById('mTitle').innerText); }
 </script>
 </body>
 </html>
