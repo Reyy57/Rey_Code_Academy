@@ -8,13 +8,19 @@
         body { margin: 0; font-family: 'Courier New', monospace; color: #c9d1d9; overflow-x: hidden; background: #000; }
         #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); z-index: -1; }
-        
-        .music-btn { position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding: 12px 20px; background: #58a6ff; border: none; border-radius: 20px; cursor: pointer; color: black; font-weight: bold; }
-        
+
+        .music-btn { position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding: 12px 20px; background: #58a6ff; border: none; border-radius: 20px; cursor: pointer; color: black; font-weight: bold; transition: 0.3s; }
+        .music-btn:hover { background: #1f6feb; color: white; transform: scale(1.05); }
+
         .container { max-width: 800px; margin: auto; padding: 20px; }
-        h1 { color: #58a6ff; text-align: center; font-size: 2.2em; }
-        .code-card { background: rgba(22, 27, 34, 0.6); border: 1px solid #30363d; padding: 25px; border-radius: 20px; margin-bottom: 20px; cursor: pointer; }
-        .code-card:hover { border-color: #58a6ff; }
+        h1 { color: #58a6ff; text-align: center; font-size: 2.2em; text-shadow: 0 0 15px rgba(88, 166, 255, 0.5); margin-top: 30px; }
+        
+        /* Box buat Efek Ngetik */
+        .story-box { background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 20px; margin-bottom: 40px; border: 1px solid #30363d; backdrop-filter: blur(5px); text-align: center; }
+        #typing-text { font-style: italic; line-height: 1.7; min-height: 80px; }
+
+        .code-card { background: rgba(22, 27, 34, 0.6); border: 1px solid #30363d; padding: 25px; border-radius: 20px; margin-bottom: 20px; cursor: pointer; transition: 0.4s; }
+        .code-card:hover { border-color: #58a6ff; box-shadow: 0 0 20px rgba(88, 166, 255, 0.4); }
         
         .hidden { display: none; }
         .materi-box { background: rgba(0, 0, 0, 0.9); padding: 40px; border-radius: 25px; border: 1px solid #58a6ff; }
@@ -37,26 +43,20 @@
 <div class="container">
     <h1>> REY_CODE_ACADEMY</h1>
 
+    <div class="story-box">
+        <p id="typing-text"></p>
+    </div>
+
     <div id="home">
-        <div class="code-card" onclick="openMateri('Web Development', 'Materi: Web Development\n\nPenjelasan Mendalam:\n1. Konsep Dasar: Memahami arsitektur Client-Server dan protokol HTTP/HTTPS.\n2. Frontend: Menguasai HTML5, CSS3 (Flexbox/Grid), dan JavaScript (ES6+).\n3. Backend: Membangun API menggunakan Node.js/Python, serta manajemen database menggunakan SQL (PostgreSQL) atau NoSQL (MongoDB).\n4. Deployment: Mengelola server, domain, dan proses CI/CD untuk publikasi web skala global.')">
-            <h3>🚀 01. Web Development</h3>
-        </div>
+        <div class="code-card" onclick="openMateri('Web Development', 'Materi: Web Development\n\nPenjelasan Mendalam:\n1. Konsep Dasar: Memahami arsitektur Client-Server dan protokol HTTP/HTTPS.\n2. Frontend: Menguasai HTML5, CSS3 (Flexbox/Grid), dan JavaScript (ES6+).\n3. Backend: Membangun API menggunakan Node.js/Python, serta manajemen database menggunakan SQL atau NoSQL.\n4. Deployment: Mengelola server, domain, dan proses CI/CD untuk publikasi web skala global.')"><h3>🚀 01. Web Development</h3></div>
         
-        <div class="code-card" onclick="openMateri('Mobile Development', 'Materi: Mobile Development\n\nPenjelasan Mendalam:\n1. Native vs Cross-Platform: Memahami perbedaan arsitektur antara Swift/Kotlin (Native) dan Flutter/React Native (Cross-Platform).\n2. Hardware Access: Mengintegrasikan sensor kamera, GPS, biometrik, dan notifikasi push dalam aplikasi.\n3. State Management: Teknik menangani data kompleks agar aplikasi berjalan mulus (60 FPS).\n4. Store Publishing: Panduan mengelola rilis aplikasi ke Google Play Store dan Apple App Store.')">
-            <h3>📱 02. Mobile Development</h3>
-        </div>
+        <div class="code-card" onclick="openMateri('Mobile Development', 'Materi: Mobile Development\n\nPenjelasan Mendalam:\n1. Native vs Cross-Platform: Memahami arsitektur Swift/Kotlin (Native) vs Flutter/React Native (Cross-Platform).\n2. Hardware Access: Mengintegrasikan sensor kamera, GPS, dan biometrik dalam aplikasi.\n3. State Management: Teknik menangani data kompleks agar aplikasi berjalan mulus (60 FPS).\n4. Store Publishing: Panduan mengelola rilis aplikasi ke Google Play Store dan Apple App Store.')"><h3>📱 02. Mobile Development</h3></div>
 
-        <div class="code-card" onclick="openMateri('Data Science', 'Materi: Data Science\n\nPenjelasan Mendalam:\n1. Data Wrangling: Menggunakan library Pandas dan NumPy untuk membersihkan data kotor dari berbagai sumber.\n2. EDA (Exploratory Data Analysis): Memvisualisasikan pola data menggunakan Matplotlib dan Seaborn untuk menemukan insight tersembunyi.\n3. Machine Learning: Implementasi model prediktif (Regresi, Klasifikasi) menggunakan Scikit-Learn dan TensorFlow.\n4. Business Impact: Mengubah hasil riset data menjadi keputusan strategis bagi perusahaan.')">
-            <h3>📊 03. Data Science</h3>
-        </div>
+        <div class="code-card" onclick="openMateri('Data Science', 'Materi: Data Science\n\nPenjelasan Mendalam:\n1. Data Wrangling: Menggunakan library Pandas dan NumPy untuk membersihkan data kotor.\n2. EDA: Visualisasi pola menggunakan Matplotlib dan Seaborn untuk menemukan insight tersembunyi.\n3. Machine Learning: Implementasi model prediktif (Regresi, Klasifikasi) menggunakan Scikit-Learn dan TensorFlow.\n4. Business Impact: Mengubah hasil riset data menjadi keputusan strategis.')"><h3>📊 03. Data Science</h3></div>
 
-        <div class="code-card" onclick="openMateri('Game Development', 'Materi: Game Development\n\nPenjelasan Mendalam:\n1. Game Engine: Penguasaan Unity (C#) atau Unreal Engine (C++/Blueprints) sebagai fondasi utama.\n2. Matematika 3D: Implementasi Vektor, Matriks, dan Trigonometri untuk simulasi pergerakan objek dalam ruang virtual.\n3. Fisika & Collision: Menangani simulasi gravitasi, tabrakan (collision), dan interaksi objek.\n4. AI & Gameplay: Membangun kecerdasan buatan musuh menggunakan Finite State Machines atau Behavior Trees.')">
-            <h3>🎮 04. Game Development</h3>
-        </div>
+        <div class="code-card" onclick="openMateri('Game Development', 'Materi: Game Development\n\nPenjelasan Mendalam:\n1. Game Engine: Penguasaan Unity (C#) atau Unreal Engine (C++/Blueprints).\n2. Matematika 3D: Implementasi Vektor, Matriks, dan Trigonometri untuk simulasi pergerakan.\n3. Fisika & Collision: Menangani simulasi gravitasi dan interaksi objek.\n4. AI & Gameplay: Membangun kecerdasan buatan musuh menggunakan Finite State Machines.')"><h3>🎮 04. Game Development</h3></div>
 
-        <div class="code-card" onclick="openMateri('UI/UX Design', 'Materi: UI/UX Design\n\nPenjelasan Mendalam:\n1. Research & Strategy: Melakukan user research, persona, dan user journey mapping untuk memahami kebutuhan pengguna.\n2. Wireframing & Prototyping: Merancang kerangka aplikasi (Low-Fi) hingga prototipe interaktif (Hi-Fi) menggunakan Figma.\n3. Visual Principles: Menerapkan teori warna, tipografi, dan hierarki visual untuk kenyamanan mata.\n4. Usability Testing: Proses iterasi desain berdasarkan feedback nyata dari pengguna untuk mencapai UX terbaik.')">
-            <h3>🎨 05. UI/UX Design</h3>
-        </div>
+        <div class="code-card" onclick="openMateri('UI/UX Design', 'Materi: UI/UX Design\n\nPenjelasan Mendalam:\n1. Research & Strategy: Melakukan user research, persona, dan user journey mapping.\n2. Prototyping: Merancang kerangka aplikasi hingga prototipe interaktif menggunakan Figma.\n3. Visual Principles: Menerapkan teori warna, tipografi, dan hierarki visual.\n4. Usability Testing: Proses iterasi desain berdasarkan feedback nyata pengguna.')"><h3>🎨 05. UI/UX Design</h3></div>
     </div>
 
     <div id="materi" class="hidden">
@@ -64,33 +64,44 @@
             <h2 id="mTitle" style="color: #58a6ff;"></h2>
             <p id="mDesc" style="line-height: 1.9; white-space: pre-line;"></p>
             <button class="btn-wa" onclick="hubungiMentor()">Konsultasi Intensif dengan Mentor Rey</button>
-            <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:30px; width:100%; cursor:pointer;">Kembali</button>
+            <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:30px; width:100%; cursor:pointer;">Kembali ke Menu Utama</button>
         </div>
     </div>
 </div>
 
 <script>
+    // Efek Ngetik
+    const text = "Dulu, gue pikir memperbaiki hati itu sama kayak memperbaiki bug. Ternyata cinta jauh lebih rumit daripada syntax. Gue memilih untuk fokus membangun masa depan melalui kode. Selamat datang di tempat di mana logika menang atas perasaan.";
+    let i = 0;
+    function typeWriter() {
+        if (i < text.length) {
+            document.getElementById("typing-text").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 40);
+        }
+    }
+    window.onload = typeWriter;
+
+    // Fungsi lainnya
     function toggleMusic() {
         const audio = document.getElementById("bg-audio");
         const btn = document.getElementById("music-btn");
         if (audio.paused) { audio.play(); btn.innerText = "⏸ Pause Music"; }
         else { audio.pause(); btn.innerText = "🎵 Play Music"; }
     }
-
     function openMateri(title, desc) {
         document.getElementById('home').style.display = 'none';
         document.getElementById('materi').style.display = 'block';
         document.getElementById('mTitle').innerText = title;
         document.getElementById('mDesc').innerText = desc;
     }
-    
     function backToHome() {
         document.getElementById('home').style.display = 'block';
         document.getElementById('materi').style.display = 'none';
     }
-
     function hubungiMentor() {
-        window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi lebih lanjut tentang materi " + document.getElementById('mTitle').innerText + ".");
+        // Ganti nomor di bawah ini dengan nomor asli lu
+        window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi lebih lanjut tentang " + document.getElementById('mTitle').innerText);
     }
 </script>
 </body>
