@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Code Academy | Expert Roadmap</title>
+    <title>Rey Code Academy | Expert Roadmap & Web Services</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Rey Code Academy - Solusi Jasa Pembuatan Website dan Mentoring Coding profesional untuk masa depan digitalmu.">
+    
     <style>
         body { margin: 0; font-family: 'Inter', sans-serif; color: #fff; background: #000; overflow-x: hidden; }
         #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
@@ -30,7 +33,8 @@
         .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #58a6ff; cursor: pointer; }
         .modal-h2 { color: #58a6ff; margin-top: 0; }
         .modal-desc { line-height: 1.7; color: #c9d1d9; font-size: 0.9em; }
-        .btn-wa { background: #238636; color: white; padding: 15px; width: 100%; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 25px; }
+        .btn-wa { background: #238636; color: white; padding: 15px; width: 100%; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 25px; transition: 0.3s; }
+        .btn-wa:hover { background: #2ea043; }
     </style>
 </head>
 <body>
@@ -52,9 +56,25 @@
         <p id="typing-text"></p>
     </div>
 
+    <!-- Section Jasa Baru -->
+    <div class="story-box">
+        <h2 style="color: #58a6ff; margin-top: 0;">Mengapa Belajar di Rey Code?</h2>
+        <p style="color: #c9d1d9; line-height: 1.6; font-size: 0.9em;">
+            Bukan sekadar *copy-paste* tutorial, di sini lo bakal belajar logika berpikir yang dipakai industri.
+        </p>
+        <ul style="color: #8b949e; font-size: 0.85em; margin-left: 20px;">
+            <li><strong>Jasa Web:</strong> Landing Page & Portofolio Profesional.</li>
+            <li><strong>Mentoring:</strong> Dasar Coding (Python, Web Dev).</li>
+            <li><strong>Support:</strong> Debugging & Konsultasi Teknis.</li>
+        </ul>
+    </div>
+
     <div class="grid" id="menu-grid"></div>
 
-    <footer style="text-align:center; margin-top:40px; color:#8b949e; font-size:0.8em;">© 2026 REY_CODE_ACADEMY. All rights reserved.</footer>
+    <footer style="text-align:center; margin-top:40px; color:#8b949e; font-size:0.8em;">
+        <p>Butuh bantuan? Chat gue di WhatsApp: <a href="https://wa.me/628xxxxxxxxxx" style="color:#58a6ff;">Klik Disini</a></p>
+        © 2026 REY_CODE_ACADEMY. All rights reserved.
+    </footer>
 </div>
 
 <div id="modal" class="modal">
@@ -68,48 +88,30 @@
 
 <script>
     const modules = {
-        "Web Development": {
-            tags: ["Next.js", "Node.js", "Docker", "AWS"],
-            desc: "<strong>10-Step Mastering Roadmap:</strong><br><br>1. <strong>Arch Patterns:</strong> Monolith vs Microservices vs Serverless.<br>2. <strong>Frontend Core:</strong> Next.js (SSR/SSG), React Hooks & State.<br>3. <strong>State Mgmt:</strong> Advanced caching with Zustand & React Query.<br>4. <strong>Database:</strong> Relational (Postgres) vs NoSQL (MongoDB/Redis).<br>5. <strong>API Design:</strong> RESTful best practices & GraphQL schemas.<br>6. <strong>Security:</strong> OAuth2, JWT, & OWASP Top 10 vulnerabilities.<br>7. <strong>Performance:</strong> Code splitting, image optimization & SEO.<br>8. <strong>Testing:</strong> Unit testing (Jest) & E2E (Cypress).<br>9. <strong>Infrastructure:</strong> Dockerizing containers & Networking.<br>10. <strong>Deployment:</strong> CI/CD Pipelines (Github Actions) & Cloud."
-        },
-        "Mobile Development": {
-            tags: ["Flutter", "Kotlin", "SwiftUI", "Firebase"],
-            desc: "<strong>10-Step Mastering Roadmap:</strong><br><br>1. <strong>Mobile Arch:</strong> Clean Architecture (MVVM/BLoC/Riverpod).<br>2. <strong>Native UI:</strong> Declarative UI with Jetpack Compose & SwiftUI.<br>3. <strong>Async Ops:</strong> Background processing, Isolates & Coroutines.<br>4. <strong>Networking:</strong> Dio/Retrofit & WebSocket real-time data.<br>5. <strong>Local Storage:</strong> SQLite, Hive, & Encrypted SharedPrefs.<br>6. <strong>Hardware:</strong> Bluetooth LE, GPS, Camera & Sensor fusion.<br>7. <strong>Testing:</strong> Widget testing & Integration testing.<br>8. <strong>Firebase:</strong> Auth, Firestore, Analytics & Crashlytics.<br>9. <strong>Security:</strong> SSL Pinning & Obfuscation.<br>10. <strong>Distribution:</strong> Store guidelines, OTA updates & A/B testing."
-        },
-        "Data Science": {
-            tags: ["Python", "PyTorch", "Pandas", "SQL"],
-            desc: "<strong>10-Step Mastering Roadmap:</strong><br><br>1. <strong>Pythonic DS:</strong> Advanced Numpy/Pandas data manipulation.<br>2. <strong>Stats & Prob:</strong> Hypothesis testing & A/B testing basics.<br>3. <strong>EDA:</strong> Data visualization (Matplotlib/Seaborn/Plotly).<br>4. <strong>Data Wrangling:</strong> Handling missing values & outlier detection.<br>5. <strong>SQL Advanced:</strong> Window functions, Joins, & Query optimization.<br>6. <strong>ML Core:</strong> Scikit-learn (Regression, Clustering, Classification).<br>7. <strong>Deep Learning:</strong> Neural Nets with PyTorch/TensorFlow.<br>8. <strong>NLP/CV:</strong> Large Language Models (LLM) & Computer Vision.<br>9. <strong>MLOps:</strong> Docker, MLflow, Model Registry & Serving.<br>10. <strong>Big Data:</strong> Distributed computing with PySpark & Dask."
-        },
-        "Game Development": {
-            tags: ["Unity", "C#", "Unreal", "C++"],
-            desc: "<strong>10-Step Mastering Roadmap:</strong><br><br>1. <strong>Engine Core:</strong> Understanding Game Loops & Component Architecture.<br>2. <strong>Scripting:</strong> C# (Unity) or C++ (Unreal) Fundamentals.<br>3. <strong>Math Mastery:</strong> Vector, Matrix, Quaternions & Trigonometry.<br>4. <strong>Physics:</strong> Collision detection, Rigidbodies & Raycasting.<br>5. <strong>Asset Pipeline:</strong> Import/Export, Batching & Texture Compression.<br>6. <strong>Animation:</strong> State machines, Blend trees & Inverse Kinematics.<br>7. <strong>UI/UX Game:</strong> HUD systems & Inventory logic.<br>8. <strong>AI Systems:</strong> NavMesh, Behavior Trees & Pathfinding.<br>9. <strong>Networking:</strong> Photon/Mirror (Multiplayer synchronization).<br>10. <strong>Optimization:</strong> Memory profiling, Object Pooling & LOD."
-        },
-        "UI/UX Design": {
-            tags: ["Figma", "Research", "Interaction"],
-            desc: "<strong>10-Step Mastering Roadmap:</strong><br><br>1. <strong>Design Thinking:</strong> Empathy, Ideate, Prototype, Test.<br>2. <strong>Research:</strong> User Persona, Journey Maps & Stakeholder analysis.<br>3. <strong>Wireframing:</strong> Low-fi concepts & Information Architecture.<br>4. <strong>Design Systems:</strong> Global Tokens, Atomic components & Documentation.<br>5. <strong>Visual Design:</strong> Typography, Color theory & Layout Grids.<br>6. <strong>Prototyping:</strong> Advanced interactions, Variables & Auto-Layout.<br>7. <strong>Micro-interactions:</strong> Animated states & Lottie integration.<br>8. <strong>Accessibility:</strong> WCAG 2.1 compliance & Inclusive design.<br>9. <strong>Usability:</strong> Heuristic evaluation & User testing tools.<br>10. <strong>Collaboration:</strong> Dev Handoff, Spec documentation & Review."
-        }
+        "Web Development": { tags: ["Next.js", "Node.js", "Deployment"], desc: "Roadmap 10 langkah menguasai web modern dari frontend hingga cloud deployment." },
+        "Mobile Development": { tags: ["Flutter", "Kotlin", "Firebase"], desc: "Membangun aplikasi mobile dengan performa tinggi dan desain UI yang elegan." },
+        "Data Science": { tags: ["Python", "Pandas", "MLOps"], desc: "Analisis data, visualisasi, dan dasar-dasar Machine Learning untuk pemula." },
+        "Game Development": { tags: ["Unity", "C#", "Logic"], desc: "Memahami game loop, physics, dan scripting untuk game indie." },
+        "UI/UX Design": { tags: ["Figma", "Research"], desc: "Membuat desain antarmuka yang user-friendly dan berbasis riset." }
     };
 
     const grid = document.getElementById('menu-grid');
     for (let key in modules) {
-        grid.innerHTML += `
-            <div class="card" onclick="openDetail('${key}')">
-                <h3>🚀 ${key}</h3>
-                <div class="tech-tags">${modules[key].tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-            </div>
-        `;
+        grid.innerHTML += `<div class="card" onclick="openDetail('${key}')"><h3>🚀 ${key}</h3><div class="tech-tags">${modules[key].tags.map(t => `<span class="tag">${t}</span>`).join('')}</div></div>`;
     }
 
     window.addEventListener('load', () => { setTimeout(() => { document.getElementById('loader').style.display = 'none'; }, 1000); });
-    const text = "Dulu, gue pikir memperbaiki hati itu sama kayak memperbaiki bug. Ternyata cinta jauh lebih rumit daripada syntax. Gue memilih untuk fokus membangun masa depan melalui kode. Selamat datang di tempat di mana logika menang atas perasaan.";
+    
+    const text = "Di dunia yang serba digital, kode bukan cuma bahasa mesin—itu adalah bahasa masa depan. Gue membangun Rey Code Academy bukan cuma buat bagi kodingan, tapi buat bantu lo jadi kreator, bukan cuma konsumen. Mari bangun sesuatu yang luar biasa bersama. Ready to write your own legacy?";
     let i = 0;
     function typeWriter() {
         if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 20); }
     }
     window.onload = typeWriter;
+
     function openDetail(title) { document.getElementById('mTitle').innerText = title; document.getElementById('mDesc').innerHTML = modules[title].desc; document.getElementById('modal').style.display = 'flex'; }
     function closeModal() { document.getElementById('modal').style.display = 'none'; }
-    function hubungiMentor() { window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi tentang " + document.getElementById('mTitle').innerText); }
+    function hubungiMentor() { window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi tentang jasa " + document.getElementById('mTitle').innerText); }
 </script>
 </body>
 </html>
