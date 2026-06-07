@@ -9,29 +9,23 @@
         :root { --bg: #000; --text: #fff; --accent: #58a6ff; --card-bg: rgba(255,255,255,0.03); }
         .light-mode { --bg: #f0f2f5; --text: #000; --accent: #0969da; --card-bg: rgba(0,0,0,0.03); }
         body { margin: 0; font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); transition: 0.3s; overflow-x: hidden; }
-        
         #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -3; object-fit: cover; }
         #particles-js { position: fixed; width: 100%; height: 100%; z-index: -2; }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: -1; }
-        #loader { position: fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index: 9999; display: flex; justify-content: center; align-items: center; color: var(--accent); font-weight: bold; }
-
+        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; color: var(--accent); font-weight: bold; }
         .container { max-width: 600px; margin: auto; padding: 20px; padding-bottom: 80px; }
         @media (min-width: 768px) { .container { max-width: 900px; } .grid { grid-template-columns: 1fr 1fr; } }
-        
         header { display: flex; justify-content: space-between; align-items: center; margin: 25px 0; }
         .animated-title { animation: marquee 10s linear infinite; font-size: 1.5em; color: var(--accent); }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        
         .story-box { background: var(--card-bg); backdrop-filter: blur(10px); padding: 18px; border-radius: 15px; margin-bottom: 15px; border: 1px solid rgba(88, 166, 255, 0.2); }
         .grid { display: grid; gap: 10px; }
         .card { background: rgba(255,255,255,0.05); border: 1px solid #30363d; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.3s; }
         .card:hover { border-color: var(--accent); }
-        
         .badge-grid { display: flex; gap: 7px; overflow-x: auto; margin-bottom: 15px; }
         .badge { background: #30363d; padding: 4px 8px; border-radius: 4px; font-size: 0.7em; white-space: nowrap; }
         .progress-bar { height: 7px; background: #30363d; border-radius: 4px; overflow: hidden; margin: 10px 0; }
         .progress-fill { height: 100%; background: var(--accent); width: 85%; }
-        
         .toast { position: fixed; bottom: 20px; left: 20px; background: var(--accent); color: white; padding: 10px; border-radius: 8px; font-size: 0.7em; display: none; z-index: 1002; }
         .fab { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; padding: 15px 20px; border-radius: 50px; z-index: 1005; text-decoration: none; font-weight: bold; }
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1001; align-items: center; justify-content: center; }
@@ -39,73 +33,58 @@
     </style>
 </head>
 <body>
-
-<div id="loader">INITIALIZING...</div>
-<div id="particles-js"></div>
-<video autoplay muted loop playsinline id="bg-video"><source src="VID_20250702_110744_839.mp4" type="video/mp4"></video>
-<div class="overlay"></div>
-
-<div class="container">
-    <header>
-        <div style="width:70%; overflow:hidden;"><h1 class="animated-title">🟢 REY_CODE_ACADEMY</h1></div>
-        <div onclick="document.body.classList.toggle('light-mode')" style="cursor:pointer;">🌓</div>
-    </header>
-
-    <div class="story-box"><p id="typing-text"></p></div>
-    
-    <div class="badge-grid">
-        <div class="badge">Next.js</div><div class="badge">Node.js</div><div class="badge">Flutter</div><div class="badge">Python</div><div class="badge">Figma</div>
+    <div id="loader">INITIALIZING...</div>
+    <div id="particles-js"></div>
+    <video autoplay muted loop playsinline id="bg-video"><source src="VID_20250702_110744_839.mp4" type="video/mp4"></video>
+    <div class="overlay"></div>
+    <div class="container">
+        <header>
+            <div style="width:70%; overflow:hidden;"><h1 class="animated-title">🟢 REY_CODE_ACADEMY</h1></div>
+            <div onclick="document.body.classList.toggle('light-mode')" style="cursor:pointer;">🌓</div>
+        </header>
+        <div class="story-box"><p id="typing-text"></p></div>
+        <div class="badge-grid">
+            <div class="badge">Next.js</div><div class="badge">Node.js</div><div class="badge">Flutter</div><div class="badge">Python</div><div class="badge">Figma</div>
+        </div>
+        <div class="story-box">
+            <h4 style="margin:0; font-size:0.8em;">Current Project: E-Commerce SaaS</h4>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+        <div id="menu-grid" class="grid"></div>
+        <div class="story-box">
+            <h3 style="color:var(--accent); font-size:0.9em;">FAQ</h3>
+            <p style="font-size:0.75em;">Q: Bisa custom web? A: Bisa banget, chat aja!</p>
+        </div>
+        <a href="https://wa.me/628xxxxxxxxxx" class="fab">💬 Chat Admin</a>
     </div>
-
-    <div class="story-box">
-        <h4 style="margin:0; font-size:0.8em;">Current Project: E-Commerce SaaS</h4>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2 id="mTitle" style="color:var(--accent);"></h2>
+            <div id="mDesc" style="font-size:0.85em; line-height:1.6;"></div>
+            <button style="width:100%; padding:10px; margin-top:20px; background:#238636; border:none; border-radius:8px; color:white;" onclick="hubungiMentor()">Start Consultation</button>
+        </div>
     </div>
-
-    <div id="menu-grid" class="grid"></div>
-
-    <div class="story-box">
-        <h3 style="color:var(--accent); font-size:0.9em;">FAQ</h3>
-        <p style="font-size:0.75em;">Q: Bisa custom web? A: Bisa banget, chat aja!</p>
-    </div>
-
-    <a href="https://wa.me/628xxxxxxxxxx" class="fab">💬 Chat Admin</a>
-</div>
-
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <h2 id="mTitle" style="color:var(--accent);"></h2>
-        <div id="mDesc" style="font-size:0.85em; line-height:1.6;"></div>
-        <button style="width:100%; padding:10px; margin-top:20px; background:#238636; border:none; border-radius:8px; color:white;" onclick="hubungiMentor()">Start Consultation</button>
-    </div>
-</div>
-
-<div id="toast" class="toast">Klien baru saja memesan jasa!</div>
-
-<script>
-    particlesJS("particles-js", {"particles":{"number":{"value":50},"color":{"value":"#58a6ff"},"line_linked":{"enable":true,"color":"#58a6ff"}}});
-    setTimeout(() => { document.getElementById('toast').style.display = 'block'; setTimeout(() => document.getElementById('toast').style.display = 'none', 3000); }, 3000);
-    
-    const modules = {
-        "Web Development": "1. Fondasi: HTML5, CSS3, JS ES6+.<br>2. Framework: React.js & Next.js.<br>3. Backend: Node.js, Express.<br>4. Database: Postgres.<br>5. Cloud: Vercel/Netlify.",
-        "Mobile Development": "1. UI/UX: Flutter, Jetpack Compose.<br>2. State: BLoC/Riverpod.<br>3. Backend: Firebase.<br>4. Performance: Optimization.<br>5. Store: Deployment.",
-        "Data Science": "1. Pythonic: Numpy.<br>2. Viz: Seaborn & Plotly.<br>3. ML: Scikit-learn.<br>4. Deep Learning: PyTorch.<br>5. MLOps: Docker.",
-        "Game Development": "1. Core: Unity 3D & C#.<br>2. Scripting: Logic.<br>3. Math: Vektor.<br>4. Physics: Collision.<br>5. Networking: Photon.",
-        "UI/UX Design": "1. Design Thinking.<br>2. Wireframing.<br>3. System Design.<br>4. Prototyping.<br>5. Accessibility."
-    };
-
-    const grid = document.getElementById('menu-grid');
-    for (let key in modules) {
-        grid.innerHTML += `<div class="card" onclick="openDetail('${key}')"><h3>🚀 ${key}</h3></div>`;
-    }
-
-    function openDetail(t) { document.getElementById('mTitle').innerText = t; document.getElementById('mDesc').innerHTML = modules[t]; document.getElementById('modal').style.display = 'flex'; }
-    function hubungiMentor() { window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya tertarik jasa " + document.getElementById('mTitle').innerText); }
-    window.onclick = (e) => { if(e.target == document.getElementById('modal')) document.getElementById('modal').style.display = 'none'; };
-    
-    const text = "Selamat datang di Rey Code Academy. Mari bangun masa depan digital lo bersama kami.";
-    let i = 0; function typeWriter() { if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 30); } }
-    window.onload = () => { typeWriter(); setTimeout(() => document.getElementById('loader').style.display = 'none', 1000); };
-</script>
+    <div id="toast" class="toast">Klien baru saja memesan jasa!</div>
+    <script>
+        particlesJS("particles-js", {"particles":{"number":{"value":50},"color":{"value":"#58a6ff"},"line_linked":{"enable":true,"color":"#58a6ff"}}});
+        setTimeout(() => { document.getElementById('toast').style.display = 'block'; setTimeout(() => document.getElementById('toast').style.display = 'none', 3000); }, 3000);
+        const modules = {
+            "Web Development": "1. Fondasi: HTML5, CSS3, JS ES6+.<br>2. Framework: React.js & Next.js.<br>3. Backend: Node.js, Express.<br>4. Database: Postgres.<br>5. Cloud: Vercel/Netlify.",
+            "Mobile Development": "1. UI/UX: Flutter, Jetpack Compose.<br>2. State: BLoC/Riverpod.<br>3. Backend: Firebase.<br>4. Performance: Optimization.<br>5. Store: Deployment.",
+            "Data Science": "1. Pythonic: Numpy.<br>2. Viz: Seaborn & Plotly.<br>3. ML: Scikit-learn.<br>4. Deep Learning: PyTorch.<br>5. MLOps: Docker.",
+            "Game Development": "1. Core: Unity 3D & C#.<br>2. Scripting: Logic.<br>3. Math: Vektor.<br>4. Physics: Collision.<br>5. Networking: Photon.",
+            "UI/UX Design": "1. Design Thinking.<br>2. Wireframing.<br>3. System Design.<br>4. Prototyping.<br>5. Accessibility."
+        };
+        const grid = document.getElementById('menu-grid');
+        for (let key in modules) {
+            grid.innerHTML += `<div class="card" onclick="openDetail('${key}')"><h3>🚀 ${key}</h3></div>`;
+        }
+        function openDetail(t) { document.getElementById('mTitle').innerText = t; document.getElementById('mDesc').innerHTML = modules[t]; document.getElementById('modal').style.display = 'flex'; }
+        function hubungiMentor() { window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya tertarik jasa " + document.getElementById('mTitle').innerText); }
+        window.onclick = (e) => { if(e.target == document.getElementById('modal')) document.getElementById('modal').style.display = 'none'; };
+        const text = "Selamat datang di Rey Code Academy. Mari bangun masa depan digital lo bersama kami.";
+        let i = 0; function typeWriter() { if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 30); } }
+        window.onload = () => { typeWriter(); setTimeout(() => document.getElementById('loader').style.display = 'none', 1000); };
+    </script>
 </body>
 </html>
