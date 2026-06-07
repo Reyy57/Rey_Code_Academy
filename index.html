@@ -7,30 +7,34 @@
     <style>
         body { margin: 0; font-family: 'Inter', system-ui, sans-serif; color: #fff; background: #050505; overflow-x: hidden; }
         #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.9) 100%); z-index: -1; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 100%); z-index: -1; }
 
         .container { max-width: 800px; margin: auto; padding: 30px 20px; }
         header { text-align: center; margin-bottom: 40px; }
-        h1 { color: #58a6ff; font-size: 2.2em; margin: 0; text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 0 30px rgba(88, 166, 255, 0.6); }
-        .status-bar { font-size: 0.7em; color: #58a6ff; letter-spacing: 5px; margin-top: 10px; border-top: 1px solid #30363d; border-bottom: 1px solid #30363d; padding: 5px 0; }
+        h1 { color: #58a6ff; font-size: 2em; margin: 0; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 20px rgba(88, 166, 255, 0.4); }
+        .status-bar { font-size: 0.7em; color: #58a6ff; letter-spacing: 4px; margin-top: 10px; opacity: 0.8; }
 
-        .story-box { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 25px; border-radius: 20px; border: 1px solid rgba(88, 166, 255, 0.2); margin-bottom: 30px; }
-        #typing-text { font-style: italic; line-height: 1.7; font-size: 0.9em; color: #c9d1d9; }
+        .story-box { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 25px; border-radius: 15px; border: 1px solid rgba(88, 166, 255, 0.2); margin-bottom: 30px; }
+        #typing-text { font-style: italic; line-height: 1.6; font-size: 0.9em; color: #c9d1d9; }
 
-        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        .card { background: rgba(13, 17, 23, 0.7); backdrop-filter: blur(10px); border: 1px solid #30363d; padding: 20px; border-radius: 15px; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden; }
-        .card:hover { border-color: #58a6ff; box-shadow: 0 0 20px rgba(88, 166, 255, 0.2); transform: scale(1.01); }
-        .card h3 { margin: 0 0 10px 0; font-size: 1.2em; color: #fff; }
-        .tech-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-        .tag { font-size: 0.7em; background: #161b22; padding: 4px 10px; border-radius: 4px; color: #58a6ff; border: 1px solid #30363d; }
+        .grid { display: grid; gap: 15px; }
+        .card { background: rgba(13, 17, 23, 0.7); backdrop-filter: blur(10px); border: 1px solid #30363d; padding: 20px; border-radius: 12px; cursor: pointer; transition: 0.3s; }
+        .card:hover { border-color: #58a6ff; box-shadow: 0 0 15px rgba(88, 166, 255, 0.2); transform: translateY(-3px); }
+        .card h3 { margin: 0 0 5px 0; font-size: 1.1em; color: #fff; }
+        .tech-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+        .tag { font-size: 0.65em; background: #161b22; padding: 3px 8px; border-radius: 4px; color: #58a6ff; border: 1px solid #30363d; }
 
-        /* Modal Lebih Padat */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1001; align-items: center; justify-content: center; }
-        .modal-content { background: #0d1117; padding: 40px; border-radius: 20px; max-width: 600px; width: 85%; border: 1px solid #58a6ff; position: relative; max-height: 80vh; overflow-y: auto; }
-        .modal-h2 { color: #58a6ff; border-bottom: 2px solid #30363d; padding-bottom: 10px; margin-top: 0; }
-        .modal-desc { font-size: 0.95em; line-height: 1.8; color: #c9d1d9; }
-        .btn-wa { background: #238636; color: white; padding: 15px; width: 100%; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 30px; transition: 0.3s; }
-        .btn-wa:hover { background: #2ea043; }
+        /* MODAL FIX */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1001; align-items: center; justify-content: center; padding: 20px; }
+        .modal-content { background: #0d1117; padding: 30px; border-radius: 20px; max-width: 500px; width: 100%; border: 1px solid #58a6ff; position: relative; max-height: 85vh; overflow-y: auto; }
+        
+        /* Tombol Close */
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #58a6ff; cursor: pointer; font-weight: bold; }
+        .close-btn:hover { color: #fff; }
+
+        .modal-h2 { color: #58a6ff; margin-top: 0; margin-bottom: 20px; }
+        .modal-desc { font-size: 0.9em; line-height: 1.7; color: #c9d1d9; white-space: pre-line; }
+        .btn-wa { background: #238636; color: white; padding: 14px; width: 100%; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 25px; }
     </style>
 </head>
 <body>
@@ -51,35 +55,36 @@
     </div>
 
     <div class="grid">
-        <div class="card" onclick="openDetail('Web Development', 'Materi Mendalam:\n\n1. Arsitektur: RESTful API vs GraphQL, Microservices pattern, dan Serverless functions.\n2. Frontend: Deep dive ke Next.js 14, State Management (Redux Toolkit/Zustand), Framer Motion untuk UX, dan TailwindCSS.\n3. Backend: Database Schema Design (PostgreSQL/MongoDB), Redis Caching, Auth (JWT/OAuth2).\n4. DevOps: Containerization (Docker), CI/CD Pipeline (GitHub Actions), dan Cloud Deployment (AWS/Vercel).', 'React.js, Next.js, Node.js, SQL, Docker')">
+        <div class="card" onclick="openDetail('Web Development', 'Materi Mendalam:\n\n1. Arsitektur: RESTful API vs GraphQL, Microservices, Serverless.\n2. Frontend: Next.js 14 (SSR/SSG), State Management (Zustand/Redux), TailwindCSS.\n3. Backend: Database Schema (PostgreSQL/MongoDB), Auth (JWT/OAuth), Redis.\n4. DevOps: Docker, CI/CD GitHub Actions, Cloud Deployment (AWS/Vercel).', 'Next.js, Node.js, SQL, Docker')">
             <h3>🚀 01. Web Development</h3>
-            <div class="tech-tags"><span class="tag">Next.js</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span></div>
+            <div class="tech-tags"><span class="tag">Next.js</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span></div>
         </div>
 
-        <div class="card" onclick="openDetail('Mobile Development', 'Materi Mendalam:\n\n1. Clean Architecture: Menerapkan MVVM pattern, Dependency Injection (GetIt/Hilt), dan Unit Testing.\n2. UI Mastery: Jetpack Compose (Android) atau SwiftUI (iOS) untuk deklaratif UI.\n3. Hardware & Network: Integrasi WebSocket untuk real-time data, Bluetooth, dan sensor kamera.\n4. Performance: Optimasi memory leaks, background threading (Isolates/Coroutines), dan rilis strategy (OTA updates).', 'Flutter, Swift, Kotlin, Firebase, KMM')">
+        <div class="card" onclick="openDetail('Mobile Development', 'Materi Mendalam:\n\n1. Architecture: MVVM, Dependency Injection, Unit Testing.\n2. UI Mastery: Jetpack Compose (Android) & SwiftUI (iOS).\n3. Hardware: Real-time Data (WebSockets), Bluetooth, Sensor kamera.\n4. Performance: Memory leak optimization, Background threading, OTA updates.', 'Flutter, Kotlin, Swift, Firebase')">
             <h3>📱 02. Mobile Development</h3>
-            <div class="tech-tags"><span class="tag">Flutter</span><span class="tag">Kotlin</span><span class="tag">SwiftUI</span><span class="tag">Firebase</span></div>
+            <div class="tech-tags"><span class="tag">Flutter</span><span class="tag">Kotlin</span><span class="tag">SwiftUI</span></div>
         </div>
 
-        <div class="card" onclick="openDetail('Data Science', 'Materi Mendalam:\n\n1. Engineering: Advanced Data Wrangling dengan PySpark & Dask untuk Big Data.\n2. Modeling: Deep Learning (TensorFlow/PyTorch), Computer Vision, & NLP (LLMs).\n3. Deployment: MLOps dengan MLflow, Dockerizing model, dan API serving.\n4. Analytics: Advanced SQL (Window Functions), PowerBI/Tableau, dan Statistical Hypothesis Testing.', 'Python, PyTorch, SQL, Pandas, Scikit-Learn')">
+        <div class="card" onclick="openDetail('Data Science', 'Materi Mendalam:\n\n1. Engineering: PySpark & Dask untuk Big Data.\n2. Modeling: Deep Learning (PyTorch/TensorFlow), Computer Vision, NLP.\n3. Deployment: MLOps, Dockerizing models, API serving.\n4. Analytics: Advanced SQL, Tableau/PowerBI.', 'Python, PyTorch, SQL, Pandas')">
             <h3>📊 03. Data Science</h3>
-            <div class="tech-tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">SQL</span><span class="tag">Pandas</span></div>
+            <div class="tech-tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">SQL</span></div>
         </div>
 
-        <div class="card" onclick="openDetail('Game Development', 'Materi Mendalam:\n\n1. Physics Engine: Custom collision algorithm, rigid body simulation, & Inverse Kinematics (IK).\n2. Graphics: Shader Graph/HLSL untuk visual effects & Post-processing.\n3. Network: Deterministic Networking, Netcode (Photon/Mirror), & Server-Authoritative architecture.\n4. Optimization: Asset batching, memory profiling, dan Level of Detail (LOD) management.', 'Unity, C#, Unreal Engine, C++, Blender')">
+        <div class="card" onclick="openDetail('Game Development', 'Materi Mendalam:\n\n1. Physics Engine: Collision, Rigid body, Inverse Kinematics.\n2. Graphics: Shader Graph/HLSL, Post-processing.\n3. Network: Netcode (Photon/Mirror), Server-Authoritative.\n4. Optimization: Asset batching, LOD management.', 'Unity, C#, Unreal Engine, C++')">
             <h3>🎮 04. Game Development</h3>
-            <div class="tech-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Unreal</span><span class="tag">C++</span></div>
+            <div class="tech-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Unreal</span></div>
         </div>
 
-        <div class="card" onclick="openDetail('UI/UX Design', 'Materi Mendalam:\n\n1. Design Systems: Atomic Design, Global Tokens (Spacing, Color, Type), & Component Documentation.\n2. UX Strategy: User flow mapping, heuristic evaluation, & accessibility testing (WCAG 2.1).\n3. Prototyping: High-fidelity interactive prototyping (Figma Variables & Auto Layout).\n4. Psychology: Cognitive Load Reduction, Eye-tracking principles, & Conversion-focused design.', 'Figma, Adobe XD, Framer, User Research')">
+        <div class="card" onclick="openDetail('UI/UX Design', 'Materi Mendalam:\n\n1. Design Systems: Atomic Design, Global Tokens.\n2. Strategy: User flow, Heuristic evaluation, WCAG 2.1.\n3. Prototyping: Figma Variables, Interactive components.\n4. Psychology: Cognitive Load Reduction, Conversion-focused design.', 'Figma, Prototyping, UX Research')">
             <h3>🎨 05. UI/UX Design</h3>
-            <div class="tech-tags"><span class="tag">Figma</span><span class="tag">Prototyping</span><span class="tag">UX Research</span></div>
+            <div class="tech-tags"><span class="tag">Figma</span><span class="tag">UX Research</span></div>
         </div>
     </div>
 </div>
 
-<div id="modal" class="modal" onclick="closeModal()">
-    <div class="modal-content" onclick="event.stopPropagation()">
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
         <h2 id="mTitle" class="modal-h2"></h2>
         <p id="mDesc" class="modal-desc"></p>
         <button class="btn-wa" onclick="hubungiMentor()">Start Consultation</button>
@@ -98,13 +103,13 @@
     }
     window.onload = typeWriter;
 
-    function openDetail(title, desc, stack) {
+    function openDetail(title, desc) {
         document.getElementById('mTitle').innerText = title;
         document.getElementById('mDesc').innerText = desc;
         document.getElementById('modal').style.display = 'flex';
     }
     function closeModal() { document.getElementById('modal').style.display = 'none'; }
-    function hubungiMentor() { window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi lebih lanjut tentang " + document.getElementById('mTitle').innerText); }
+    function hubungiMentor() { window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi tentang " + document.getElementById('mTitle').innerText); }
 </script>
 </body>
 </html>
