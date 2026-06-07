@@ -5,26 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rey Code Academy | Final Ultimate Dashboard</title>
     <style>
-        /* CSS Dasar */
         body { margin: 0; font-family: 'Courier New', monospace; color: #c9d1d9; overflow-x: hidden; background: #000; }
         #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); z-index: -1; }
-
-        /* Tombol Musik */
-        .music-btn { position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding: 12px 20px; background: #58a6ff; border: none; border-radius: 20px; cursor: pointer; color: black; font-weight: bold; transition: 0.3s; }
-        .music-btn:hover { background: #1f6feb; color: white; transform: scale(1.05); }
-
-        .container { max-width: 800px; margin: auto; padding: 20px; animation: fadeIn 1.5s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        h1 { color: #58a6ff; text-align: center; font-size: 2.2em; text-shadow: 0 0 15px rgba(88, 166, 255, 0.5); }
-        .status { text-align: center; color: #238636; font-size: 0.9em; margin-bottom: 40px; letter-spacing: 3px; }
-        .code-card { background: rgba(22, 27, 34, 0.6); border: 1px solid #30363d; padding: 30px; border-radius: 20px; margin-bottom: 20px; cursor: pointer; transition: 0.4s; backdrop-filter: blur(5px); }
-        .code-card:hover { border-color: #58a6ff; box-shadow: 0 0 20px rgba(88, 166, 255, 0.4); transform: translateY(-5px); }
+        .music-btn { position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding: 12px 20px; background: #58a6ff; border: none; border-radius: 20px; cursor: pointer; color: black; font-weight: bold; }
+        
+        .container { max-width: 800px; margin: auto; padding: 20px; }
+        h1 { color: #58a6ff; text-align: center; font-size: 2.2em; }
+        .code-card { background: rgba(22, 27, 34, 0.6); border: 1px solid #30363d; padding: 25px; border-radius: 20px; margin-bottom: 20px; cursor: pointer; }
+        .code-card:hover { border-color: #58a6ff; }
         
         .hidden { display: none; }
         .materi-box { background: rgba(0, 0, 0, 0.9); padding: 40px; border-radius: 25px; border: 1px solid #58a6ff; }
-        .btn-wa { background: #238636; color: white; padding: 20px; width: 100%; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; margin-top: 40px; font-size: 1.1em; transition: 0.3s; }
+        .btn-wa { background: #238636; color: white; padding: 20px; width: 100%; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; margin-top: 40px; }
     </style>
 </head>
 <body>
@@ -35,74 +29,66 @@
 <div class="overlay"></div>
 
 <audio id="bg-audio" loop>
-    <source src="Dfa993adbcb673c762296685dcf55592.mp3" type="video/mp4">
+    <source src="Dfa993adbcb673c762296685dcf55592.mp3" type="audio/mpeg">
 </audio>
 
 <button class="music-btn" onclick="toggleMusic()" id="music-btn">🎵 Play Music</button>
 
 <div class="container">
     <h1>> REY_CODE_ACADEMY</h1>
-    <p class="status">● MENTOR_AKTIF // SLOT_TERBATAS</p>
 
     <div id="home">
-        <div class="code-card" onclick="openMateri('Web Development', 'ASAL USUL: Lahir 1989 di CERN oleh Tim Berners-Lee.\n\nPENJELASAN: Lu akan menguasai:\n1. FRONTEND: HTML5, CSS3 (Flexbox/Grid), JavaScript ES6+.\n2. BACKEND: Node.js/Python, Database (SQL/NoSQL), API.\n3. INFRASTRUKTUR: HTTP, HTTPS, Deployment ke Cloud (AWS/Vercel).\n\nKESIMPULAN: Website adalah aplikasi yang bisa diakses milyaran orang tanpa instalasi.')">
+        <div class="code-card" onclick="openMateri('Web Development', 'Materi: Web Development\n\nPenjelasan Mendalam:\n1. Konsep Dasar: Memahami arsitektur Client-Server dan protokol HTTP/HTTPS.\n2. Frontend: Menguasai HTML5, CSS3 (Flexbox/Grid), dan JavaScript (ES6+).\n3. Backend: Membangun API menggunakan Node.js/Python, serta manajemen database menggunakan SQL (PostgreSQL) atau NoSQL (MongoDB).\n4. Deployment: Mengelola server, domain, dan proses CI/CD untuk publikasi web skala global.')">
             <h3>🚀 01. Web Development</h3>
         </div>
         
-        <div class="code-card" onclick="openMateri('Mobile Development', 'ASAL USUL: Pasca revolusi iPhone 2007.\n\nPENJELASAN: Mengoptimalkan kode di hardware terbatas:\n1. NATIVE: Kotlin (Android) atau Swift (iOS) untuk performa penuh.\n2. CROSS-PLATFORM: Flutter/React Native untuk efisiensi startup.\n3. KONSEP: Lifecycle aplikasi, State Management, memori.\n\nKESIMPULAN: Smartphone adalah pusat kehidupan, jadilah arsitek yang membangun aplikasi di saku user.')">
+        <div class="code-card" onclick="openMateri('Mobile Development', 'Materi: Mobile Development\n\nPenjelasan Mendalam:\n1. Native vs Cross-Platform: Memahami perbedaan arsitektur antara Swift/Kotlin (Native) dan Flutter/React Native (Cross-Platform).\n2. Hardware Access: Mengintegrasikan sensor kamera, GPS, biometrik, dan notifikasi push dalam aplikasi.\n3. State Management: Teknik menangani data kompleks agar aplikasi berjalan mulus (60 FPS).\n4. Store Publishing: Panduan mengelola rilis aplikasi ke Google Play Store dan Apple App Store.')">
             <h3>📱 02. Mobile Development</h3>
         </div>
 
-        <div class="code-card" onclick="openMateri('Data Science', 'ASAL USUL: Evolusi statistika era Big Data.\n\nPENJELASAN: Detektif data modern:\n1. DATA WRANGLING: Pandas/NumPy untuk bersihin jutaan data.\n2. EDA: Visualisasi pola pakai Matplotlib/Seaborn.\n3. MACHINE LEARNING: Scikit-Learn/TensorFlow untuk prediksi tren masa depan.\n\nKESIMPULAN: Data Scientist adalah orang yang mengubah angka menjadi strategi milyaran.')">
+        <div class="code-card" onclick="openMateri('Data Science', 'Materi: Data Science\n\nPenjelasan Mendalam:\n1. Data Wrangling: Menggunakan library Pandas dan NumPy untuk membersihkan data kotor dari berbagai sumber.\n2. EDA (Exploratory Data Analysis): Memvisualisasikan pola data menggunakan Matplotlib dan Seaborn untuk menemukan insight tersembunyi.\n3. Machine Learning: Implementasi model prediktif (Regresi, Klasifikasi) menggunakan Scikit-Learn dan TensorFlow.\n4. Business Impact: Mengubah hasil riset data menjadi keputusan strategis bagi perusahaan.')">
             <h3>📊 03. Data Science</h3>
         </div>
 
-        <div class="code-card" onclick="openMateri('Game Development', 'ASAL USUL: Lab 1950-an.\n\nPENJELASAN: Kasta tertinggi engineering:\n1. ENGINE: Unity (C#) atau Unreal (C++).\n2. MATEMATIKA: Vektor/Matriks untuk ruang 3D, fisika real-time.\n3. AI: Membuat musuh dengan Finite State Machine.\n\nKESIMPULAN: Membuat game bukan coding, tapi menciptakan hukum alam sendiri.')">
+        <div class="code-card" onclick="openMateri('Game Development', 'Materi: Game Development\n\nPenjelasan Mendalam:\n1. Game Engine: Penguasaan Unity (C#) atau Unreal Engine (C++/Blueprints) sebagai fondasi utama.\n2. Matematika 3D: Implementasi Vektor, Matriks, dan Trigonometri untuk simulasi pergerakan objek dalam ruang virtual.\n3. Fisika & Collision: Menangani simulasi gravitasi, tabrakan (collision), dan interaksi objek.\n4. AI & Gameplay: Membangun kecerdasan buatan musuh menggunakan Finite State Machines atau Behavior Trees.')">
             <h3>🎮 04. Game Development</h3>
         </div>
 
-        <div class="code-card" onclick="openMateri('UI/UX Design', 'ASAL USUL: Ergonomi industri abad-20.\n\nPENJELASAN: Membangun empati mesin-manusia:\n1. UX: Riset pengguna, journey mapping.\n2. UI: Hierarki visual, tipografi, aksesibilitas.\n3. DESIGN THINKING: Proses sistematis menjawab masalah.\n\nKESIMPULAN: UI/UX adalah jembatan antara logika mesin dan emosi manusia.')">
+        <div class="code-card" onclick="openMateri('UI/UX Design', 'Materi: UI/UX Design\n\nPenjelasan Mendalam:\n1. Research & Strategy: Melakukan user research, persona, dan user journey mapping untuk memahami kebutuhan pengguna.\n2. Wireframing & Prototyping: Merancang kerangka aplikasi (Low-Fi) hingga prototipe interaktif (Hi-Fi) menggunakan Figma.\n3. Visual Principles: Menerapkan teori warna, tipografi, dan hierarki visual untuk kenyamanan mata.\n4. Usability Testing: Proses iterasi desain berdasarkan feedback nyata dari pengguna untuk mencapai UX terbaik.')">
             <h3>🎨 05. UI/UX Design</h3>
         </div>
     </div>
 
     <div id="materi" class="hidden">
         <div class="materi-box">
-            <h2 id="mTitle" style="color: #58a6ff; border-bottom: 2px solid #58a6ff; padding-bottom: 15px;"></h2>
-            <p id="mDesc" style="line-height: 1.9; white-space: pre-line; color: #d1d5da;"></p>
+            <h2 id="mTitle" style="color: #58a6ff;"></h2>
+            <p id="mDesc" style="line-height: 1.9; white-space: pre-line;"></p>
             <button class="btn-wa" onclick="hubungiMentor()">Konsultasi Intensif dengan Mentor Rey</button>
-            <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:30px; width:100%; cursor:pointer;">Kembali ke Menu Utama</button>
+            <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:30px; width:100%; cursor:pointer;">Kembali</button>
         </div>
     </div>
 </div>
 
 <script>
-    // Logika Musik
     function toggleMusic() {
         const audio = document.getElementById("bg-audio");
         const btn = document.getElementById("music-btn");
-        if (audio.paused) {
-            audio.play();
-            btn.innerText = "⏸ Pause Music";
-        } else {
-            audio.pause();
-            btn.innerText = "🎵 Play Music";
-        }
+        if (audio.paused) { audio.play(); btn.innerText = "⏸ Pause Music"; }
+        else { audio.pause(); btn.innerText = "🎵 Play Music"; }
     }
 
-    // Navigasi
     function openMateri(title, desc) {
         document.getElementById('home').style.display = 'none';
         document.getElementById('materi').style.display = 'block';
         document.getElementById('mTitle').innerText = title;
         document.getElementById('mDesc').innerText = desc;
     }
+    
     function backToHome() {
         document.getElementById('home').style.display = 'block';
         document.getElementById('materi').style.display = 'none';
     }
 
-    // Kontak WA
     function hubungiMentor() {
         window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi lebih lanjut tentang materi " + document.getElementById('mTitle').innerText + ".");
     }
