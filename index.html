@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rey Code Academy | Final Ultimate Dashboard</title>
     <style>
-        /* CSS Background Video & Overlay */
+        /* CSS Dasar & Background Video */
         body { margin: 0; font-family: 'Courier New', monospace; color: #c9d1d9; overflow-x: hidden; }
         #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); z-index: -1; }
+
+        /* Tombol Musik (Posisi Tetap di Pojok Kanan Bawah) */
+        .music-btn { position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding: 12px 20px; background: #58a6ff; border: none; border-radius: 20px; cursor: pointer; color: black; font-weight: bold; transition: 0.3s; }
+        .music-btn:hover { background: #1f6feb; color: white; transform: scale(1.05); }
 
         .container { max-width: 800px; margin: auto; padding: 20px; animation: fadeIn 1.5s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -32,6 +36,12 @@
     <source src="VID_20250702_110744_839.mp4" type="video/mp4">
 </video>
 <div class="overlay"></div>
+
+<audio id="bg-audio" loop>
+    <source src="Dfa993adbcb673c762296685dcf55592.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()" id="music-btn">🎵 Play Music</button>
 
 <div class="container">
     <h1>> REY_CODE_ACADEMY</h1>
@@ -62,11 +72,6 @@
         <div class="code-card" onclick="openMateri('UI/UX Design', 'ASAL USUL: Berawal dari studi ergonomi industri abad ke-20.\n\nPENJELASAN MENDALAM: UI/UX bukan sekadar membuat warna yang cantik, tapi tentang membangun empati antara mesin dan manusia. Lu akan mempelajari:\n1. UX (User Experience): Riset pengguna, persona, journey mapping, dan testing agar aplikasi lu sangat intuitif sehingga user tidak perlu berpikir.\n2. UI (User Interface): Menguasai hierarki visual, kontras warna, tipografi, serta aksesibilitas desain.\n3. DESIGN THINKING: Proses berpikir sistematis untuk memastikan setiap tombol yang lu buat memang menjawab kebutuhan pengguna.\n\nKESIMPULAN: Aplikasi paling canggih akan dianggap sampah jika user tidak tahu cara menggunakannya. UI/UX adalah jembatan yang menyatukan logika mesin dengan emosi manusia.')">
             <h3>🎨 05. UI/UX Design</h3>
         </div>
-
-        <div style="text-align: center; margin-top: 50px;">
-            <button onclick="getRandomWisdom()" style="background: transparent; border: 1px solid #58a6ff; color: #58a6ff; padding: 10px 20px; border-radius: 20px; cursor: pointer; transition: 0.3s;">Dapatkan Inspirasi Coding</button>
-            <p id="wisdom" style="margin-top: 20px; font-style: italic; color: #8b949e;"></p>
-        </div>
     </div>
 
     <div id="materi" class="hidden">
@@ -82,6 +87,20 @@
 </div>
 
 <script>
+    // FUNGSI MUSIK (TOGGLE)
+    function toggleMusic() {
+        const audio = document.getElementById("bg-audio");
+        const btn = document.getElementById("music-btn");
+        if (audio.paused) {
+            audio.play();
+            btn.innerText = "⏸ Pause Music";
+        } else {
+            audio.pause();
+            btn.innerText = "🎵 Play Music";
+        }
+    }
+
+    // EFEK TYPING
     const text = '"Dulu, gue pikir bisa memperbaiki hati yang rusak sama seperti memperbaiki bug di kodingan. Ternyata, cinta jauh lebih rumit daripada syntax manapun. Tapi dari kegagalan itu, gue sadar: daripada memikirkan yang pergi, lebih baik membangun sesuatu yang bertahan selamanya. Gue memilih menulis baris kode dan membantu lu tumbuh. Selamat datang di tempat di mana logika menang atas perasaan."';
     let i = 0;
     function typeWriter() {
@@ -93,17 +112,7 @@
     }
     window.onload = typeWriter;
 
-    function getRandomWisdom() {
-        const quotes = [
-            "Programmer hebat menulis kode untuk dimengerti manusia, bukan hanya komputer.",
-            "Debugging itu seperti detektif, bedanya lu yang jadi pembunuhnya.",
-            "Jika kodenya tidak rusak, jangan diperbaiki. Tapi kalau rusak, selamat berjuang.",
-            "Coding bukan tentang berapa banyak baris, tapi tentang seberapa efisien masalah lu selesai.",
-            "Cinta bisa gagal, tapi logika kode tidak akan pernah berbohong."
-        ];
-        document.getElementById("wisdom").innerText = quotes[Math.floor(Math.random() * quotes.length)];
-    }
-
+    // NAVIGASI
     function openMateri(title, desc) {
         document.getElementById('home').style.display = 'none';
         document.getElementById('materi').style.display = 'block';
@@ -114,6 +123,8 @@
         document.getElementById('home').style.display = 'block';
         document.getElementById('materi').style.display = 'none';
     }
+
+    // KONTAK
     const nomorWA = "628xxxxxxxxxx"; // GANTI NOMOR WA LU
     function hubungiMentor() {
         window.open("https://wa.me/" + nomorWA + "?text=Halo Rey, saya ingin diskusi lebih lanjut tentang materi " + document.getElementById('mTitle').innerText + ".");
