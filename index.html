@@ -4,69 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rey Code Academy | Expert Roadmap & Web Services</title>
-    <meta name="description" content="Rey Code Academy - Solusi Jasa Pembuatan Website dan Mentoring Coding profesional untuk masa depan digitalmu.">
-    
     <style>
         body { margin: 0; font-family: 'Inter', sans-serif; color: #fff; background: #000; overflow-x: hidden; }
         #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%); z-index: -1; }
         #loader { position: fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index: 9999; display: flex; justify-content: center; align-items: center; color: #58a6ff; font-weight: bold; }
 
-        .container { max-width: 700px; margin: auto; padding: 20px; }
-        header { text-align: center; margin: 40px 0; }
-        h1 { color: #58a6ff; font-size: 2.2em; margin: 0; letter-spacing: 2px; text-shadow: 0 0 20px rgba(88, 166, 255, 0.4); }
-        .status-bar { font-size: 0.7em; color: #8b949e; letter-spacing: 4px; margin-top: 10px; }
+        .container { max-width: 600px; margin: auto; padding: 15px; }
+        header { text-align: center; margin: 30px 0; }
+        h1 { color: #58a6ff; font-size: 1.8em; margin: 0; letter-spacing: 2px; text-shadow: 0 0 15px rgba(88, 166, 255, 0.4); }
+        
+        .story-box { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); padding: 20px; border-radius: 15px; border: 1px solid rgba(88, 166, 255, 0.2); margin-bottom: 20px; }
+        #typing-text { font-style: italic; line-height: 1.5; color: #c9d1d9; font-size: 0.85em; }
 
-        .story-box { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); padding: 25px; border-radius: 20px; border: 1px solid rgba(88, 166, 255, 0.2); margin-bottom: 30px; }
-        #typing-text { font-style: italic; line-height: 1.6; color: #c9d1d9; }
+        .grid { display: grid; gap: 10px; }
+        .card { background: rgba(13, 17, 23, 0.5); backdrop-filter: blur(5px); border: 1px solid #30363d; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.3s; }
+        .card:hover { border-color: #58a6ff; transform: scale(1.01); }
+        .card h3 { margin: 0 0 5px 0; font-size: 1em; }
+        .tech-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+        .tag { font-size: 0.55em; background: #161b22; padding: 2px 6px; border-radius: 4px; color: #58a6ff; }
 
-        .grid { display: grid; gap: 15px; }
-        .card { background: rgba(13, 17, 23, 0.6); backdrop-filter: blur(10px); border: 1px solid #30363d; padding: 20px; border-radius: 15px; cursor: pointer; transition: 0.4s; }
-        .card:hover { border-color: #58a6ff; box-shadow: 0 0 25px rgba(88, 166, 255, 0.3); transform: scale(1.02); }
-        .card h3 { margin: 0 0 8px 0; color: #fff; }
-        .tech-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-        .tag { font-size: 0.65em; background: #161b22; padding: 4px 8px; border-radius: 4px; color: #58a6ff; border: 1px solid #30363d; }
-
-        /* Modal Dikecilin & Dibuat Ramping */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1001; align-items: center; justify-content: center; padding: 20px; }
-        .modal-content { background: #0d1117; padding: 25px; border-radius: 20px; max-width: 450px; width: 100%; border: 1px solid #58a6ff; position: relative; max-height: 75vh; overflow-y: auto; }
-        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; color: #58a6ff; cursor: pointer; }
-        .modal-h2 { color: #58a6ff; margin-top: 0; }
-        .modal-desc { line-height: 1.6; color: #c9d1d9; font-size: 0.85em; }
-        .btn-wa { background: #238636; color: white; padding: 12px; width: 100%; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s; }
-        .btn-wa:hover { background: #2ea043; }
+        /* Modal Dikecilin & Dibuat Compact */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1001; align-items: center; justify-content: center; padding: 10px; }
+        .modal-content { background: #0d1117; padding: 20px; border-radius: 15px; max-width: 380px; width: 95%; border: 1px solid #58a6ff; position: relative; max-height: 70vh; overflow-y: auto; }
+        .close-btn { position: absolute; top: 5px; right: 10px; font-size: 20px; color: #58a6ff; cursor: pointer; }
+        .modal-h2 { color: #58a6ff; margin-top: 0; font-size: 1.2em; }
+        .modal-desc { line-height: 1.4; color: #c9d1d9; font-size: 0.8em; }
+        .btn-wa { background: #238636; color: white; padding: 10px; width: 100%; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 0.85em; }
     </style>
 </head>
 <body>
 
-<div id="loader">INITIALIZING_CURRICULUM...</div>
+<div id="loader">LOADING...</div>
 <video autoplay muted loop playsinline id="bg-video"><source src="VID_20250702_110744_839.mp4" type="video/mp4"></video>
 <div class="overlay"></div>
 
 <div class="container">
     <header>
         <h1>REY_CODE_ACADEMY</h1>
-        <div class="status-bar">FULL_STACK_CURRICULUM_READY</div>
     </header>
 
     <div class="story-box">
         <p id="typing-text"></p>
     </div>
 
-    <div class="story-box">
-        <h2 style="color: #58a6ff; margin-top: 0;">Mengapa Belajar di Rey Code?</h2>
-        <ul style="color: #8b949e; font-size: 0.85em; margin-left: -10px;">
-            <li><strong>Jasa Web:</strong> Bikin web profesional, responsif & SEO-friendly.</li>
-            <li><strong>Mentoring:</strong> Belajar coding dengan logika, bukan cuma hafalan.</li>
-            <li><strong>Support:</strong> Bantuan teknis & debugging sampai projek beres.</li>
-        </ul>
+    <div style="display: flex; justify-content: space-between; gap: 10px; margin-bottom: 20px;">
+        <div style="background: rgba(88, 166, 255, 0.1); padding: 10px; border-radius: 10px; width: 50%; text-align: center;">
+            <h3 style="margin:0; font-size: 1em;">120+</h3>
+            <p style="font-size: 0.6em; color: #8b949e;">Proyek Selesai</p>
+        </div>
+        <div style="background: rgba(88, 166, 255, 0.1); padding: 10px; border-radius: 10px; width: 50%; text-align: center;">
+            <h3 style="margin:0; font-size: 1em;">24/7</h3>
+            <p style="font-size: 0.6em; color: #8b949e;">Support Aktif</p>
+        </div>
     </div>
 
     <div class="grid" id="menu-grid"></div>
 
-    <footer style="text-align:center; margin-top:40px; color:#8b949e; font-size:0.8em;">
-        <p>Butuh bantuan? Chat gue di WhatsApp: <a href="https://wa.me/628xxxxxxxxxx" style="color:#58a6ff;">Klik Disini</a></p>
-        © 2026 REY_CODE_ACADEMY.
+    <div class="story-box" style="margin-top:20px;">
+        <h3 style="font-size: 0.8em; margin: 0 0 10px 0;">Apa kata klien?</h3>
+        <p style="font-size: 0.75em; color: #8b949e; font-style: italic;">"Web yang dibikin Rey rapi banget, performanya kenceng, dan adminnya fast response."</p>
+        <small style="color: #58a6ff; font-size: 0.7em;">— Fajar, Client</small>
+    </div>
+
+    <footer style="text-align:center; margin-top:20px; color:#8b949e; font-size:0.7em;">
+        Chat WhatsApp: <a href="https://wa.me/628xxxxxxxxxx" style="color:#58a6ff;">Klik di sini</a> | © 2026
     </footer>
 </div>
 
@@ -81,26 +83,11 @@
 
 <script>
     const modules = {
-        "Web Development": { 
-            tags: ["Next.js", "Node.js", "Deployment"], 
-            desc: "<strong>Expert Roadmap:</strong><br><br>1. <strong>Fondasi:</strong> HTML5, CSS3, & JS ES6+.<br>2. <strong>Framework:</strong> React.js & Next.js (SSR/SSG).<br>3. <strong>Backend:</strong> Node.js, Express, & Restful API.<br>4. <strong>Database:</strong> PostgreSQL & MongoDB.<br>5. <strong>Cloud:</strong> Vercel, Netlify, & SEO Optimization.<br><br><em>Gue fokus bikin web yang punya performa ngebut & aman.</em>" 
-        },
-        "Mobile Development": { 
-            tags: ["Flutter", "Kotlin", "Firebase"], 
-            desc: "<strong>Expert Roadmap:</strong><br><br>1. <strong>UI/UX:</strong> Flutter, Jetpack Compose, & SwiftUI.<br>2. <strong>State Mgmt:</strong> BLoC/Riverpod untuk data kompleks.<br>3. <strong>Backend:</strong> Firebase (Auth, Firestore, Analytics).<br>4. <strong>Performance:</strong> Optimasi memori & speed.<br>5. <strong>Distribution:</strong> Deployment ke Google Play Store.<br><br><em>Membangun aplikasi mobile yang stabil & ramah user.</em>"
-        },
-        "Data Science": { 
-            tags: ["Python", "Pandas", "MLOps"], 
-            desc: "<strong>Expert Roadmap:</strong><br><br>1. <strong>Pythonic:</strong> Data manipulation dengan Numpy & Pandas.<br>2. <strong>Visualization:</strong> Seaborn & Plotly.<br>3. <strong>Machine Learning:</strong> Scikit-learn (Regresi/Klasifikasi).<br>4. <strong>Deep Learning:</strong> PyTorch & TensorFlow.<br>5. <strong>MLOps:</strong> Docker & Model serving.<br><br><em>Mengubah data mentah jadi wawasan bisnis yang tajam.</em>"
-        },
-        "Game Development": { 
-            tags: ["Unity", "C#", "Logic"], 
-            desc: "<strong>Expert Roadmap:</strong><br><br>1. <strong>Engine Core:</strong> Unity 3D & Unreal Engine.<br>2. <strong>Scripting:</strong> C# atau C++ Fundamental.<br>3. <strong>Math:</strong> Vektor, Matrix, & Quaternions.<br>4. <strong>Physics:</strong> Collision & Raycasting.<br>5. <strong>Multiplayer:</strong> Networking & Photon.<br><br><em>Bikin game dengan gameplay yang seru & teroptimasi.</em>"
-        },
-        "UI/UX Design": { 
-            tags: ["Figma", "Research"], 
-            desc: "<strong>Expert Roadmap:</strong><br><br>1. <strong>Design Thinking:</strong> Empathy, Ideate, & Prototyping.<br>2. <strong>Wireframing:</strong> Low-fi sampai High-fi mockup.<br>3. <strong>System Design:</strong> Atomic Components & Global Tokens.<br>4. <strong>Interaction:</strong> Advanced prototyping di Figma.<br>5. <strong>Accessibility:</strong> WCAG Compliance.<br><br><em>Desain antarmuka yang cantik, mudah dipakai, & user-centric.</em>"
-        }
+        "Web Development": { tags: ["Next.js", "Node.js"], desc: "1. <strong>Fondasi:</strong> HTML5, CSS3, JS ES6+.<br>2. <strong>Framework:</strong> React.js & Next.js.<br>3. <strong>Backend:</strong> Node.js, Express.<br>4. <strong>Database:</strong> PostgreSQL, MongoDB.<br>5. <strong>Cloud:</strong> Vercel/Netlify deployment." },
+        "Mobile Development": { tags: ["Flutter", "Firebase"], desc: "1. <strong>UI/UX:</strong> Flutter, SwiftUI.<br>2. <strong>State Mgmt:</strong> BLoC/Riverpod.<br>3. <strong>Backend:</strong> Firebase (Auth, Firestore).<br>4. <strong>Optimasi:</strong> Memori & speed.<br>5. <strong>Distribusi:</strong> Play Store guidelines." },
+        "Data Science": { tags: ["Python", "Pandas"], desc: "1. <strong>Pythonic:</strong> Numpy & Pandas.<br>2. <strong>Visualization:</strong> Seaborn & Plotly.<br>3. <strong>ML:</strong> Scikit-learn (Regresi/Klasifikasi).<br>4. <strong>Deep Learning:</strong> PyTorch.<br>5. <strong>MLOps:</strong> Docker & Model serving." },
+        "Game Development": { tags: ["Unity", "C#"], desc: "1. <strong>Engine Core:</strong> Unity 3D.<br>2. <strong>Scripting:</strong> C# Fundamental.<br>3. <strong>Math:</strong> Vektor, Matrix, & Quaternions.<br>4. <strong>Physics:</strong> Collision & Raycasting.<br>5. <strong>Networking:</strong> Photon Multiplayer." },
+        "UI/UX Design": { tags: ["Figma"], desc: "1. <strong>Design Thinking:</strong> Empathy, Ideate.<br>2. <strong>Wireframing:</strong> Lo-fi to Hi-fi.<br>3. <strong>System Design:</strong> Atomic Components.<br>4. <strong>Interaction:</strong> Advanced prototyping.<br>5. <strong>Accessibility:</strong> WCAG Standards." }
     };
 
     const grid = document.getElementById('menu-grid');
@@ -109,7 +96,7 @@
     }
 
     window.addEventListener('load', () => { setTimeout(() => { document.getElementById('loader').style.display = 'none'; }, 1000); });
-    const text = "Di dunia yang serba digital, kode bukan cuma bahasa mesin—itu adalah bahasa masa depan. Gue membangun Rey Code Academy bukan cuma buat bagi kodingan, tapi buat bantu lo jadi kreator, bukan cuma konsumen. Mari bangun sesuatu yang luar biasa bersama. Ready to write your own legacy?";
+    const text = "Di dunia digital, kode bukan cuma bahasa mesin—itu bahasa masa depan. Gue membangun Rey Code Academy buat bantu lo jadi kreator, bukan cuma konsumen. Mari bangun sesuatu yang luar biasa.";
     let i = 0;
     function typeWriter() {
         if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 20); }
