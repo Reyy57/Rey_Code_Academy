@@ -3,41 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Code Academy | Expert Dashboard</title>
+    <title>Rey Code Academy | Expert Roadmap</title>
     <style>
-        body { margin: 0; font-family: 'Inter', system-ui, sans-serif; color: #fff; background: #050505; overflow-x: hidden; }
+        body { margin: 0; font-family: 'Inter', sans-serif; color: #fff; background: #000; overflow-x: hidden; }
         #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 100%); z-index: -1; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%); z-index: -1; }
+        #loader { position: fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index: 9999; display: flex; justify-content: center; align-items: center; color: #58a6ff; font-weight: bold; }
 
-        .container { max-width: 800px; margin: auto; padding: 30px 20px; }
-        header { text-align: center; margin-bottom: 40px; }
-        h1 { color: #58a6ff; font-size: 2em; margin: 0; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 20px rgba(88, 166, 255, 0.4); }
-        .status-bar { font-size: 0.7em; color: #58a6ff; letter-spacing: 4px; margin-top: 10px; opacity: 0.8; }
+        .container { max-width: 700px; margin: auto; padding: 20px; }
+        header { text-align: center; margin: 40px 0; }
+        h1 { color: #58a6ff; font-size: 2.2em; margin: 0; letter-spacing: 2px; text-shadow: 0 0 20px rgba(88, 166, 255, 0.4); }
+        .status-bar { font-size: 0.7em; color: #8b949e; letter-spacing: 4px; margin-top: 10px; }
 
-        .story-box { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 25px; border-radius: 15px; border: 1px solid rgba(88, 166, 255, 0.2); margin-bottom: 30px; }
-        #typing-text { font-style: italic; line-height: 1.6; font-size: 0.9em; color: #c9d1d9; }
+        .story-box { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); padding: 25px; border-radius: 20px; border: 1px solid rgba(88, 166, 255, 0.2); margin-bottom: 30px; }
+        #typing-text { font-style: italic; line-height: 1.6; color: #c9d1d9; }
 
         .grid { display: grid; gap: 15px; }
-        .card { background: rgba(13, 17, 23, 0.7); backdrop-filter: blur(10px); border: 1px solid #30363d; padding: 20px; border-radius: 12px; cursor: pointer; transition: 0.3s; }
-        .card:hover { border-color: #58a6ff; box-shadow: 0 0 15px rgba(88, 166, 255, 0.2); transform: translateY(-3px); }
-        .card h3 { margin: 0 0 5px 0; font-size: 1.1em; color: #fff; }
-        .tech-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
-        .tag { font-size: 0.65em; background: #161b22; padding: 3px 8px; border-radius: 4px; color: #58a6ff; border: 1px solid #30363d; }
+        .card { background: rgba(13, 17, 23, 0.6); backdrop-filter: blur(10px); border: 1px solid #30363d; padding: 20px; border-radius: 15px; cursor: pointer; transition: 0.4s; }
+        .card:hover { border-color: #58a6ff; box-shadow: 0 0 25px rgba(88, 166, 255, 0.3); transform: scale(1.02); }
+        .card h3 { margin: 0 0 8px 0; color: #fff; }
+        .tech-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+        .tag { font-size: 0.65em; background: #161b22; padding: 4px 8px; border-radius: 4px; color: #58a6ff; border: 1px solid #30363d; }
 
-        /* MODAL FIX */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1001; align-items: center; justify-content: center; padding: 20px; }
-        .modal-content { background: #0d1117; padding: 30px; border-radius: 20px; max-width: 500px; width: 100%; border: 1px solid #58a6ff; position: relative; max-height: 85vh; overflow-y: auto; }
-        
-        /* Tombol Close */
-        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #58a6ff; cursor: pointer; font-weight: bold; }
-        .close-btn:hover { color: #fff; }
-
-        .modal-h2 { color: #58a6ff; margin-top: 0; margin-bottom: 20px; }
-        .modal-desc { font-size: 0.9em; line-height: 1.7; color: #c9d1d9; white-space: pre-line; }
-        .btn-wa { background: #238636; color: white; padding: 14px; width: 100%; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 25px; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1001; align-items: center; justify-content: center; padding: 20px; }
+        .modal-content { background: #0d1117; padding: 30px; border-radius: 20px; max-width: 600px; width: 100%; border: 1px solid #58a6ff; position: relative; max-height: 90vh; overflow-y: auto; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #58a6ff; cursor: pointer; }
+        .modal-h2 { color: #58a6ff; margin-top: 0; }
+        .modal-desc { line-height: 1.7; color: #c9d1d9; font-size: 0.9em; }
+        .btn-wa { background: #238636; color: white; padding: 15px; width: 100%; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 25px; }
     </style>
 </head>
 <body>
+
+<div id="loader">INITIALIZING_CURRICULUM...</div>
 
 <video autoplay muted loop playsinline id="bg-video">
     <source src="VID_20250702_110744_839.mp4" type="video/mp4">
@@ -47,67 +45,69 @@
 <div class="container">
     <header>
         <h1>REY_CODE_ACADEMY</h1>
-        <div class="status-bar">SYSTEM_OPERATIONAL_READY</div>
+        <div class="status-bar">FULL_STACK_CURRICULUM_READY</div>
     </header>
 
     <div class="story-box">
         <p id="typing-text"></p>
     </div>
 
-    <div class="grid">
-        <div class="card" onclick="openDetail('Web Development', 'Materi Mendalam:\n\n1. Arsitektur: RESTful API vs GraphQL, Microservices, Serverless.\n2. Frontend: Next.js 14 (SSR/SSG), State Management (Zustand/Redux), TailwindCSS.\n3. Backend: Database Schema (PostgreSQL/MongoDB), Auth (JWT/OAuth), Redis.\n4. DevOps: Docker, CI/CD GitHub Actions, Cloud Deployment (AWS/Vercel).', 'Next.js, Node.js, SQL, Docker')">
-            <h3>🚀 01. Web Development</h3>
-            <div class="tech-tags"><span class="tag">Next.js</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span></div>
-        </div>
+    <div class="grid" id="menu-grid"></div>
 
-        <div class="card" onclick="openDetail('Mobile Development', 'Materi Mendalam:\n\n1. Architecture: MVVM, Dependency Injection, Unit Testing.\n2. UI Mastery: Jetpack Compose (Android) & SwiftUI (iOS).\n3. Hardware: Real-time Data (WebSockets), Bluetooth, Sensor kamera.\n4. Performance: Memory leak optimization, Background threading, OTA updates.', 'Flutter, Kotlin, Swift, Firebase')">
-            <h3>📱 02. Mobile Development</h3>
-            <div class="tech-tags"><span class="tag">Flutter</span><span class="tag">Kotlin</span><span class="tag">SwiftUI</span></div>
-        </div>
-
-        <div class="card" onclick="openDetail('Data Science', 'Materi Mendalam:\n\n1. Engineering: PySpark & Dask untuk Big Data.\n2. Modeling: Deep Learning (PyTorch/TensorFlow), Computer Vision, NLP.\n3. Deployment: MLOps, Dockerizing models, API serving.\n4. Analytics: Advanced SQL, Tableau/PowerBI.', 'Python, PyTorch, SQL, Pandas')">
-            <h3>📊 03. Data Science</h3>
-            <div class="tech-tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">SQL</span></div>
-        </div>
-
-        <div class="card" onclick="openDetail('Game Development', 'Materi Mendalam:\n\n1. Physics Engine: Collision, Rigid body, Inverse Kinematics.\n2. Graphics: Shader Graph/HLSL, Post-processing.\n3. Network: Netcode (Photon/Mirror), Server-Authoritative.\n4. Optimization: Asset batching, LOD management.', 'Unity, C#, Unreal Engine, C++')">
-            <h3>🎮 04. Game Development</h3>
-            <div class="tech-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Unreal</span></div>
-        </div>
-
-        <div class="card" onclick="openDetail('UI/UX Design', 'Materi Mendalam:\n\n1. Design Systems: Atomic Design, Global Tokens.\n2. Strategy: User flow, Heuristic evaluation, WCAG 2.1.\n3. Prototyping: Figma Variables, Interactive components.\n4. Psychology: Cognitive Load Reduction, Conversion-focused design.', 'Figma, Prototyping, UX Research')">
-            <h3>🎨 05. UI/UX Design</h3>
-            <div class="tech-tags"><span class="tag">Figma</span><span class="tag">UX Research</span></div>
-        </div>
-    </div>
+    <footer style="text-align:center; margin-top:40px; color:#8b949e; font-size:0.8em;">© 2026 REY_CODE_ACADEMY. All rights reserved.</footer>
 </div>
 
 <div id="modal" class="modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">&times;</span>
         <h2 id="mTitle" class="modal-h2"></h2>
-        <p id="mDesc" class="modal-desc"></p>
+        <div id="mDesc" class="modal-desc"></div>
         <button class="btn-wa" onclick="hubungiMentor()">Start Consultation</button>
     </div>
 </div>
 
 <script>
+    const modules = {
+        "Web Development": {
+            tags: ["Next.js", "Node.js", "Docker", "AWS"],
+            desc: "<strong>10-Step Mastering Roadmap:</strong><br><br>1. <strong>Arch Patterns:</strong> Monolith vs Microservices vs Serverless.<br>2. <strong>Frontend Core:</strong> Next.js (SSR/SSG), React Hooks & State.<br>3. <strong>State Mgmt:</strong> Advanced caching with Zustand & React Query.<br>4. <strong>Database:</strong> Relational (Postgres) vs NoSQL (MongoDB/Redis).<br>5. <strong>API Design:</strong> RESTful best practices & GraphQL schemas.<br>6. <strong>Security:</strong> OAuth2, JWT, & OWASP Top 10 vulnerabilities.<br>7. <strong>Performance:</strong> Code splitting, image optimization & SEO.<br>8. <strong>Testing:</strong> Unit testing (Jest) & E2E (Cypress).<br>9. <strong>Infrastructure:</strong> Dockerizing containers & Networking.<br>10. <strong>Deployment:</strong> CI/CD Pipelines (Github Actions) & Cloud."
+        },
+        "Mobile Development": {
+            tags: ["Flutter", "Kotlin", "SwiftUI", "Firebase"],
+            desc: "<strong>10-Step Mastering Roadmap:</strong><br><br>1. <strong>Mobile Arch:</strong> Clean Architecture (MVVM/BLoC/Riverpod).<br>2. <strong>Native UI:</strong> Declarative UI with Jetpack Compose & SwiftUI.<br>3. <strong>Async Ops:</strong> Background processing, Isolates & Coroutines.<br>4. <strong>Networking:</strong> Dio/Retrofit & WebSocket real-time data.<br>5. <strong>Local Storage:</strong> SQLite, Hive, & Encrypted SharedPrefs.<br>6. <strong>Hardware:</strong> Bluetooth LE, GPS, Camera & Sensor fusion.<br>7. <strong>Testing:</strong> Widget testing & Integration testing.<br>8. <strong>Firebase:</strong> Auth, Firestore, Analytics & Crashlytics.<br>9. <strong>Security:</strong> SSL Pinning & Obfuscation.<br>10. <strong>Distribution:</strong> Store guidelines, OTA updates & A/B testing."
+        },
+        "Data Science": {
+            tags: ["Python", "PyTorch", "Pandas", "SQL"],
+            desc: "<strong>10-Step Mastering Roadmap:</strong><br><br>1. <strong>Pythonic DS:</strong> Advanced Numpy/Pandas data manipulation.<br>2. <strong>Stats & Prob:</strong> Hypothesis testing & A/B testing basics.<br>3. <strong>EDA:</strong> Data visualization (Matplotlib/Seaborn/Plotly).<br>4. <strong>Data Wrangling:</strong> Handling missing values & outlier detection.<br>5. <strong>SQL Advanced:</strong> Window functions, Joins, & Query optimization.<br>6. <strong>ML Core:</strong> Scikit-learn (Regression, Clustering, Classification).<br>7. <strong>Deep Learning:</strong> Neural Nets with PyTorch/TensorFlow.<br>8. <strong>NLP/CV:</strong> Large Language Models (LLM) & Computer Vision.<br>9. <strong>MLOps:</strong> Docker, MLflow, Model Registry & Serving.<br>10. <strong>Big Data:</strong> Distributed computing with PySpark & Dask."
+        },
+        "Game Development": {
+            tags: ["Unity", "C#", "Unreal", "C++"],
+            desc: "<strong>10-Step Mastering Roadmap:</strong><br><br>1. <strong>Engine Core:</strong> Understanding Game Loops & Component Architecture.<br>2. <strong>Scripting:</strong> C# (Unity) or C++ (Unreal) Fundamentals.<br>3. <strong>Math Mastery:</strong> Vector, Matrix, Quaternions & Trigonometry.<br>4. <strong>Physics:</strong> Collision detection, Rigidbodies & Raycasting.<br>5. <strong>Asset Pipeline:</strong> Import/Export, Batching & Texture Compression.<br>6. <strong>Animation:</strong> State machines, Blend trees & Inverse Kinematics.<br>7. <strong>UI/UX Game:</strong> HUD systems & Inventory logic.<br>8. <strong>AI Systems:</strong> NavMesh, Behavior Trees & Pathfinding.<br>9. <strong>Networking:</strong> Photon/Mirror (Multiplayer synchronization).<br>10. <strong>Optimization:</strong> Memory profiling, Object Pooling & LOD."
+        },
+        "UI/UX Design": {
+            tags: ["Figma", "Research", "Interaction"],
+            desc: "<strong>10-Step Mastering Roadmap:</strong><br><br>1. <strong>Design Thinking:</strong> Empathy, Ideate, Prototype, Test.<br>2. <strong>Research:</strong> User Persona, Journey Maps & Stakeholder analysis.<br>3. <strong>Wireframing:</strong> Low-fi concepts & Information Architecture.<br>4. <strong>Design Systems:</strong> Global Tokens, Atomic components & Documentation.<br>5. <strong>Visual Design:</strong> Typography, Color theory & Layout Grids.<br>6. <strong>Prototyping:</strong> Advanced interactions, Variables & Auto-Layout.<br>7. <strong>Micro-interactions:</strong> Animated states & Lottie integration.<br>8. <strong>Accessibility:</strong> WCAG 2.1 compliance & Inclusive design.<br>9. <strong>Usability:</strong> Heuristic evaluation & User testing tools.<br>10. <strong>Collaboration:</strong> Dev Handoff, Spec documentation & Review."
+        }
+    };
+
+    const grid = document.getElementById('menu-grid');
+    for (let key in modules) {
+        grid.innerHTML += `
+            <div class="card" onclick="openDetail('${key}')">
+                <h3>🚀 ${key}</h3>
+                <div class="tech-tags">${modules[key].tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+            </div>
+        `;
+    }
+
+    window.addEventListener('load', () => { setTimeout(() => { document.getElementById('loader').style.display = 'none'; }, 1000); });
     const text = "Dulu, gue pikir memperbaiki hati itu sama kayak memperbaiki bug. Ternyata cinta jauh lebih rumit daripada syntax. Gue memilih untuk fokus membangun masa depan melalui kode. Selamat datang di tempat di mana logika menang atas perasaan.";
     let i = 0;
     function typeWriter() {
-        if (i < text.length) {
-            document.getElementById("typing-text").innerHTML += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 20);
-        }
+        if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 20); }
     }
     window.onload = typeWriter;
-
-    function openDetail(title, desc) {
-        document.getElementById('mTitle').innerText = title;
-        document.getElementById('mDesc').innerText = desc;
-        document.getElementById('modal').style.display = 'flex';
-    }
+    function openDetail(title) { document.getElementById('mTitle').innerText = title; document.getElementById('mDesc').innerHTML = modules[title].desc; document.getElementById('modal').style.display = 'flex'; }
     function closeModal() { document.getElementById('modal').style.display = 'none'; }
     function hubungiMentor() { window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi tentang " + document.getElementById('mTitle').innerText); }
 </script>
