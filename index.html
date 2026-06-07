@@ -5,55 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rey Code Academy | Expert Roadmap</title>
     <style>
-        :root { --bg: #000; --text: #fff; --accent: #58a6ff; }
-        .light-mode { --bg: #f0f2f5; --text: #000; --accent: #0969da; }
+        :root { --bg: #000; --text: #fff; --accent: #58a6ff; --card-bg: rgba(255,255,255,0.05); }
+        .light-mode { --bg: #f0f2f5; --text: #000; --accent: #0969da; --card-bg: rgba(0,0,0,0.05); }
         body { margin: 0; font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); transition: 0.3s; overflow-x: hidden; }
         
         #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%); z-index: -1; }
         #loader { position: fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index: 9999; display: flex; justify-content: center; align-items: center; color: var(--accent); font-weight: bold; }
 
-        .container { max-width: 600px; margin: auto; padding: 20px; }
-        header { display: flex; justify-content: space-between; align-items: center; margin: 30px 0; }
-        h1 { color: var(--accent); font-size: 1.8em; letter-spacing: 2px; }
+        .container { max-width: 600px; margin: auto; padding: 20px; padding-bottom: 80px; }
         
-        .story-box { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 1px solid rgba(88, 166, 255, 0.2); }
-        #typing-text { font-style: italic; line-height: 1.5; font-size: 0.85em; }
+        /* Animasi Nama Bergerak */
+        header { display: flex; justify-content: space-between; align-items: center; margin: 30px 0; }
+        
+        .animated-title-container { overflow: hidden; white-space: nowrap; max-width: 70%; }
+        
+        @keyframes marquee { 
+            0% { transform: translateX(100%); } 
+            100% { transform: translateX(-100%); } 
+        }
+
+        .animated-title { display: inline-block; animation: marquee 10s linear infinite; font-size: 1.8em; letter-spacing: 2px; color: var(--accent); }
+
+        .story-box { background: var(--card-bg); backdrop-filter: blur(10px); padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 1px solid rgba(88, 166, 255, 0.2); }
+        #typing-text { font-style: italic; line-height: 1.5; font-size: 0.85em; color: rgba(255,255,255,0.8); }
 
         .grid { display: grid; gap: 10px; }
-        .card { background: rgba(13, 17, 23, 0.6); border: 1px solid #30363d; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.3s; }
+        .card { background: rgba(13, 17, 23, 0.6); border: 1px solid #30363d; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.3s; color: #fff; }
         .card:hover { border-color: var(--accent); }
         
-        /* Fitur Pro */
+        /* Pro Features */
         .toast { position: fixed; bottom: 20px; left: 20px; background: var(--accent); color: white; padding: 10px 15px; border-radius: 8px; font-size: 0.7em; display: none; z-index: 1002; }
         .badge-grid { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 20px; }
-        .badge { background: #30363d; padding: 4px 8px; border-radius: 4px; font-size: 0.7em; white-space: nowrap; }
+        .badge { background: #30363d; padding: 4px 8px; border-radius: 4px; font-size: 0.7em; white-space: nowrap; color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+        .card-tags-badge { display: flex; gap: 5px; }
+        .card .badge { background: #161b22; color: var(--accent); border-color: #30363d; }
         .progress-bar { height: 8px; background: #30363d; border-radius: 4px; overflow: hidden; margin: 10px 0; }
         .progress-fill { height: 100%; background: var(--accent); width: 85%; }
         
         /* Modal & UI */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1001; align-items: center; justify-content: center; padding: 15px; }
-        .modal-content { background: var(--bg); padding: 20px; border-radius: 15px; max-width: 380px; width: 95%; border: 1px solid var(--accent); max-height: 70vh; overflow-y: auto; }
+        .modal-content { background: var(--bg); padding: 20px; border-radius: 15px; max-width: 380px; width: 95%; border: 1px solid var(--accent); max-height: 70vh; overflow-y: auto; color: var(--text); }
         .btn-wa { background: #238636; color: white; padding: 12px; width: 100%; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        
+        /* Responsive tweaks */
+        @media (max-width: 480px) { h1.animated-title { font-size: 1.5em; } .btn-wa { font-size: 0.9em; } }
     </style>
 </head>
 <body>
 
-<div id="loader">INITIALIZING...</div>
+<div id="loader">INITIALIZING_CURRICULUM...</div>
 <video autoplay muted loop playsinline id="bg-video"><source src="VID_20250702_110744_839.mp4" type="video/mp4"></video>
 <div class="overlay"></div>
 
 <div class="container">
     <header>
-        <h1>REY_CODE</h1>
-        <div onclick="toggleTheme()" style="cursor:pointer; font-size: 0.8em; color:var(--accent);">🌓 Toggle Mode</div>
+        <div class="animated-title-container">
+            <h1 class="animated-title">REY_CODE_ACADEMY</h1>
+        </div>
+        <div onclick="toggleTheme()" style="cursor:pointer; font-size: 0.8em; color:var(--accent); white-space: nowrap;">🌓 Mode</div>
     </header>
 
     <div class="story-box"><p id="typing-text"></p></div>
 
     <div style="display:flex; gap:10px; margin-bottom:20px;">
-        <div class="story-box" style="width:50%; text-align:center; padding:10px;"><h3>120+</h3><small>Proyek</small></div>
-        <div class="story-box" style="width:50%; text-align:center; padding:10px;"><h3>24/7</h3><small>Support</small></div>
+        <div class="story-box" style="width:50%; text-align:center; padding:10px; color: #fff;"><h3>120+</h3><small style="color: #8b949e;">Proyek Selesai</small></div>
+        <div class="story-box" style="width:50%; text-align:center; padding:10px; color: #fff;"><h3>24/7</h3><small style="color: #8b949e;">Support Aktif</small></div>
     </div>
 
     <div class="badge-grid">
@@ -61,57 +78,63 @@
     </div>
 
     <div class="story-box">
-        <h4 style="margin:0; font-size:0.8em;">Current Project: E-Commerce SaaS</h4>
+        <h4 style="margin:0; font-size:0.8em; color: #fff;">Current Project: E-Commerce SaaS</h4>
         <div class="progress-bar"><div class="progress-fill"></div></div>
+        <small style="color: #8b949e; font-size: 0.7em;">Status: 85% Development</small>
     </div>
 
     <div id="menu-grid" class="grid"></div>
 
     <div class="story-box" style="margin-top:20px;">
-        <h3 style="font-size:0.9em; color:var(--accent);">FAQ</h3>
-        <p style="font-size:0.75em;"><strong>Bisa custom web?</strong><br>Bisa banget, langsung diskusi via WA ya!</p>
+        <h3 style="font-size:0.9em; color:var(--accent); margin:0 0 10px 0;">FAQ</h3>
+        <p style="font-size:0.75em; color: #8b949e;"><strong>Q: Bisa terima custom web?</strong><br>A: Bisa banget, langsung diskusi via WA ya!</p>
     </div>
 
-    <footer style="text-align:center; margin-top:20px; font-size:0.7em;">
-        Chat WhatsApp: <a href="https://wa.me/628xxxxxxxxxx" style="color:var(--accent);">Klik di sini</a>
+    <footer style="text-align:center; margin-top:20px; font-size:0.7em; color: #8b949e;">
+        Chat WhatsApp: <a href="https://wa.me/628xxxxxxxxxx" style="color:var(--accent);">Klik di sini</a> | © 2026 REY_CODE_ACADEMY.
     </footer>
 </div>
 
 <div id="modal" class="modal">
     <div class="modal-content">
-        <h2 id="mTitle" style="color:var(--accent); font-size:1.2em;"></h2>
-        <div id="mDesc" style="font-size:0.8em;"></div>
+        <h2 id="mTitle" style="color:var(--accent); font-size:1.2em; margin-top:0;"></h2>
+        <div id="mDesc" style="font-size:0.8em; line-height:1.6;"></div>
         <button class="btn-wa" onclick="hubungiMentor()">Start Consultation</button>
     </div>
 </div>
 
-<div id="toast" class="toast">User baru saja memesan jasa!</div>
+<div id="toast" class="toast">Klien baru saja memesan Web Development!</div>
 
 <script>
-    // Fitur Toast
+    // Toast Notification
     setTimeout(() => { document.getElementById('toast').style.display = 'block'; setTimeout(() => document.getElementById('toast').style.display = 'none', 3000); }, 3000);
 
-    // Fungsi Utama
+    // Module Data
     const modules = {
-        "Web Development": { tags: ["Next.js", "Node.js"], desc: "1. Fondasi: HTML5, CSS3, JS.<br>2. Framework: React.js & Next.js.<br>3. Backend: Node.js, Express.<br>4. Database: Postgres.<br>5. Cloud: Vercel." },
-        "Mobile Development": { tags: ["Flutter", "Firebase"], desc: "1. UI/UX: Flutter.<br>2. State: BLoC.<br>3. Backend: Firebase.<br>4. Performance: Optimization.<br>5. Store: Deployment." },
-        "Data Science": { tags: ["Python", "Pandas"], desc: "1. Pythonic: Numpy.<br>2. Viz: Seaborn.<br>3. ML: Scikit-learn.<br>4. Deep Learning: PyTorch.<br>5. MLOps: Docker." },
-        "Game Development": { tags: ["Unity", "C#"], desc: "1. Core: Unity 3D.<br>2. Scripting: C#.<br>3. Math: Vektor.<br>4. Physics: Collision.<br>5. Networking: Photon." },
-        "UI/UX Design": { tags: ["Figma"], desc: "1. Design Thinking.<br>2. Wireframing.<br>3. System Design.<br>4. Prototyping.<br>5. Accessibility." }
+        "Web Development": { tags: ["Next.js", "Node.js"], desc: "1. <strong>Fondasi:</strong> HTML5, CSS3, JS ES6+.<br>2. <strong>Framework:</strong> React.js & Next.js.<br>3. <strong>Backend:</strong> Node.js, Express.<br>4. <strong>Database:</strong> Postgres.<br>5. <strong>Cloud:</strong> Vercel/Netlify deployment." },
+        "Mobile Development": { tags: ["Flutter", "Firebase"], desc: "1. <strong>UI/UX:</strong> Flutter, Jetpack Compose.<br>2. <strong>State:</strong> BLoC/Riverpod.<br>3. <strong>Backend:</strong> Firebase.<br>4. <strong>Performance:</strong> Memory Optimization.<br>5. <strong>Store:</strong> App Store Guidelines." },
+        "Data Science": { tags: ["Python", "Pandas"], desc: "1. <strong>Pythonic:</strong> Numpy.<br>2. <strong>Viz:</strong> Seaborn & Plotly.<br>3. <strong>ML:</strong> Scikit-learn.<br>4. <strong>Deep Learning:</strong> PyTorch.<br>5. <strong>MLOps:</strong> Docker & Model Serving." },
+        "Game Development": { tags: ["Unity", "C#"], desc: "1. <strong>Core:</strong> Unity 3D & C#.<br>2. <strong>Scripting:</strong> Component Logic.<br>3. <strong>Math:</strong> Vektor.<br>4. <strong>Physics:</strong> Collision.<br>5. <strong>Networking:</strong> Photon Multiplayer." },
+        "UI/UX Design": { tags: ["Figma"], desc: "1. <strong>Design Thinking.</strong><br>2. <strong>Wireframing:</strong> Lo-fi to Hi-fi.<br>3. <strong>System Design.</strong><br>4. <strong>Prototyping.</strong><br>5. <strong>Accessibility.</strong>" }
     };
 
+    // Render Grid
     const grid = document.getElementById('menu-grid');
     for (let key in modules) {
-        grid.innerHTML += `<div class="card" onclick="openDetail('${key}')"><h3>🚀 ${key}</h3><div style="display:flex; gap:5px;">${modules[key].tags.map(t => `<span class="badge">${t}</span>`).join('')}</div></div>`;
+        grid.innerHTML += `<div class="card" onclick="openDetail('${key}')"><h3>🚀 ${key}</h3><div class="card-tags-badge">${modules[key].tags.map(t => `<span class="badge">${t}</span>`).join('')}</div></div>`;
     }
 
+    // Functions
     function toggleTheme() { document.body.classList.toggle('light-mode'); }
     function openDetail(title) { document.getElementById('mTitle').innerText = title; document.getElementById('mDesc').innerHTML = modules[title].desc; document.getElementById('modal').style.display = 'flex'; }
     window.onclick = (e) => { if(e.target == document.getElementById('modal')) document.getElementById('modal').style.display = 'none'; }
     function hubungiMentor() { window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi tentang " + document.getElementById('mTitle').innerText); }
 
+    // Typing Effect
     const text = "Di dunia digital, kode adalah masa depan. Rey Code Academy hadir untuk bantu lo jadi kreator, bukan cuma konsumen. Mari bangun sesuatu yang luar biasa.";
     let i = 0; function typeWriter() { if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 20); } }
+    
+    // On Load
     window.onload = () => { typeWriter(); setTimeout(() => document.getElementById('loader').style.display = 'none', 1000); };
 </script>
 </body>
