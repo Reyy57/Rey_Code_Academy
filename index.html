@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rey Code Academy | Final Ultimate Dashboard</title>
     <style>
-        /* CSS Dasar & Background Video */
-        body { margin: 0; font-family: 'Courier New', monospace; color: #c9d1d9; overflow-x: hidden; }
+        /* CSS Dasar */
+        body { margin: 0; font-family: 'Courier New', monospace; color: #c9d1d9; overflow-x: hidden; background: #000; }
         #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); z-index: -1; }
 
-        /* Tombol Musik (Posisi Tetap di Pojok Kanan Bawah) */
+        /* Tombol Musik */
         .music-btn { position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding: 12px 20px; background: #58a6ff; border: none; border-radius: 20px; cursor: pointer; color: black; font-weight: bold; transition: 0.3s; }
         .music-btn:hover { background: #1f6feb; color: white; transform: scale(1.05); }
 
@@ -19,15 +19,12 @@
         
         h1 { color: #58a6ff; text-align: center; font-size: 2.2em; text-shadow: 0 0 15px rgba(88, 166, 255, 0.5); }
         .status { text-align: center; color: #238636; font-size: 0.9em; margin-bottom: 40px; letter-spacing: 3px; }
-        .story-box { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 20px; margin-bottom: 40px; border: 1px solid #30363d; backdrop-filter: blur(5px); }
-        
         .code-card { background: rgba(22, 27, 34, 0.6); border: 1px solid #30363d; padding: 30px; border-radius: 20px; margin-bottom: 20px; cursor: pointer; transition: 0.4s; backdrop-filter: blur(5px); }
         .code-card:hover { border-color: #58a6ff; box-shadow: 0 0 20px rgba(88, 166, 255, 0.4); transform: translateY(-5px); }
         
         .hidden { display: none; }
         .materi-box { background: rgba(0, 0, 0, 0.9); padding: 40px; border-radius: 25px; border: 1px solid #58a6ff; }
         .btn-wa { background: #238636; color: white; padding: 20px; width: 100%; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; margin-top: 40px; font-size: 1.1em; transition: 0.3s; }
-        .btn-wa:hover { background: #2ea043; transform: scale(1.02); }
     </style>
 </head>
 <body>
@@ -38,7 +35,7 @@
 <div class="overlay"></div>
 
 <audio id="bg-audio" loop>
-    <source src="Dfa993adbcb673c762296685dcf55592.mp3" type="audio/mpeg">
+    <source src="Dfa993adbcb673c762296685dcf55592.mp3" type="video/mp4">
 </audio>
 
 <button class="music-btn" onclick="toggleMusic()" id="music-btn">🎵 Play Music</button>
@@ -47,29 +44,24 @@
     <h1>> REY_CODE_ACADEMY</h1>
     <p class="status">● MENTOR_AKTIF // SLOT_TERBATAS</p>
 
-    <div class="story-box">
-        <h3 style="margin-top: 0; color: #58a6ff;">> Tentang Rey</h3>
-        <p id="typing-text" style="font-style: italic; line-height: 1.7;"></p>
-    </div>
-
     <div id="home">
-        <div class="code-card" onclick="openMateri('Web Development', 'ASAL USUL: Lahir 1989 di CERN oleh Tim Berners-Lee.\n\nPENJELASAN MENDALAM: Web Development adalah arsitektur sistem informasi paling krusial di era digital. Lu akan menguasai dua sisi dunia:\n1. FRONTEND: Menguasai HTML5 sebagai kerangka utama, CSS3 dengan teknik Flexbox/Grid untuk desain responsif di semua perangkat, serta JavaScript ES6+ untuk menciptakan interaksi dinamis yang membuat web terasa hidup.\n2. BACKEND: Membangun server dengan Node.js atau Python, mengelola struktur data di Database (SQL/NoSQL), serta memahami cara kerja API agar sistem bisa berkomunikasi dengan aman.\n3. INFRASTRUKTUR: Paham protokol HTTP, DNS, cara kerja HTTPS untuk keamanan, hingga tahap Deployment ke cloud seperti AWS atau Vercel agar bisa diakses dunia.\n\nKESIMPULAN: Website adalah satu-satunya aplikasi yang bisa diakses milyaran orang di seluruh dunia tanpa perlu instalasi apapun.')">
+        <div class="code-card" onclick="openMateri('Web Development', 'ASAL USUL: Lahir 1989 di CERN oleh Tim Berners-Lee.\n\nPENJELASAN: Lu akan menguasai:\n1. FRONTEND: HTML5, CSS3 (Flexbox/Grid), JavaScript ES6+.\n2. BACKEND: Node.js/Python, Database (SQL/NoSQL), API.\n3. INFRASTRUKTUR: HTTP, HTTPS, Deployment ke Cloud (AWS/Vercel).\n\nKESIMPULAN: Website adalah aplikasi yang bisa diakses milyaran orang tanpa instalasi.')">
             <h3>🚀 01. Web Development</h3>
         </div>
         
-        <div class="code-card" onclick="openMateri('Mobile Development', 'ASAL USUL: Lahir pasca revolusi iPhone 2007 dan Android 2008.\n\nPENJELASAN MENDALAM: Mobile Development adalah seni mengoptimalkan kode di perangkat dengan resource hardware terbatas. Lu akan belajar:\n1. NATIVE DEVELOPMENT: Menggunakan Kotlin untuk Android atau Swift untuk iOS. Ini memberikan performa paling maksimal dan akses penuh ke sensor kamera, GPS, Bluetooth, hingga biometrik.\n2. CROSS-PLATFORM: Menguasai Flutter (Dart) atau React Native. Lu bisa menulis satu basis kode untuk dua platform sekaligus, sangat efisien untuk startup.\n3. KONSEP KRUSIAL: Memahami Lifecycle aplikasi (kapan aplikasi berjalan, tertidur, atau mati), manajemen memori yang ketat agar tidak crash, serta State Management untuk menangani alur data yang kompleks.\n\nKESIMPULAN: Smartphone adalah pusat kehidupan manusia modern. Seorang Mobile Developer adalah arsitek yang membangun aplikasi yang berada di dalam saku user 24 jam sehari.')">
+        <div class="code-card" onclick="openMateri('Mobile Development', 'ASAL USUL: Pasca revolusi iPhone 2007.\n\nPENJELASAN: Mengoptimalkan kode di hardware terbatas:\n1. NATIVE: Kotlin (Android) atau Swift (iOS) untuk performa penuh.\n2. CROSS-PLATFORM: Flutter/React Native untuk efisiensi startup.\n3. KONSEP: Lifecycle aplikasi, State Management, memori.\n\nKESIMPULAN: Smartphone adalah pusat kehidupan, jadilah arsitek yang membangun aplikasi di saku user.')">
             <h3>📱 02. Mobile Development</h3>
         </div>
 
-        <div class="code-card" onclick="openMateri('Data Science', 'ASAL USUL: Evolusi dari ilmu statistika murni di era Big Data.\n\nPENJELASAN MENDALAM: Data Science adalah detektif modern. Tugas kita adalah mengubah data mentah menjadi keputusan strategis. Lu akan menguasai:\n1. DATA WRANGLING: Menggunakan library Pandas dan NumPy untuk membersihkan, memanipulasi, dan menyiapkan jutaan baris data agar akurat.\n2. EXPLORATORY DATA ANALYSIS (EDA): Menggunakan Matplotlib atau Seaborn untuk visualisasi data agar pola tersembunyi terlihat jelas.\n3. MACHINE LEARNING: Menggunakan Scikit-Learn atau TensorFlow untuk melatih model cerdas yang bisa memprediksi tren masa depan, melakukan klasifikasi, hingga sistem rekomendasi.\n\nKESIMPULAN: Di masa depan, data adalah minyak baru. Data Scientist adalah orang yang paling dicari karena mampu mengubah angka-angka mati menjadi strategi bisnis yang bernilai miliaran.')">
+        <div class="code-card" onclick="openMateri('Data Science', 'ASAL USUL: Evolusi statistika era Big Data.\n\nPENJELASAN: Detektif data modern:\n1. DATA WRANGLING: Pandas/NumPy untuk bersihin jutaan data.\n2. EDA: Visualisasi pola pakai Matplotlib/Seaborn.\n3. MACHINE LEARNING: Scikit-Learn/TensorFlow untuk prediksi tren masa depan.\n\nKESIMPULAN: Data Scientist adalah orang yang mengubah angka menjadi strategi milyaran.')">
             <h3>📊 03. Data Science</h3>
         </div>
 
-        <div class="code-card" onclick="openMateri('Game Development', 'ASAL USUL: Bermula dari eksperimen lab 1950-an hingga kini menjadi industri hiburan terbesar.\n\nPENJELASAN MENDALAM: Game Development adalah kasta tertinggi software engineering karena menuntut performa real-time 60 FPS. Lu akan belajar:\n1. GAME ENGINE: Menguasai Unity (C#) atau Unreal Engine (C++/Blueprints) sebagai dunia virtual lu.\n2. MATEMATIKA & FISIKA: Lu wajib paham Aljabar Linier (Vektor/Matriks) untuk memindahkan objek 3D di ruang virtual, sistem gravitasi, hingga simulasi cahaya (ray-tracing).\n3. AI & LOGIKA: Membuat musuh yang bisa berpikir, mengejar, atau bersembunyi menggunakan Finite State Machine (FSM) atau Behavior Trees.\n\nKESIMPULAN: Membuat game bukan cuma sekadar coding, tapi menciptakan hukum alam sendiri di dunia virtual.')">
+        <div class="code-card" onclick="openMateri('Game Development', 'ASAL USUL: Lab 1950-an.\n\nPENJELASAN: Kasta tertinggi engineering:\n1. ENGINE: Unity (C#) atau Unreal (C++).\n2. MATEMATIKA: Vektor/Matriks untuk ruang 3D, fisika real-time.\n3. AI: Membuat musuh dengan Finite State Machine.\n\nKESIMPULAN: Membuat game bukan coding, tapi menciptakan hukum alam sendiri.')">
             <h3>🎮 04. Game Development</h3>
         </div>
 
-        <div class="code-card" onclick="openMateri('UI/UX Design', 'ASAL USUL: Berawal dari studi ergonomi industri abad ke-20.\n\nPENJELASAN MENDALAM: UI/UX bukan sekadar membuat warna yang cantik, tapi tentang membangun empati antara mesin dan manusia. Lu akan mempelajari:\n1. UX (User Experience): Riset pengguna, persona, journey mapping, dan testing agar aplikasi lu sangat intuitif sehingga user tidak perlu berpikir.\n2. UI (User Interface): Menguasai hierarki visual, kontras warna, tipografi, serta aksesibilitas desain.\n3. DESIGN THINKING: Proses berpikir sistematis untuk memastikan setiap tombol yang lu buat memang menjawab kebutuhan pengguna.\n\nKESIMPULAN: Aplikasi paling canggih akan dianggap sampah jika user tidak tahu cara menggunakannya. UI/UX adalah jembatan yang menyatukan logika mesin dengan emosi manusia.')">
+        <div class="code-card" onclick="openMateri('UI/UX Design', 'ASAL USUL: Ergonomi industri abad-20.\n\nPENJELASAN: Membangun empati mesin-manusia:\n1. UX: Riset pengguna, journey mapping.\n2. UI: Hierarki visual, tipografi, aksesibilitas.\n3. DESIGN THINKING: Proses sistematis menjawab masalah.\n\nKESIMPULAN: UI/UX adalah jembatan antara logika mesin dan emosi manusia.')">
             <h3>🎨 05. UI/UX Design</h3>
         </div>
     </div>
@@ -82,12 +74,10 @@
             <button onclick="backToHome()" style="background:none; border:none; color:grey; margin-top:30px; width:100%; cursor:pointer;">Kembali ke Menu Utama</button>
         </div>
     </div>
-
-    <footer style="text-align:center; color: #444; margin-top: 80px; font-size: 0.8em;">&copy; 2026 Rey Code Academy</footer>
 </div>
 
 <script>
-    // FUNGSI MUSIK (TOGGLE)
+    // Logika Musik
     function toggleMusic() {
         const audio = document.getElementById("bg-audio");
         const btn = document.getElementById("music-btn");
@@ -100,19 +90,7 @@
         }
     }
 
-    // EFEK TYPING
-    const text = '"Dulu, gue pikir bisa memperbaiki hati yang rusak sama seperti memperbaiki bug di kodingan. Ternyata, cinta jauh lebih rumit daripada syntax manapun. Tapi dari kegagalan itu, gue sadar: daripada memikirkan yang pergi, lebih baik membangun sesuatu yang bertahan selamanya. Gue memilih menulis baris kode dan membantu lu tumbuh. Selamat datang di tempat di mana logika menang atas perasaan."';
-    let i = 0;
-    function typeWriter() {
-        if (i < text.length) {
-            document.getElementById("typing-text").innerHTML += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 20);
-        }
-    }
-    window.onload = typeWriter;
-
-    // NAVIGASI
+    // Navigasi
     function openMateri(title, desc) {
         document.getElementById('home').style.display = 'none';
         document.getElementById('materi').style.display = 'block';
@@ -124,10 +102,9 @@
         document.getElementById('materi').style.display = 'none';
     }
 
-    // KONTAK
-    const nomorWA = "628xxxxxxxxxx"; // GANTI NOMOR WA LU
+    // Kontak WA
     function hubungiMentor() {
-        window.open("https://wa.me/" + nomorWA + "?text=Halo Rey, saya ingin diskusi lebih lanjut tentang materi " + document.getElementById('mTitle').innerText + ".");
+        window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi lebih lanjut tentang materi " + document.getElementById('mTitle').innerText + ".");
     }
 </script>
 </body>
