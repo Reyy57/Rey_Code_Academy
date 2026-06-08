@@ -1,70 +1,54 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>REY_CODE_ACADEMY</title>
+<meta charset="UTF-8"><title>REY_CODE_ACADEMY</title>
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <style>
 :root {--bg:#000; --accent:#58a6ff; --glass:rgba(255,255,255,0.06)}
-body {margin:0; font-family:'Segoe UI',sans-serif; color:#fff; background:var(--bg); overflow-x:hidden}
-#bg-video {position:fixed; right:0; bottom:0; min-width:100%; min-height:100%; z-index:-3; object-fit:cover}
-#particles-js {position:fixed; width:100%; height:100%; z-index:-2}
-.container {max-width:600px; margin:auto; padding:20px; padding-bottom:100px}
-.neon-title {color:var(--accent); text-shadow:0 0 10px var(--accent), 0 0 20px var(--accent); margin:0; font-size:1.6em; display:flex; align-items:center}
-.online-dot {width:10px; height:10px; background:#25D366; border-radius:50%; margin-right:10px; box-shadow:0 0 10px #25D366; animation:blink 1s infinite}
-@keyframes blink {50% {opacity:0}}
-.card {background:var(--glass); backdrop-filter:blur(15px); border:1px solid rgba(255,255,255,0.1); padding:20px; border-radius:18px; margin:12px 0; display:flex; justify-content:space-between; align-items:center; cursor:pointer; transition:0.3s}
-.badge {background:rgba(88,166,255,0.15); color:var(--accent); padding:4px 10px; border-radius:6px; font-size:0.75em; margin-right:5px; border:1px solid rgba(88,166,255,0.3)}
-.prog-bg {height:6px; background:#1a1a1a; border-radius:10px; margin:10px 0; overflow:hidden}
-.prog-fill {height:100%; background:linear-gradient(90deg,#58a6ff,#00d4ff); width:85%}
-.fab {position:fixed; bottom:30px; right:30px; background:#25D366; padding:15px 20px; border-radius:50px; color:#fff; font-weight:bold; z-index:1002; text-decoration:none; display:flex; align-items:center; gap:8px}
-.modal {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:2000; align-items:center; justify-content:center; padding:20px}
-.modal-content {background:#0d1117; padding:30px; border-radius:20px; width:100%; max-width:500px; border:1px solid var(--accent); max-height:80vh; overflow-y:auto}
+body {margin:0; font-family:'Segoe UI',sans-serif; color:#fff; background:#050505; overflow-x:hidden}
+#bg-video {position:fixed; right:0; bottom:0; min-width:100%; min-height:100%; z-index:-3; object-fit:cover; filter:brightness(0.4)}
+.container {max-width:600px; margin:auto; padding:20px}
+.neon-title {color:var(--accent); text-shadow:0 0 10px var(--accent); white-space:nowrap; animation:marquee 10s linear infinite}
+@keyframes marquee {0% {transform:translateX(100%)} 100% {transform:translateX(-100%)}}
+.card {background:var(--glass); backdrop-filter:blur(15px); border:1px solid rgba(255,255,255,0.1); padding:20px; border-radius:18px; margin:12px 0}
+.prog-fill {height:8px; background:linear-gradient(90deg,#58a6ff,#00d4ff); border-radius:10px; width:85%}
+.fab {position:fixed; bottom:20px; right:20px; background:#25D366; padding:15px; border-radius:50px; display:flex; align-items:center; gap:8px}
 </style>
 </head>
 <body>
-<div id="particles-js"></div>
+<div id="particles-js" style="position:fixed;width:100%;height:100%;z-index:-2"></div>
 <video autoplay muted loop playsinline id="bg-video"><source src="VID_20250702_110744_839.mp4" type="video/mp4"></video>
 <div class="container">
-<h1 class="neon-title"><span class="online-dot"></span> REY_CODE_ACADEMY</h1>
-<p id="typing-text" style="font-size:0.9em; color:#ccc; min-height:3em; margin-top:10px;"></p>
-<div style="margin-bottom:20px;">
-<span class="badge">Next.js 14</span><span class="badge">Node.js</span><span class="badge">Flutter</span><span class="badge">Python ML</span>
+<h1 class="neon-title">🟢 REY_CODE_ACADEMY</h1>
+<p id="greeting"></p>
+<div id="stats" style="display:flex; justify-content:space-between">
+<span>🚀 120+ Proyek</span><span>🎨 Pro UI/UX</span><span>⏳ 24/7 Support</span>
 </div>
-<div class="card" style="cursor:default; flex-direction:column; align-items:flex-start">
-<h4 style="margin:0; color:#58a6ff">Current Project Status: E-Commerce SaaS</h4>
-<div class="prog-bg" style="width:100%"><div class="prog-fill"></div></div>
-<div style="font-size:0.7em; color:#8b949e; margin-top:5px">Phase: Final Testing & Optimization</div>
+<div class="card">
+<h4>Current Project: E-Commerce SaaS (85%)</h4>
+<div class="prog-fill"></div>
+<p style="font-size:0.7em">Phase: Final Testing & Optimization</p>
 </div>
 <div id="menu-grid"></div>
-<div class="card" style="border-style:dashed"><div><h3>FAQ & Support</h3><p style="font-size:0.85em;color:#8b949e">Bisa custom web? Tentu, konsultasikan ide lo ke admin.</p></div></div>
-<a href="https://wa.me/628xxxxxxxxxx" class="fab">💬 Chat Admin Expert</a>
+<div class="card">
+<h3>FAQ & Support</h3>
+<p>Bisa custom web? Tentu, konsultasikan ide lo ke admin.</p>
 </div>
-<div id="modal" class="modal">
-<div class="modal-content">
-<h2 id="mTitle" style="color:var(--accent); margin-top:0"></h2>
-<div id="mDesc" style="line-height:1.7; color:#c9d1d9"></div>
-<button style="width:100%; padding:15px; margin-top:25px; background:#238636; border:none; border-radius:10px; color:#fff; font-weight:bold; cursor:pointer" onclick="hubungiMentor()">Start Consultation Now</button>
-</div>
+<a href="#" class="fab">💬 Chat Admin Expert</a>
 </div>
 <script>
-particlesJS("particles-js", {"particles":{"number":{"value":80},"color":{"value":"#ffffff"},"opacity":{"value":0.4},"size":{"value":2},"move":{"speed":0.4}}});
+const greeting = new Date().getHours() < 12 ? "Selamat Pagi" : "Selamat Siang";
+document.getElementById('greeting').innerText = `${greeting}, Selamat datang di REY_CODE_ACADEMY. Mari bangun masa depan digital lo.`;
 const mods = {
-"Web Development": "1. Frontend: Next.js 14.<br>2. Backend: Node.js/Express.<br>3. Database: PostgreSQL.<br>4. Cloud: Vercel.<br>5. Performance: 90+.",
-"Mobile Development": "1. Cross-Platform: Flutter.<br>2. State: BLoC.<br>3. Integration: Firebase.<br>4. Offline: SQLite.<br>5. Store: Ready.",
-"Data Science": "1. Data: Processing.<br>2. ML: Scikit-learn.<br>3. Viz: Plotly.<br>4. Automation: Python.<br>5. Big Data: Large scale.",
-"Game Development": "1. Engine: Unity 3D.<br>2. Physics: Mechanics.<br>3. Assets: 3D/2D.<br>4. Multiplayer: Photon.<br>5. Export: Multi-platform.",
-"UI/UX Design": "1. Research: Analysis.<br>2. Wireframing: Flow.<br>3. High-Fi: Figma.<br>4. Prototyping: Interaction.<br>5. System: Design System."
+"Web Development": "1. Frontend: Next.js 14.<br>2. Backend: Node.js.<br>3. DB: Postgres.<br>4. Cloud: Vercel.<br>5. Speed: 90+.",
+"Mobile Development": "1. Flutter (Android/iOS).<br>2. BLoC State.<br>3. Firebase.<br>4. SQLite.<br>5. Store Ready.",
+"Data Science": "1. Data Process.<br>2. ML Models.<br>3. Viz: Plotly.<br>4. Python Auto.<br>5. Big Data Analysis.",
+"Game Development": "1. Unity 3D.<br>2. Physics Simulation.<br>3. 3D Assets.<br>4. Photon Multiplayer.<br>5. WebGL Export.",
+"UI/UX Design": "1. User Research.<br>2. Wireframing.<br>3. High-Fi Design.<br>4. Prototyping.<br>5. Design System."
 };
 const grid = document.getElementById('menu-grid');
-for(let k in mods){ grid.innerHTML += `<div class="card" onclick="openDetail('${k}')"><h3>🚀 ${k}</h3><span style="font-size:0.7em; background:rgba(255,255,255,0.1); padding:4px 8px; border-radius:6px">Details</span></div>`; }
-function openDetail(t){document.getElementById('mTitle').innerText=t;document.getElementById('mDesc').innerHTML=mods[t];document.getElementById('modal').style.display='flex'}
-function hubungiMentor(){window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya tertarik jasa " + document.getElementById('mTitle').innerText)}
-window.onclick = (e) => { if(e.target == document.getElementById('modal')) document.getElementById('modal').style.display = 'none' };
-const text = "Selamat datang di REY_CODE_ACADEMY. Mari bangun masa depan digital lo.";
-let i = 0; function typeWriter() { if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 30); } }
-typeWriter();
+for(let k in mods){ grid.innerHTML += `<div class="card" style="display:flex; justify-content:space-between"><h3>🚀 ${k}</h3><span>Details</span></div>`; }
+particlesJS("particles-js", {"particles":{"number":{"value":50},"color":{"value":"#ffffff"}}});
 </script>
 </body>
 </html>
