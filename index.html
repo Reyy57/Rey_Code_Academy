@@ -26,11 +26,13 @@
 
         .container { max-width: 600px; margin: auto; padding: 15px; padding-bottom: 70px; transition: 0.3s; }
         @media (min-width: 768px) { .container { max-width: 900px; } .grid { grid-template-columns: 1fr 1fr; } }
-        header { display: flex; justify-content: space-between; align-items: center; margin: 25px 0; }
         
-        .animated-title-container { overflow: hidden; white-space: nowrap; max-width: 70%; flex-grow: 1; }
+        /* Layout Header: Judul di kiri, GIF di kanan, Tombol Mode di bawah */
+        header { display: flex; flex-direction: column; align-items: flex-start; margin: 25px 0; }
+        .title-row { display: flex; align-items: center; width: 100%; }
+        .animated-title-container { overflow: hidden; white-space: nowrap; flex-grow: 1; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        .animated-title { display: flex; align-items: center; animation: marquee 10s linear infinite; font-size: 1.6em; letter-spacing: 2px; color: var(--accent); text-shadow: var(--accent-glow); }
+        .animated-title { animation: marquee 10s linear infinite; font-size: 1.6em; letter-spacing: 2px; color: var(--accent); text-shadow: var(--accent-glow); margin: 0; }
 
         .story-box { background: var(--card-bg); backdrop-filter: blur(10px); padding: 18px; border-radius: 15px; margin-bottom: 18px; border: 1px solid rgba(88, 166, 255, 0.15); }
         #typing-text { font-style: italic; line-height: 1.5; font-size: 0.82em; color: rgba(255,255,255,0.75); }
@@ -64,18 +66,17 @@
 
 <div class="container">
     <header>
-        <div class="animated-title-container">
-            <h1 class="animated-title">
-                <span class="online-dot"></span> 
-                REY_CODE_ACADEMY
-                <img src="Ezgif.com-video-to-gif-converter.gif" alt="kucing" style="width: 50px; height: 50px; margin-left: 10px; border-radius: 50%; flex-shrink: 0;">
-            </h1>
+        <div class="title-row">
+            <div class="animated-title-container">
+                <h1 class="animated-title"><span class="online-dot"></span> REY_CODE_ACADEMY</h1>
+            </div>
+            <img src="Ezgif.com-video-to-gif-converter.gif" alt="kucing" style="width: 45px; height: 45px; margin-left: 10px; border-radius: 50%; flex-shrink: 0;">
         </div>
-        <div onclick="toggleTheme()" style="cursor:pointer; font-size: 0.75em; color:var(--accent);">🌓 Mode</div>
+        <div onclick="toggleTheme()" style="cursor:pointer; font-size: 0.7em; color:var(--accent); margin-top: 5px;">🌓 Ganti Mode</div>
     </header>
 
     <div class="story-box"><p id="typing-text"></p></div>
-
+    
     <div style="display:flex; gap:10px; margin-bottom:18px; color:#fff;">
         <div class="story-box" style="width:50%; text-align:center; padding:10px;"><h3>120+</h3><small style="color:#8b949e;">Proyek Selesai</small></div>
         <div class="story-box" style="width:50%; text-align:center; padding:10px;"><h3>24/7</h3><small style="color:#8b949e;">Support Aktif</small></div>
