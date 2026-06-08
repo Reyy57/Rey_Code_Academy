@@ -2,17 +2,17 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Code Academy</title>
+    <title>Rey Code Academy - Login</title>
 </head>
 <body>
-
-    <h1>Selamat Datang di Rey Code Academy</h1>
-    <p>Sistem sedang berjalan...</p>
+    <h2>Login ke Academy</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button id="btn-login">Login</button>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCWxhWyiu9JLBsVzkHjE-x4UcSsMUzp8cI",
@@ -20,16 +20,20 @@
             projectId: "rey-code-academy",
             storageBucket: "rey-code-academy.firebasestorage.app",
             messagingSenderId: "777024739059",
-            appId: "1:777024739059:web:440f7a64ddf5bc7017c986",
-            measurementId: "G-LVP45KLK83"
+            appId: "1:777024739059:web:440f7a64ddf5bc7017c986"
         };
 
         const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        
-        // Munculkan notifikasi di HP kalau sudah nyambung
-        alert("Firebase berhasil terhubung!");
-    </script>
+        const auth = getAuth(app);
 
+        document.getElementById("btn-login").addEventListener("click", () => {
+            const email = document.getElementById("email").value;
+            const pass = document.getElementById("password").value;
+
+            signInWithEmailAndPassword(auth, email, pass)
+                .then(() => alert("Login Berhasil!"))
+                .catch((error) => alert("Login Gagal: " + error.message));
+        });
+    </script>
 </body>
 </html>
