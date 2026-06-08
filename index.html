@@ -23,7 +23,7 @@
                 <p id="pesan-dari-admin" class="text-gray-700 font-medium italic"></p>
             </div>
             
-            <div class="border-t pt-4">
+            <div id="admin-tools" class="border-t pt-4 hidden">
                 <input type="text" id="input-pesan" placeholder="Update pengumuman..." class="w-full p-2 border rounded-lg text-sm mb-2 outline-blue-400">
                 <button id="btn-update" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2 rounded-lg transition text-sm">Update Pesan</button>
             </div>
@@ -50,6 +50,7 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
         const docId = "5dCeukL4hDZROHKnOUth"; 
+        const adminEmail = "rey@gmail.com"; // GANTI EMAIL LO DI SINI
 
         document.getElementById("btn-login").addEventListener("click", () => {
             const email = document.getElementById("email").value;
@@ -64,7 +65,7 @@
             if(teksBaru) {
                 const docRef = doc(db, "pesan", docId);
                 await updateDoc(docRef, { teks: teksBaru });
-                document.getElementById("input-pesan").value = ""; // Bersihkan input
+                document.getElementById("input-pesan").value = ""; 
             }
         });
 
@@ -74,6 +75,13 @@
             
             if(user) {
                 document.getElementById("user-email").innerText = user.email;
+                
+                // Cek apakah user adalah admin
+                if(user.email === adminEmail) {
+                    document.getElementById("admin-tools").classList.remove("hidden");
+                } else {
+                    document.getElementById("admin-tools").classList.add("hidden");
+                }
                 
                 // Realtime Listener
                 const docRef = doc(db, "pesan", docId);
