@@ -24,8 +24,15 @@
             </div>
             
             <div id="admin-tools" class="border-t pt-4 hidden">
+                <p class="text-xs font-bold text-gray-400 uppercase mb-2">Admin Panel</p>
                 <input type="text" id="input-pesan" placeholder="Update pengumuman..." class="w-full p-2 border rounded-lg text-sm mb-2 outline-blue-400">
                 <button id="btn-update" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2 rounded-lg transition text-sm">Update Pesan</button>
+            </div>
+
+            <div id="settings-area" class="border-t pt-4 mt-2 space-y-2">
+                <p class="text-xs font-bold text-gray-400 uppercase">Pengaturan Akun</p>
+                <input type="password" id="new-password" placeholder="Password baru..." class="w-full p-2 border rounded-lg text-sm outline-blue-400">
+                <button id="btn-update-pass" class="w-full bg-slate-700 hover:bg-slate-800 text-white font-semibold py-2 rounded-lg transition text-sm">Ganti Password</button>
             </div>
             
             <button id="btn-logout" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold py-2 rounded-lg transition text-sm">Logout</button>
@@ -34,7 +41,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, updatePassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore, doc, updateDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -60,31 +67,29 @@
 
         document.getElementById("btn-logout").addEventListener("click", () => signOut(auth));
 
-        // Fungsi Update dengan Loading State
+        // Update Pesan
         document.getElementById("btn-update").addEventListener("click", async () => {
             const btn = document.getElementById("btn-update");
             const input = document.getElementById("input-pesan");
-            const teksBaru = input.value;
-            
-            if(teksBaru) {
-                // Set loading
+            if(input.value) {
                 btn.innerText = "Updating...";
                 btn.disabled = true;
-                btn.classList.add("opacity-50");
-
-                try {
-                    const docRef = doc(db, "pesan", docId);
-                    await updateDoc(docRef, { teks: teksBaru });
-                    input.value = ""; 
-                } catch (error) {
-                    alert("Gagal update!");
-                } finally {
-                    // Reset tombol
-                    btn.innerText = "Update Pesan";
-                    btn.disabled = false;
-                    btn.classList.remove("opacity-50");
-                }
+                await updateDoc(doc(db, "pesan", docId), { teks: input.value });
+                input.value = ""; 
+                btn.innerText = "Update Pesan";
+                btn.disabled = false;
             }
+        });
+
+        // Ganti Password
+        document.getElementById("btn-update-pass").addEventListener("click", async () => {
+            const newPass = document.getElementById("new-password").value;
+            if (newPass.length < 6) return alert("Min 6 karakter!");
+            try {
+                await updatePassword(auth.currentUser, newPass);
+                alert("Password berhasil diganti!");
+                document.getElementById("new-password").value = "";
+            } catch (e) { alert("Error: " + e.message); }
         });
 
         onAuthStateChanged(auth, async (user) => {
@@ -93,20 +98,10 @@
             
             if(user) {
                 document.getElementById("user-email").innerText = user.email;
+                if(user.email === adminEmail) document.getElementById("admin-tools").classList.remove("hidden");
                 
-                // Proteksi Admin
-                if(user.email === adminEmail) {
-                    document.getElementById("admin-tools").classList.remove("hidden");
-                } else {
-                    document.getElementById("admin-tools").classList.add("hidden");
-                }
-                
-                // Realtime Listener
-                const docRef = doc(db, "pesan", docId);
-                onSnapshot(docRef, (doc) => {
-                    if (doc.exists()) {
-                        document.getElementById("pesan-dari-admin").innerText = doc.data().teks;
-                    }
+                onSnapshot(doc(db, "pesan", docId), (doc) => {
+                    if (doc.exists()) document.getElementById("pesan-dari-admin").innerText = doc.data().teks;
                 });
             }
         });
