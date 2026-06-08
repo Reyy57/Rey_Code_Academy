@@ -2,20 +2,31 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rey Code Academy</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; background-color: #f4f4f9; }
+        .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 300px; text-align: center; }
+        input { width: 90%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 5px; }
+        button { width: 95%; padding: 10px; margin-top: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
 </head>
 <body>
-    <div id="login-form">
-        <h2>Login ke Academy</h2>
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Password">
-        <button id="btn-login">Login</button>
-    </div>
 
-    <div id="member-area" style="display: none;">
-        <h2>Halo Member!</h2>
-        <p>Selamat datang di area khusus.</p>
-        <button id="btn-logout">Logout</button>
+    <div class="container">
+        <div id="login-form">
+            <h2>Login Academy</h2>
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <button id="btn-login">Login</button>
+        </div>
+
+        <div id="member-area" style="display: none;">
+            <h2>Halo Member!</h2>
+            <p>Selamat datang di dashboard lo.</p>
+            <button id="btn-logout" style="background: #dc3545;">Logout</button>
+        </div>
     </div>
 
     <script type="module">
@@ -34,28 +45,17 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Fungsi Login
         document.getElementById("btn-login").addEventListener("click", () => {
             const email = document.getElementById("email").value;
             const pass = document.getElementById("password").value;
-            signInWithEmailAndPassword(auth, email, pass)
-                .catch((error) => alert("Error: " + error.message));
+            signInWithEmailAndPassword(auth, email, pass).catch((e) => alert("Error: " + e.message));
         });
 
-        // Fungsi Logout
-        document.getElementById("btn-logout").addEventListener("click", () => {
-            signOut(auth).then(() => alert("Berhasil Logout!"));
-        });
+        document.getElementById("btn-logout").addEventListener("click", () => signOut(auth));
 
-        // Cek status login (nyembunyiin/nampilin form otomatis)
         onAuthStateChanged(auth, (user) => {
-            if (user) {
-                document.getElementById("login-form").style.display = "none";
-                document.getElementById("member-area").style.display = "block";
-            } else {
-                document.getElementById("login-form").style.display = "block";
-                document.getElementById("member-area").style.display = "none";
-            }
+            document.getElementById("login-form").style.display = user ? "none" : "block";
+            document.getElementById("member-area").style.display = user ? "block" : "none";
         });
     </script>
 </body>
