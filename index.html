@@ -12,7 +12,9 @@
         @keyframes blink { 50% { opacity: 0; } }
         #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%); z-index: -1; }
-        #loader { position: fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index: 9999; display: flex; justify-content: center; align-items: center; color: var(--accent); font-weight: bold; font-size: 0.9em; }
+        /* Loader Baru */
+        #loader { position: fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--accent); }
+        #loading-text { font-family: 'Courier New', monospace; font-size: 1.2em; text-align: center; padding: 0 20px; }
         .container { max-width: 600px; margin: auto; padding: 15px; padding-bottom: 70px; transition: 0.3s; }
         @media (min-width: 768px) { .container { max-width: 900px; } }
         header { display: flex; flex-direction: column; align-items: flex-start; margin: 25px 0; }
@@ -48,7 +50,11 @@
 </head>
 <body>
 
-<div id="loader">INITIALIZING_CURRICULUM...</div>
+<div id="loader">
+    <div id="loading-text"></div>
+    <div style="font-size: 0.6em; margin-top:10px; color: #58a6ff; letter-spacing: 2px;">REY_CODE_ACADEMY_SYSTEM</div>
+</div>
+
 <video autoplay muted loop playsinline id="bg-video"><source src="VID_20250702_110744_839.mp4" type="video/mp4"></video>
 <div class="overlay"></div>
 
@@ -118,6 +124,26 @@
 <div id="toast" class="toast">Klien baru saja memesan Web Development!</div>
 
 <script>
+    // New Brutal Loader Logic
+    const loaderText = document.getElementById("loading-text");
+    const messages = ["Mencari ambisi yang hilang...", "Menyingkirkan kode sampah...", "Membangun standar yang tak bisa ditawar...", "Selamat datang di ruang gue."];
+    let msgIndex = 0, charIndex = 0;
+    function typeLoader() {
+        if (msgIndex < messages.length) {
+            if (charIndex < messages[msgIndex].length) {
+                loaderText.innerHTML += messages[msgIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(typeLoader, 50);
+            } else {
+                setTimeout(() => { loaderText.innerHTML = ""; charIndex = 0; msgIndex++; typeLoader(); }, 1000);
+            }
+        } else {
+            document.getElementById('loader').style.display = 'none';
+            typeWriter();
+        }
+    }
+    typeLoader();
+
     // Console Log Script
     const logs = ["Initializing system...", "Loading assets...", "Authenticating user...", "System stable.", "Watching for potential bugs...", "Optimizing performance...", "Backend sync complete."];
     const consoleDiv = document.getElementById('console-log');
@@ -133,14 +159,14 @@
     const longDesc = { "Web Development": "1. Advanced Fullstack Architecture: Membangun ekosistem web modern dengan Next.js 14, TypeScript, dan Tailwind CSS. Fokus pada performa maksimal dan SEO.<br>2. Scalable Backend: Pengembangan API tangguh dengan Node.js/Express, autentikasi enterprise (JWT/OAuth), dan manajemen user.<br>3. Database & Caching: PostgreSQL, Prisma, dan Redis untuk latensi rendah.<br>4. DevOps: Deployment Vercel, CI/CD, dan Dockerization.<br>5. Security: Proteksi XSS, CSRF, dan audit performa Lighthouse.", "Mobile Development": "1. Advanced Cross-Platform: Flutter/Dart native-feel (Android/iOS). Fokus pada Clean Architecture.<br>2. State Management: BLoC, Riverpod, GetX untuk data sinkronisasi kompleks.<br>3. Cloud: Integrasi penuh Firebase (Auth, Firestore, FCM, Remote Config).<br>4. Performance: SQLite/Hive local storage, Multi-threading (Isolates).<br>5. Production: Crashlytics, CI/CD, distribusi ke Play Store/App Store.", "Data Science": "1. Data Pipeline: Automasi ETL menggunakan Python, Pandas, PySpark.<br>2. Advanced Viz: Dashboard interaktif dengan Plotly/Dash.<br>3. ML Engineering: Feature engineering, Scikit-learn/XGBoost, validasi model.<br>4. AI/DL: Arsitektur neural networks (PyTorch/TensorFlow).<br>5. MLOps: Versioning dengan MLflow, containerizing model, FastAPI.", "Game Development": "1. Game Architecture: Unity 3D/2D, ECS, OOP/DOTS.<br>2. Mechanics: Fisika kompleks, NavMesh AI, Shader Graph, Rendering Pipeline.<br>3. Optimization: Asset management (Occlusion, LOD, Texture Atlasing).<br>4. Multiplayer: Photon Fusion/Mirror (real-time).<br>5. Multi-Platform: PC/Console/Mobile/WebGL, In-App Purchase.", "UI/UX Design": "1. Research: User persona, empathy mapping, usability testing mendalam.<br>2. Architecture: IA, user flow, wireframing intuitif.<br>3. Design Systems: Atomic components, tokens, responsive constraints.<br>4. High-Fi Prototype: Logic, variables, smart animation di Figma.<br>5. Handoff: Spesifikasi teknis, dev-handoff presisi pixel-perfect." };
     const grid = document.getElementById('menu-grid');
     for (let key in modules) { grid.innerHTML += `<div class="card" onclick="openDetail('${key}')"><div class="card-header"><span class="card-icon">${modules[key].icon}</span><h3>${key}</h3></div><div class="card-tags-badge">${modules[key].tags.map(t => `<span class="badge">${t}</span>`).join('')}</div></div>`; }
-    function getBotResponse(userText) { const text = userText.toLowerCase(); if (text.includes("harga") || text.includes("biaya") || text.includes("murah")) { return "Harga itu investasi buat kualitas. Gue gak kasih harga sampah, tapi gue pastiin hasilnya brutal. Mau diskusi detailnya di WA?"; } else if (text.includes("web") || text.includes("coding") || text.includes("bisa buat")) { return "Gue bisa bangun sistem dari nol sampai jadi. Mau e-commerce, SaaS, atau aplikasi mobile, semua gue hajar pake teknologi paling efisien."; } else if (text.includes("capek") || text.includes("lelah") || text.includes("sedih") || text.includes("berat")) { return "Gue tau rasanya. Dunia ini emang gak ramah, tapi jangan biarin emosi itu ngebunuh ambisi lo. Lo punya tujuan, fokus ke situ. Mau gue bantu alihin pikiran lo lewat ngoding?"; } else if (text.includes("gagal") || text.includes("salah")) { return "Gagal itu cuma bug di sistem kehidupan lo. Jangan didiemin, di-debug, diperbaiki, terus deploy lagi. Jangan pernah berhenti di tengah jalan."; } else if (text.includes("siapa") || text.includes("lo itu")) { return "Gue adalah representasi dari ambisi lo. Gue asisten, gue partner, dan kadang gue cermin dari isi kepala lo sendiri."; } else if (text.includes("arti") || text.includes("kenapa")) { return "Kenapa? Karena lo nanya itu tandanya lo masih peduli. Kebanyakan orang cuma jalan kayak robot tanpa pernah nanya 'kenapa'. Teruslah bertanya sampai lo nemu jawabannya."; } else if (text.includes("halo") || text.includes("hai") || text.includes("pagi") || text.includes("malam")) { return "Halo. Gue stand by di sini. Ada yang bikin lo kepikiran atau mau langsung bahas project?"; } else { const fallback = [ "Gue dengerin, coba ceritain lebih lanjut. Apa yang sebenernya lo cari?", "Menarik. Tapi menurut lo sendiri, gimana caranya hal itu bisa jadi solusi?", "Gue gak punya jawaban pasti buat itu, tapi gue rasa lo tau apa yang harus dilakuin.", "Hmm, coba liat dari perspektif lain. Jangan terlalu kaku ngeliat masalah." ]; return fallback[Math.floor(Math.random() * fallback.length)]; } }
+    function getBotResponse(userText) { const text = userText.toLowerCase(); if (text.includes("harga") || text.includes("biaya") || text.includes("murah")) { return "Harga itu investasi buat kualitas. Gue gak kasih harga sampah, tapi gue pastiin hasilnya brutal. Mau diskusi detailnya di WA?"; } else if (text.includes("web") || text.includes("coding") || text.includes("bisa buat")) { return "Gue bisa bangun sistem dari nol sampai jadi. Mau e-commerce, SaaS, atau aplikasi mobile, semua gue hajar pake teknologi paling efisien."; } else if (text.includes("capek") || text.includes("lelah") || text.includes("sedih") || text.includes("berat")) { return "Gue tau rasanya. Dunia ini emang gak ramah, tapi jangan biarin emosi itu ngebunuh ambisi lo. Lo punya tujuan, fokus ke situ. Mau gue bantu alihin pikiran lo lewat ngoding?"; } else if (text.includes("gagal") || text.includes("salah")) { return "Gagal itu cuma bug di sistem kehidupan lo. Jangan didiemin, di-debug, diperbaiki, terus deploy lagi. Jangan pernah berhenti di tengah jalan."; } else if (text.includes("siapa") || text.includes("lo itu")) { return "Gue adalah representasi dari ambisi lo. Gue asisten, gue partner, dan kadang gue cermin dari isi kepala lo sendiri."; } else if (text.includes("arti") || text.includes("kenapa")) { return "Kenapa? Karena lo nanya itu tandanya lo masih peduli. Kebanyakan orang cuma jalan kayak robot tanpa pernah nanya 'kepana'. Teruslah bertanya sampai lo nemu jawabannya."; } else if (text.includes("halo") || text.includes("hai") || text.includes("pagi") || text.includes("malam")) { return "Halo. Gue stand by di sini. Ada yang bikin lo kepikiran atau mau langsung bahas project?"; } else { const fallback = [ "Gue dengerin, coba ceritain lebih lanjut. Apa yang sebenernya lo cari?", "Menarik. Tapi menurut lo sendiri, gimana caranya hal itu bisa jadi solusi?", "Gue gak punya jawaban pasti buat itu, tapi gue rasa lo tau apa yang harus dilakuin.", "Hmm, coba liat dari perspektif lain. Jangan terlalu kaku ngeliat masalah." ]; return fallback[Math.floor(Math.random() * fallback.length)]; } }
     const chatInput = document.getElementById('chat-input'); const chatList = document.getElementById('chat-list'); chatInput.onkeypress = (e) => { if(e.key === 'Enter' && chatInput.value.trim() !== "") { const val = chatInput.value; chatList.innerHTML += `<div class="mb-2"><b>Lo:</b> ${val}</div>`; chatInput.value = ""; chatList.scrollTop = chatList.scrollHeight; setTimeout(() => { chatList.innerHTML += `<div class="mb-2" id="typing"><i>ReyBot lagi ngetik...</i></div>`; chatList.scrollTop = chatList.scrollHeight; }, 500); setTimeout(() => { document.getElementById('typing').remove(); const response = getBotResponse(val); chatList.innerHTML += `<div class="mb-2"><b>ReyBot:</b> ${response}</div>`; chatList.scrollTop = chatList.scrollHeight; }, 2000); } };
     function toggleTheme() { document.body.classList.toggle('light-mode'); }
     function closeModal() { document.getElementById('modal').style.display = 'none'; }
     window.onclick = (e) => { if(e.target == document.getElementById('modal')) closeModal(); }
     function hubungiMentor() { window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi tentang " + document.getElementById('mTitle').innerText); }
     const text = "Gue belajar dengan cara yang paling brutal bahwa tidak semua orang layak mendapatkan akses ke ruang tersembunyi di hati lo. Gue pernah menganggap dia adalah prioritas, padahal bagi dia, gue hanyalah opsi yang bisa dibuang kapan saja. Sekarang, gue menarik garis tegas: gue lebih memilih kesendirian yang tenang daripada harus kembali membiarkan seseorang yang beracun menghancurkan kedamaian gue. Pelajaran termahal yang gue beli adalah berhenti menaruh ekspektasi pada orang yang tidak punya niat untuk menetap. Mulai detik ini, kode adalah satu-satunya hal yang akan gue prioritaskan, karena di dunia ini, hanya hasil kerja keras gue yang tidak akan pernah berkhianat dan tidak akan pernah pergi meninggalkan luka.";
-    let i = 0; function typeWriter() { if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 20); } } window.onload = () => { typeWriter(); setTimeout(() => document.getElementById('loader').style.display = 'none', 1000); };
+    let i = 0; function typeWriter() { if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 20); } }
 </script>
 </body>
 </html>
