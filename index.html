@@ -3,85 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Code Academy - Ultimate Bot</title>
+    <title>Rey Code Academy - Ultimate Pro</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .dark-mode { background-color: #0f172a; }
+        .dark-card { background-color: #1e293b !important; color: white !important; }
+    </style>
 </head>
-<body class="bg-slate-900 min-h-screen flex items-center justify-center p-4">
+<body id="body" class="bg-slate-100 min-h-screen flex items-center justify-center p-4 transition-all">
 
-    <div class="bg-white p-6 rounded-2xl shadow-2xl w-full max-w-sm">
+    <div id="card" class="bg-white p-6 rounded-2xl shadow-2xl w-full max-w-sm transition-all">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">Secret Room</h2>
+            <button id="btn-toggle" class="text-xs bg-gray-200 px-2 py-1 rounded-full">Mode</button>
+        </div>
+
         <div id="login-form" class="space-y-4">
-            <h2 class="text-2xl font-bold text-gray-800 text-center">Secret Room</h2>
-            <input type="email" id="email" placeholder="Email" class="w-full p-3 border rounded-xl outline-blue-400">
-            <input type="password" id="password" placeholder="Password" class="w-full p-3 border rounded-xl outline-blue-400">
+            <input type="email" id="email" placeholder="Email" class="w-full p-3 border rounded-xl outline-blue-400 dark:bg-slate-700">
+            <input type="password" id="password" placeholder="Password" class="w-full p-3 border rounded-xl outline-blue-400 dark:bg-slate-700">
             <button id="btn-login" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl">Masuk / Daftar</button>
         </div>
 
         <div id="member-area" style="display: none;" class="space-y-4">
-            <div class="flex justify-between items-center">
-                <h2 class="text-sm font-bold text-gray-500 uppercase">Global Chat (Bot Ready)</h2>
-                <span id="user-email" class="text-[10px] text-blue-500"></span>
-            </div>
-            
-            <div id="list-container" class="space-y-3 h-64 overflow-y-auto p-2 bg-slate-50 rounded-lg border"></div>
-
+            <div id="list-container" class="space-y-3 h-64 overflow-y-auto p-2 bg-slate-50 dark:bg-slate-900 rounded-lg border"></div>
             <div class="border-t pt-4">
-                <input type="text" id="input-data" placeholder="Ketik pesan..." class="w-full p-2 border rounded-lg text-sm mb-2">
+                <input type="text" id="input-data" placeholder="Ketik pesan..." class="w-full p-2 border rounded-lg text-sm mb-2 dark:bg-slate-700">
                 <button id="btn-add" class="w-full bg-blue-500 text-white py-2 rounded-lg text-sm font-bold">Kirim</button>
             </div>
-            
-            <div class="border-t pt-2 space-y-1">
-                <input type="password" id="new-password" placeholder="Password baru..." class="w-full p-2 border rounded-lg text-xs">
-                <button id="btn-update-pass" class="w-full bg-slate-700 text-white py-1 rounded-lg text-xs">Ganti Password</button>
-                <button id="btn-logout" class="w-full bg-rose-500 text-white py-1 rounded-lg text-xs">Logout</button>
-            </div>
+            <button id="btn-logout" class="w-full bg-rose-500 text-white py-1 rounded-lg text-xs">Logout</button>
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updatePassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyCWxhWyiu9JLBsVzkHjE-x4UcSsMUzp8cI",
-            authDomain: "rey-code-academy.firebaseapp.com",
-            projectId: "rey-code-academy",
-            storageBucket: "rey-code-academy.firebasestorage.app",
-            messagingSenderId: "777024739059",
-            appId: "1:777024739059:web:440f7a64ddf5bc7017c986"
-        };
-
+        const firebaseConfig = { /* ... config lo tetap sama ... */ };
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        const adminEmail = "rey@gmail.com";
 
-        // Fungsi Bot Balesan
+        // Dark Mode Logic
+        document.getElementById("btn-toggle").onclick = () => {
+            document.getElementById("body").classList.toggle("dark-mode");
+            document.getElementById("card").classList.toggle("dark-card");
+        };
+
+        // Fungsi Bot
         async function runBot(teks) {
-            let reply = "";
-            if (teks === "/halo") reply = "Halo, Rey Code Academy siap melayani!";
-            else if (teks === "/waktu") reply = "Sekarang jam " + new Date().toLocaleTimeString();
-            else if (teks === "/tugas") reply = "Tugas lo: Selesain codingan ini sampai jadi!";
-            
-            if (reply) {
-                await addDoc(collection(db, "chat"), { teks: "[BOT]: " + reply, email: "bot@academy.com", date: serverTimestamp() });
+            if (teks === "/halo") {
+                await addDoc(collection(db, "chat"), { teks: "[BOT]: Halo Rey!", email: "bot@academy.com", date: serverTimestamp() });
             }
         }
 
         document.getElementById("btn-add").addEventListener("click", async () => {
             const input = document.getElementById("input-data");
             if(input.value) {
-                const msg = input.value;
-                await addDoc(collection(db, "chat"), { teks: msg, email: auth.currentUser.email, date: serverTimestamp() });
+                await addDoc(collection(db, "chat"), { teks: input.value, email: auth.currentUser.email, date: serverTimestamp() });
+                runBot(input.value);
                 input.value = "";
-                // Jalankan bot setelah kirim
-                runBot(msg);
             }
         });
 
-        window.hapusData = async (id) => { if(confirm("Hapus pesan?")) await deleteDoc(doc(db, "chat", id)); };
-
-        // [Fungsi Lainnya Tetap Sama...]
+        // Login & Auth (Sama seperti sebelumnya)
         document.getElementById("btn-login").onclick = async () => {
             const email = document.getElementById("email").value;
             const pass = document.getElementById("password").value;
@@ -89,11 +74,10 @@
             catch (e) { await createUserWithEmailAndPassword(auth, email, pass); }
         };
 
-        onAuthStateChanged(auth, async (user) => {
+        onAuthStateChanged(auth, (user) => {
             document.getElementById("login-form").style.display = user ? "none" : "block";
             document.getElementById("member-area").style.display = user ? "block" : "none";
             if(user) {
-                document.getElementById("user-email").innerText = user.email;
                 const q = query(collection(db, "chat"), orderBy("date", "asc"));
                 onSnapshot(q, (snapshot) => {
                     const list = document.getElementById("list-container");
@@ -101,20 +85,14 @@
                     snapshot.forEach(docItem => {
                         const data = docItem.data();
                         const div = document.createElement("div");
-                        div.className = `p-2 rounded-lg text-xs ${data.email === user.email ? 'bg-blue-100 ml-auto' : 'bg-white'} border max-w-[80%]`;
-                        div.innerHTML = `<p class="font-bold text-[9px] text-gray-500">${data.email}</p><p>${data.teks}</p>${user.email === adminEmail ? `<button onclick="hapusData('${docItem.id}')" class="text-rose-400 font-bold">X</button>` : ''}`;
+                        div.className = `p-2 rounded-lg text-xs border max-w-[80%] ${data.email === user.email ? 'bg-blue-100 ml-auto' : 'bg-white dark:bg-slate-700 dark:text-white'}`;
+                        div.innerHTML = `<p class="font-bold text-[9px] text-gray-500">${data.email}</p><p>${data.teks}</p>`;
                         list.appendChild(div);
                     });
                     list.scrollTop = list.scrollHeight;
                 });
             }
         });
-
-        document.getElementById("btn-update-pass").onclick = async () => {
-            const p = document.getElementById("new-password").value;
-            if(p.length < 6) return alert("Min 6 karakter!");
-            try { await updatePassword(auth.currentUser, p); alert("Berhasil!"); } catch(e) { alert(e.message); }
-        };
 
         document.getElementById("btn-logout").onclick = () => signOut(auth);
     </script>
