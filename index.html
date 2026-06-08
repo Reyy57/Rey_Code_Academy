@@ -24,6 +24,12 @@
         <div id="member-area" style="display: none;">
             <h2>Halo, <span id="user-email" style="color: #007bff;"></span>!</h2>
             <p id="pesan-dari-admin" style="font-weight: bold; color: #333;"></p>
+            
+            <div id="admin-tools" style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 10px;">
+                <input type="text" id="input-pesan" placeholder="Update pesan di sini...">
+                <button id="btn-update" style="background: #28a745;">Update Pesan</button>
+            </div>
+            
             <button id="btn-logout" style="background: #dc3545;">Logout</button>
         </div>
     </div>
@@ -31,7 +37,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCWxhWyiu9JLBsVzkHjE-x4UcSsMUzp8cI",
@@ -46,6 +52,9 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
+        // ID Database lo
+        const docId = "5dCeukL4hDZROHKnOUth"; 
+
         document.getElementById("btn-login").addEventListener("click", () => {
             const email = document.getElementById("email").value;
             const pass = document.getElementById("password").value;
@@ -54,15 +63,22 @@
 
         document.getElementById("btn-logout").addEventListener("click", () => signOut(auth));
 
+        document.getElementById("btn-update").addEventListener("click", async () => {
+            const teksBaru = document.getElementById("input-pesan").value;
+            if(teksBaru) {
+                const docRef = doc(db, "pesan", docId);
+                await updateDoc(docRef, { teks: teksBaru });
+                document.getElementById("pesan-dari-admin").innerText = teksBaru;
+                alert("Pesan berhasil diupdate!");
+            }
+        });
+
         onAuthStateChanged(auth, async (user) => {
             document.getElementById("login-form").style.display = user ? "none" : "block";
             document.getElementById("member-area").style.display = user ? "block" : "none";
             
             if(user) {
-                // Menampilkan email user
                 document.getElementById("user-email").innerText = user.email;
-
-                // Mengambil pesan dari database
                 const querySnapshot = await getDocs(collection(db, "pesan"));
                 querySnapshot.forEach((doc) => {
                     document.getElementById("pesan-dari-admin").innerText = doc.data().teks;
