@@ -2,17 +2,25 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Rey Code Academy - Login</title>
+    <title>Rey Code Academy</title>
 </head>
 <body>
-    <h2>Login ke Academy</h2>
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-    <button id="btn-login">Login</button>
+    <div id="login-form">
+        <h2>Login ke Academy</h2>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button id="btn-login">Login</button>
+    </div>
+
+    <div id="member-area" style="display: none;">
+        <h2>Halo Member!</h2>
+        <p>Selamat datang di area khusus.</p>
+        <button id="btn-logout">Logout</button>
+    </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCWxhWyiu9JLBsVzkHjE-x4UcSsMUzp8cI",
@@ -26,13 +34,28 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
+        // Fungsi Login
         document.getElementById("btn-login").addEventListener("click", () => {
             const email = document.getElementById("email").value;
             const pass = document.getElementById("password").value;
-
             signInWithEmailAndPassword(auth, email, pass)
-                .then(() => alert("Login Berhasil!"))
-                .catch((error) => alert("Login Gagal: " + error.message));
+                .catch((error) => alert("Error: " + error.message));
+        });
+
+        // Fungsi Logout
+        document.getElementById("btn-logout").addEventListener("click", () => {
+            signOut(auth).then(() => alert("Berhasil Logout!"));
+        });
+
+        // Cek status login (nyembunyiin/nampilin form otomatis)
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById("login-form").style.display = "none";
+                document.getElementById("member-area").style.display = "block";
+            } else {
+                document.getElementById("login-form").style.display = "block";
+                document.getElementById("member-area").style.display = "none";
+            }
         });
     </script>
 </body>
