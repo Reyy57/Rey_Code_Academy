@@ -50,7 +50,7 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
         const docId = "5dCeukL4hDZROHKnOUth"; 
-        const adminEmail = "rey@gmail.com"; // GANTI EMAIL LO DI SINI
+        const adminEmail = "rey@gmail.com"; 
 
         document.getElementById("btn-login").addEventListener("click", () => {
             const email = document.getElementById("email").value;
@@ -60,12 +60,30 @@
 
         document.getElementById("btn-logout").addEventListener("click", () => signOut(auth));
 
+        // Fungsi Update dengan Loading State
         document.getElementById("btn-update").addEventListener("click", async () => {
-            const teksBaru = document.getElementById("input-pesan").value;
+            const btn = document.getElementById("btn-update");
+            const input = document.getElementById("input-pesan");
+            const teksBaru = input.value;
+            
             if(teksBaru) {
-                const docRef = doc(db, "pesan", docId);
-                await updateDoc(docRef, { teks: teksBaru });
-                document.getElementById("input-pesan").value = ""; 
+                // Set loading
+                btn.innerText = "Updating...";
+                btn.disabled = true;
+                btn.classList.add("opacity-50");
+
+                try {
+                    const docRef = doc(db, "pesan", docId);
+                    await updateDoc(docRef, { teks: teksBaru });
+                    input.value = ""; 
+                } catch (error) {
+                    alert("Gagal update!");
+                } finally {
+                    // Reset tombol
+                    btn.innerText = "Update Pesan";
+                    btn.disabled = false;
+                    btn.classList.remove("opacity-50");
+                }
             }
         });
 
@@ -76,7 +94,7 @@
             if(user) {
                 document.getElementById("user-email").innerText = user.email;
                 
-                // Cek apakah user adalah admin
+                // Proteksi Admin
                 if(user.email === adminEmail) {
                     document.getElementById("admin-tools").classList.remove("hidden");
                 } else {
