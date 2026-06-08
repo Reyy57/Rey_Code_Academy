@@ -11,11 +11,9 @@
     <p>Sistem sedang berjalan...</p>
 
     <script type="module">
-        // Import dari CDN agar bisa langsung jalan di browser
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
-        // Konfigurasi Firebase lo
         const firebaseConfig = {
             apiKey: "AIzaSyCWxhWyiu9JLBsVzkHjE-x4UcSsMUzp8cI",
             authDomain: "rey-code-academy.firebaseapp.com",
@@ -26,11 +24,11 @@
             measurementId: "G-LVP45KLK83"
         };
 
-        // Inisialisasi
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         
-        console.log("Firebase berhasil terhubung!");
+        // Munculkan notifikasi di HP kalau sudah nyambung
+        alert("Firebase berhasil terhubung!");
     </script>
 
 </body>
