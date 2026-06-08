@@ -22,7 +22,7 @@
         </div>
 
         <div id="member-area" style="display: none;">
-            <h2>Halo Member!</h2>
+            <h2>Halo, <span id="user-email" style="color: #007bff;"></span>!</h2>
             <p id="pesan-dari-admin" style="font-weight: bold; color: #333;"></p>
             <button id="btn-logout" style="background: #dc3545;">Logout</button>
         </div>
@@ -59,6 +59,10 @@
             document.getElementById("member-area").style.display = user ? "block" : "none";
             
             if(user) {
+                // Menampilkan email user
+                document.getElementById("user-email").innerText = user.email;
+
+                // Mengambil pesan dari database
                 const querySnapshot = await getDocs(collection(db, "pesan"));
                 querySnapshot.forEach((doc) => {
                     document.getElementById("pesan-dari-admin").innerText = doc.data().teks;
