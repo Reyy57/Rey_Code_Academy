@@ -20,7 +20,7 @@
         <div id="member-area" style="display: none;" class="space-y-4">
             <h2 class="text-xl font-bold text-gray-800">Halo, <span id="user-email" class="text-blue-600"></span>!</h2>
             <div class="p-4 bg-blue-50 rounded-xl border border-blue-100">
-                <p id="pesan-dari-admin" class="text-gray-700 font-medium"></p>
+                <p id="pesan-dari-admin" class="text-gray-700 font-medium italic"></p>
             </div>
             
             <div class="border-t pt-4">
@@ -35,7 +35,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, getDocs, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, doc, updateDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCWxhWyiu9JLBsVzkHjE-x4UcSsMUzp8cI",
@@ -64,8 +64,7 @@
             if(teksBaru) {
                 const docRef = doc(db, "pesan", docId);
                 await updateDoc(docRef, { teks: teksBaru });
-                document.getElementById("pesan-dari-admin").innerText = teksBaru;
-                alert("Pesan berhasil diupdate!");
+                document.getElementById("input-pesan").value = ""; // Bersihkan input
             }
         });
 
@@ -75,9 +74,13 @@
             
             if(user) {
                 document.getElementById("user-email").innerText = user.email;
-                const querySnapshot = await getDocs(collection(db, "pesan"));
-                querySnapshot.forEach((doc) => {
-                    document.getElementById("pesan-dari-admin").innerText = doc.data().teks;
+                
+                // Realtime Listener
+                const docRef = doc(db, "pesan", docId);
+                onSnapshot(docRef, (doc) => {
+                    if (doc.exists()) {
+                        document.getElementById("pesan-dari-admin").innerText = doc.data().teks;
+                    }
                 });
             }
         });
