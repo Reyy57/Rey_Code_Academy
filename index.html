@@ -1,54 +1,112 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8"><title>REY_CODE_ACADEMY</title>
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<style>
-:root {--bg:#000; --accent:#58a6ff; --glass:rgba(255,255,255,0.06)}
-body {margin:0; font-family:'Segoe UI',sans-serif; color:#fff; background:#050505; overflow-x:hidden}
-#bg-video {position:fixed; right:0; bottom:0; min-width:100%; min-height:100%; z-index:-3; object-fit:cover; filter:brightness(0.4)}
-.container {max-width:600px; margin:auto; padding:20px}
-.neon-title {color:var(--accent); text-shadow:0 0 10px var(--accent); white-space:nowrap; animation:marquee 10s linear infinite}
-@keyframes marquee {0% {transform:translateX(100%)} 100% {transform:translateX(-100%)}}
-.card {background:var(--glass); backdrop-filter:blur(15px); border:1px solid rgba(255,255,255,0.1); padding:20px; border-radius:18px; margin:12px 0}
-.prog-fill {height:8px; background:linear-gradient(90deg,#58a6ff,#00d4ff); border-radius:10px; width:85%}
-.fab {position:fixed; bottom:20px; right:20px; background:#25D366; padding:15px; border-radius:50px; display:flex; align-items:center; gap:8px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rey Code Academy | Expert Roadmap</title>
+    <style>
+        :root { 
+            --bg: #000; --text: #fff; --accent: #58a6ff; 
+            --card-bg: rgba(255,255,255,0.03); 
+            --accent-glow: 0 0 10px #58a6ff, 0 0 20px #58a6ff;
+        }
+        .light-mode { 
+            --bg: #f0f2f5; --text: #000; --accent: #0969da; 
+            --card-bg: rgba(0,0,0,0.03); 
+            --accent-glow: none;
+        }
+        body { margin: 0; font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); transition: 0.3s; overflow-x: hidden; }
+        #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%); z-index: -1; }
+        #loader { position: fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index: 9999; display: flex; justify-content: center; align-items: center; color: var(--accent); font-weight: bold; font-size: 0.9em; }
+        .container { max-width: 600px; margin: auto; padding: 15px; padding-bottom: 70px; transition: 0.3s; }
+        @media (min-width: 768px) { .container { max-width: 900px; } .grid { grid-template-columns: 1fr 1fr; } }
+        header { display: flex; justify-content: space-between; align-items: center; margin: 25px 0; }
+        .animated-title-container { overflow: hidden; white-space: nowrap; max-width: 65%; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .animated-title { display: inline-block; animation: marquee 10s linear infinite; font-size: 1.6em; letter-spacing: 2px; color: var(--accent); text-shadow: var(--accent-glow); }
+        .story-box { background: var(--card-bg); backdrop-filter: blur(10px); padding: 18px; border-radius: 15px; margin-bottom: 18px; border: 1px solid rgba(88, 166, 255, 0.15); }
+        #typing-text { font-style: italic; line-height: 1.5; font-size: 0.82em; color: rgba(255,255,255,0.75); }
+        .grid { display: grid; gap: 10px; }
+        .card { background: rgba(13, 17, 23, 0.55); border: 1px solid #30363d; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.3s; color: #fff; display: flex; flex-direction: column; }
+        .card:hover { border-color: var(--accent); transform: scale(1.02); }
+        .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+        .card h3 { margin: 0; font-size: 0.95em; }
+        .card-icon { font-size: 1.1em; color: var(--accent); }
+        .toast { position: fixed; bottom: 15px; left: 15px; background: var(--accent); color: white; padding: 8px 12px; border-radius: 8px; font-size: 0.65em; display: none; z-index: 1002; }
+        .badge-grid { display: flex; gap: 7px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 18px; }
+        .badge { background: #30363d; padding: 3px 7px; border-radius: 4px; font-size: 0.65em; white-space: nowrap; color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+        .card-tags-badge { display: flex; gap: 4px; margin-top: 5px; }
+        .card .badge { background: #161b22; color: var(--accent); border-color: #30363d; font-size: 0.6em; }
+        .progress-bar { height: 7px; background: #30363d; border-radius: 4px; overflow: hidden; margin: 8px 0; }
+        .progress-fill { height: 100%; background: var(--accent); width: 85%; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1001; align-items: center; justify-content: center; padding: 15px; }
+        .modal-content { background: var(--bg); padding: 18px; border-radius: 15px; max-width: 360px; width: 90%; border: 1px solid var(--accent); max-height: 65vh; overflow-y: auto; color: var(--text); }
+        .close-modal-btn { position: absolute; top: 10px; right: 15px; color: var(--accent); cursor: pointer; font-size: 1.2em; }
+        .btn-wa { background: #238636; color: white; padding: 11px; width: 100%; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 13px; font-size: 0.85em; }
+    </style>
 </head>
 <body>
-<div id="particles-js" style="position:fixed;width:100%;height:100%;z-index:-2"></div>
+<div id="loader">INITIALIZING_CURRICULUM...</div>
 <video autoplay muted loop playsinline id="bg-video"><source src="VID_20250702_110744_839.mp4" type="video/mp4"></video>
+<div class="overlay"></div>
 <div class="container">
-<h1 class="neon-title">🟢 REY_CODE_ACADEMY</h1>
-<p id="greeting"></p>
-<div id="stats" style="display:flex; justify-content:space-between">
-<span>🚀 120+ Proyek</span><span>🎨 Pro UI/UX</span><span>⏳ 24/7 Support</span>
+    <header>
+        <div class="animated-title-container"><h1 class="animated-title">REY_CODE_ACADEMY</h1></div>
+        <div onclick="toggleTheme()" style="cursor:pointer; font-size: 0.75em; color:var(--accent);">🌓 Mode</div>
+    </header>
+    <div class="story-box"><p id="typing-text"></p></div>
+    <div style="display:flex; gap:10px; margin-bottom:18px; color:#fff;">
+        <div class="story-box" style="width:50%; text-align:center; padding:10px;"><h3>120+</h3><small style="color:#8b949e;">Proyek Selesai</small></div>
+        <div class="story-box" style="width:50%; text-align:center; padding:10px;"><h3>24/7</h3><small style="color:#8b949e;">Support Aktif</small></div>
+    </div>
+    <div class="badge-grid">
+        <div class="badge">Next.js</div><div class="badge">Node.js</div><div class="badge">Flutter</div><div class="badge">Python</div><div class="badge">Figma</div>
+    </div>
+    <div class="story-box" style="color:#fff;">
+        <h4 style="margin:0; font-size:0.75em;">Current Project: E-Commerce SaaS</h4>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <small style="color:#8b949e; font-size:0.65em;">Status: 85% Development</small>
+    </div>
+    <div id="menu-grid" class="grid"></div>
+    <div class="story-box" style="margin-top:18px;">
+        <h3 style="font-size:0.85em; color:var(--accent); margin:0 0 10px 0;">FAQ</h3>
+        <p style="font-size:0.7em; color:#8b949e;"><strong>Q: Bisa custom web?</strong><br>A: Bisa banget, langsung diskusi via WA ya!</p>
+    </div>
+    <footer style="text-align:center; margin-top:20px; font-size:0.65em; color:#8b949e;">
+        Chat WhatsApp: <a href="https://wa.me/628xxxxxxxxxx" style="color:var(--accent);">Klik di sini</a> | © 2026 REY_CODE_ACADEMY.
+    </footer>
 </div>
-<div class="card">
-<h4>Current Project: E-Commerce SaaS (85%)</h4>
-<div class="prog-fill"></div>
-<p style="font-size:0.7em">Phase: Final Testing & Optimization</p>
+<div id="modal" class="modal">
+    <div class="modal-content" style="position:relative;">
+        <span class="close-modal-btn" onclick="closeModal()">×</span>
+        <h2 id="mTitle" style="color:var(--accent); font-size:1.1em; margin-top:0;"></h2>
+        <div id="mDesc" style="font-size:0.75em; line-height:1.5; color:#c9d1d9;"></div>
+        <button class="btn-wa" onclick="hubungiMentor()">Start Consultation</button>
+    </div>
 </div>
-<div id="menu-grid"></div>
-<div class="card">
-<h3>FAQ & Support</h3>
-<p>Bisa custom web? Tentu, konsultasikan ide lo ke admin.</p>
-</div>
-<a href="#" class="fab">💬 Chat Admin Expert</a>
-</div>
+<div id="toast" class="toast">Klien baru saja memesan Web Development!</div>
 <script>
-const greeting = new Date().getHours() < 12 ? "Selamat Pagi" : "Selamat Siang";
-document.getElementById('greeting').innerText = `${greeting}, Selamat datang di REY_CODE_ACADEMY. Mari bangun masa depan digital lo.`;
-const mods = {
-"Web Development": "1. Frontend: Next.js 14.<br>2. Backend: Node.js.<br>3. DB: Postgres.<br>4. Cloud: Vercel.<br>5. Speed: 90+.",
-"Mobile Development": "1. Flutter (Android/iOS).<br>2. BLoC State.<br>3. Firebase.<br>4. SQLite.<br>5. Store Ready.",
-"Data Science": "1. Data Process.<br>2. ML Models.<br>3. Viz: Plotly.<br>4. Python Auto.<br>5. Big Data Analysis.",
-"Game Development": "1. Unity 3D.<br>2. Physics Simulation.<br>3. 3D Assets.<br>4. Photon Multiplayer.<br>5. WebGL Export.",
-"UI/UX Design": "1. User Research.<br>2. Wireframing.<br>3. High-Fi Design.<br>4. Prototyping.<br>5. Design System."
-};
-const grid = document.getElementById('menu-grid');
-for(let k in mods){ grid.innerHTML += `<div class="card" style="display:flex; justify-content:space-between"><h3>🚀 ${k}</h3><span>Details</span></div>`; }
-particlesJS("particles-js", {"particles":{"number":{"value":50},"color":{"value":"#ffffff"}}});
+    setTimeout(() => { document.getElementById('toast').style.display = 'block'; setTimeout(() => document.getElementById('toast').style.display = 'none', 3000); }, 3000);
+    const modules = {
+        "Web Development": { icon: "🌐", tags: ["Next.js", "Node.js"], desc: "1. Fondasi: HTML5, CSS3, JS ES6+.<br>2. Framework: React.js & Next.js.<br>3. Backend: Node.js, Express.<br>4. Database: Postgres.<br>5. Cloud: Vercel/Netlify." },
+        "Mobile Development": { icon: "📱", tags: ["Flutter", "Firebase"], desc: "1. UI/UX: Flutter, Jetpack Compose.<br>2. State: BLoC/Riverpod.<br>3. Backend: Firebase.<br>4. Performance: Memory Optimization.<br>5. Store: Deployment." },
+        "Data Science": { icon: "📊", tags: ["Python", "Pandas"], desc: "1. Pythonic: Numpy.<br>2. Viz: Seaborn.<br>3. ML: Scikit-learn.<br>4. Deep Learning: PyTorch.<br>5. MLOps: Model Serving." },
+        "Game Development": { icon: "🎮", tags: ["Unity", "C#"], desc: "1. Core: Unity 3D & C#.<br>2. Scripting: Component Logic.<br>3. Math: Vektor.<br>4. Physics: Collision.<br>5. Networking: Photon Multiplayer." },
+        "UI/UX Design": { icon: "🎨", tags: ["Figma"], desc: "1. Design Thinking.<br>2. Wireframing: Lo-fi to Hi-fi.<br>3. System Design.<br>4. Prototyping.<br>5. Accessibility." }
+    };
+    const grid = document.getElementById('menu-grid');
+    for (let key in modules) {
+        grid.innerHTML += `<div class="card" onclick="openDetail('${key}')"><div class="card-header"><span class="card-icon">${modules[key].icon}</span><h3>${key}</h3></div><div class="card-tags-badge">${modules[key].tags.map(t => `<span class="badge">${t}</span>`).join('')}</div></div>`;
+    }
+    function toggleTheme() { document.body.classList.toggle('light-mode'); }
+    function openDetail(title) { document.getElementById('mTitle').innerText = title; document.getElementById('mDesc').innerHTML = modules[title].desc; document.getElementById('modal').style.display = 'flex'; }
+    function closeModal() { document.getElementById('modal').style.display = 'none'; }
+    window.onclick = (e) => { if(e.target == document.getElementById('modal')) closeModal(); }
+    function hubungiMentor() { window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi tentang " + document.getElementById('mTitle').innerText); }
+    const text = "Di dunia digital, kode adalah masa depan. Rey Code Academy hadir untuk bantu lo jadi kreator, bukan cuma konsumen. Mari bangun sesuatu yang luar biasa.";
+    let i = 0; function typeWriter() { if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 20); } }
+    window.onload = () => { typeWriter(); setTimeout(() => document.getElementById('loader').style.display = 'none', 1000); };
 </script>
 </body>
 </html>
