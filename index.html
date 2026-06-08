@@ -72,10 +72,13 @@
             document.getElementById("card").classList.toggle("dark-card");
         };
 
-        async function runBot(teks) {
+        // BOT PINTAR DENGAN NAMA USER
+        async function runBot(teks, emailUser) {
             let reply = "";
-            if (teks === "/halo") reply = "Halo, Rey Code Academy siap melayani!";
-            if (teks === "/waktu") reply = "Sekarang jam " + new Date().toLocaleTimeString();
+            const nama = emailUser.split('@')[0]; // Ambil nama dari email
+            if (teks === "/halo") reply = `Halo ${nama}, Rey Code Academy siap melayani!`;
+            if (teks === "/waktu") reply = `Sekarang jam ${new Date().toLocaleTimeString()}, ${nama}!`;
+            
             if (reply) await addDoc(collection(db, "chat"), { teks: "[BOT]: " + reply, email: "bot@academy.com", date: serverTimestamp() });
         }
 
@@ -83,7 +86,7 @@
             const input = document.getElementById("input-data");
             if(input.value) {
                 await addDoc(collection(db, "chat"), { teks: input.value, email: auth.currentUser.email, date: serverTimestamp() });
-                runBot(input.value);
+                runBot(input.value, auth.currentUser.email);
                 input.value = "";
             }
         });
