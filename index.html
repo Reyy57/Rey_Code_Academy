@@ -3,152 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Code Academy | Expert Roadmap</title>
-    <style>
-        :root { 
-            --bg: #000; --text: #fff; --accent: #58a6ff; 
-            --card-bg: rgba(255,255,255,0.03); 
-            --accent-glow: 0 0 10px #58a6ff, 0 0 20px #58a6ff;
-        }
-        .light-mode { 
-            --bg: #f0f2f5; --text: #000; --accent: #0969da; 
-            --card-bg: rgba(0,0,0,0.03); 
-            --accent-glow: none;
-        }
-        body { margin: 0; font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); transition: 0.3s; overflow-x: hidden; }
-        
-        .online-dot { width: 10px; height: 10px; background: #25D366; border-radius: 50%; margin-right: 12px; box-shadow: 0 0 10px #25D366; animation: blink 1s infinite; }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%); z-index: -1; }
-        #loader { position: fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index: 9999; display: flex; justify-content: center; align-items: center; color: var(--accent); font-weight: bold; font-size: 0.9em; }
-
-        .container { max-width: 600px; margin: auto; padding: 15px; padding-bottom: 70px; transition: 0.3s; }
-        @media (min-width: 768px) { .container { max-width: 900px; } .grid { grid-template-columns: 1fr 1fr; } }
-        
-        /* Layout Header: Judul di kiri, GIF di kanan, Tombol Mode di bawah */
-        header { display: flex; flex-direction: column; align-items: flex-start; margin: 25px 0; }
-        .title-row { display: flex; align-items: center; width: 100%; }
-        .animated-title-container { overflow: hidden; white-space: nowrap; flex-grow: 1; }
-        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        .animated-title { animation: marquee 10s linear infinite; font-size: 1.6em; letter-spacing: 2px; color: var(--accent); text-shadow: var(--accent-glow); margin: 0; }
-
-        .story-box { background: var(--card-bg); backdrop-filter: blur(10px); padding: 18px; border-radius: 15px; margin-bottom: 18px; border: 1px solid rgba(88, 166, 255, 0.15); }
-        #typing-text { font-style: italic; line-height: 1.5; font-size: 0.82em; color: rgba(255,255,255,0.75); }
-
-        .grid { display: grid; gap: 10px; }
-        .card { background: rgba(13, 17, 23, 0.55); border: 1px solid #30363d; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.3s; color: #fff; display: flex; flex-direction: column; }
-        .card:hover { border-color: var(--accent); transform: scale(1.02); }
-        .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
-        .card h3 { margin: 0; font-size: 0.95em; }
-        .card-icon { font-size: 1.1em; color: var(--accent); }
-        
-        .toast { position: fixed; bottom: 15px; left: 15px; background: var(--accent); color: white; padding: 8px 12px; border-radius: 8px; font-size: 0.65em; display: none; z-index: 1002; }
-        .badge-grid { display: flex; gap: 7px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 18px; }
-        .badge { background: #30363d; padding: 3px 7px; border-radius: 4px; font-size: 0.65em; white-space: nowrap; color: #fff; border: 1px solid rgba(255,255,255,0.1); }
-        .card-tags-badge { display: flex; gap: 4px; margin-top: 5px; }
-        .card .badge { background: #161b22; color: var(--accent); border-color: #30363d; font-size: 0.6em; }
-        .progress-bar { height: 7px; background: #30363d; border-radius: 4px; overflow: hidden; margin: 8px 0; }
-        .progress-fill { height: 100%; background: var(--accent); width: 85%; }
-        
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1001; align-items: center; justify-content: center; padding: 15px; }
-        .modal-content { background: var(--bg); padding: 18px; border-radius: 15px; max-width: 360px; width: 90%; border: 1px solid var(--accent); max-height: 65vh; overflow-y: auto; color: var(--text); }
-        .close-modal-btn { position: absolute; top: 10px; right: 15px; color: var(--accent); cursor: pointer; font-size: 1.2em; }
-        .btn-wa { background: #238636; color: white; padding: 11px; width: 100%; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 13px; font-size: 0.85em; }
-    </style>
+    <title>Rey Code Academy</title>
 </head>
 <body>
 
-<div id="loader">INITIALIZING_CURRICULUM...</div>
-<video autoplay muted loop playsinline id="bg-video"><source src="VID_20250702_110744_839.mp4" type="video/mp4"></video>
-<div class="overlay"></div>
+    <h1>Selamat Datang di Rey Code Academy</h1>
+    <p>Sistem sedang berjalan...</p>
 
-<div class="container">
-    <header>
-        <div class="title-row">
-            <div class="animated-title-container">
-                <h1 class="animated-title"><span class="online-dot"></span> REY_CODE_ACADEMY</h1>
-            </div>
-            <img src="ezgif.com-video-to-gif-converter.gif" alt="kucing" style="width: 45px; height: 45px; margin-left: 10px; border-radius: 50%; flex-shrink: 0;">
-        </div>
-        <div onclick="toggleTheme()" style="cursor:pointer; font-size: 0.7em; color:var(--accent); margin-top: 5px;">🌓 Ganti Mode</div>
-    </header>
+    <script type="module">
+        // Import dari CDN agar bisa langsung jalan di browser
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
-    <div class="story-box"><p id="typing-text"></p></div>
-    
-    <div style="display:flex; gap:10px; margin-bottom:18px; color:#fff;">
-        <div class="story-box" style="width:50%; text-align:center; padding:10px;"><h3>120+</h3><small style="color:#8b949e;">Proyek Selesai</small></div>
-        <div class="story-box" style="width:50%; text-align:center; padding:10px;"><h3>24/7</h3><small style="color:#8b949e;">Support Aktif</small></div>
-    </div>
+        // Konfigurasi Firebase lo
+        const firebaseConfig = {
+            apiKey: "AIzaSyCWxhWyiu9JLBsVzkHjE-x4UcSsMUzp8cI",
+            authDomain: "rey-code-academy.firebaseapp.com",
+            projectId: "rey-code-academy",
+            storageBucket: "rey-code-academy.firebasestorage.app",
+            messagingSenderId: "777024739059",
+            appId: "1:777024739059:web:440f7a64ddf5bc7017c986",
+            measurementId: "G-LVP45KLK83"
+        };
 
-    <div class="badge-grid">
-        <div class="badge">Next.js</div><div class="badge">Node.js</div><div class="badge">Flutter</div><div class="badge">Python</div><div class="badge">Figma</div>
-    </div>
+        // Inisialisasi
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        
+        console.log("Firebase berhasil terhubung!");
+    </script>
 
-    <div class="story-box" style="color:#fff;">
-        <h4 style="margin:0; font-size:0.75em;">Current Project: E-Commerce SaaS</h4>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-        <small style="color:#8b949e; font-size:0.65em;">Status: 85% Development</small>
-    </div>
-
-    <div id="menu-grid" class="grid"></div>
-
-    <div class="story-box" style="margin-top:18px;">
-        <h3 style="font-size:0.85em; color:var(--accent); margin:0 0 10px 0;">FAQ</h3>
-        <p style="font-size:0.7em; color:#8b949e;"><strong>Q: Bisa custom web?</strong><br>A: Bisa banget, langsung diskusi via WA ya!</p>
-    </div>
-
-    <footer style="text-align:center; margin-top:20px; font-size:0.65em; color:#8b949e;">
-        Chat WhatsApp: <a href="https://wa.me/628xxxxxxxxxx" style="color:var(--accent);">Klik di sini</a> | © 2026 REY_CODE_ACADEMY.
-    </footer>
-</div>
-
-<div id="modal" class="modal">
-    <div class="modal-content" style="position:relative;">
-        <span class="close-modal-btn" onclick="closeModal()">×</span>
-        <h2 id="mTitle" style="color:var(--accent); font-size:1.1em; margin-top:0;"></h2>
-        <div id="mDesc" style="font-size:0.75em; line-height:1.5; color:#c9d1d9;"></div>
-        <button class="btn-wa" onclick="hubungiMentor()">Start Consultation</button>
-    </div>
-</div>
-
-<div id="toast" class="toast">Klien baru saja memesan Web Development!</div>
-
-<script>
-    setTimeout(() => { document.getElementById('toast').style.display = 'block'; setTimeout(() => document.getElementById('toast').style.display = 'none', 3000); }, 3000);
-
-    const modules = {
-        "Web Development": { icon: "🌐", tags: ["Next.js", "Node.js"] },
-        "Mobile Development": { icon: "📱", tags: ["Flutter", "Firebase"] },
-        "Data Science": { icon: "📊", tags: ["Python", "Pandas"] },
-        "Game Development": { icon: "🎮", tags: ["Unity", "C#"] },
-        "UI/UX Design": { icon: "🎨", tags: ["Figma"] }
-    };
-    
-    const longDesc = {
-        "Web Development": "1. Advanced Fullstack Architecture: Membangun ekosistem web modern dengan Next.js 14, TypeScript, dan Tailwind CSS. Fokus pada performa maksimal dan SEO.<br>2. Scalable Backend: Pengembangan API tangguh dengan Node.js/Express, autentikasi enterprise (JWT/OAuth), dan manajemen user.<br>3. Database & Caching: PostgreSQL, Prisma, dan Redis untuk latensi rendah.<br>4. DevOps: Deployment Vercel, CI/CD, dan Dockerization.<br>5. Security: Proteksi XSS, CSRF, dan audit performa Lighthouse.",
-        "Mobile Development": "1. Advanced Cross-Platform: Flutter/Dart native-feel (Android/iOS). Fokus pada Clean Architecture.<br>2. State Management: BLoC, Riverpod, GetX untuk data sinkronisasi kompleks.<br>3. Cloud: Integrasi penuh Firebase (Auth, Firestore, FCM, Remote Config).<br>4. Performance: SQLite/Hive local storage, Multi-threading (Isolates).<br>5. Production: Crashlytics, CI/CD, distribusi ke Play Store/App Store.",
-        "Data Science": "1. Data Pipeline: Automasi ETL menggunakan Python, Pandas, PySpark.<br>2. Advanced Viz: Dashboard interaktif dengan Plotly/Dash.<br>3. ML Engineering: Feature engineering, Scikit-learn/XGBoost, validasi model.<br>4. AI/DL: Arsitektur neural networks (PyTorch/TensorFlow).<br>5. MLOps: Versioning dengan MLflow, containerizing model, FastAPI.",
-        "Game Development": "1. Game Architecture: Unity 3D/2D, ECS, OOP/DOTS.<br>2. Mechanics: Fisika kompleks, NavMesh AI, Shader Graph, Rendering Pipeline.<br>3. Optimization: Asset management (Occlusion, LOD, Texture Atlasing).<br>4. Multiplayer: Photon Fusion/Mirror (real-time).<br>5. Multi-Platform: PC/Console/Mobile/WebGL, In-App Purchase.",
-        "UI/UX Design": "1. Research: User persona, empathy mapping, usability testing mendalam.<br>2. Architecture: IA, user flow, wireframing intuitif.<br>3. Design Systems: Atomic components, tokens, responsive constraints.<br>4. High-Fi Prototype: Logic, variables, smart animation di Figma.<br>5. Handoff: Spesifikasi teknis, dev-handoff presisi pixel-perfect."
-    };
-
-    const grid = document.getElementById('menu-grid');
-    for (let key in modules) {
-        grid.innerHTML += `<div class="card" onclick="openDetail('${key}')"><div class="card-header"><span class="card-icon">${modules[key].icon}</span><h3>${key}</h3></div><div class="card-tags-badge">${modules[key].tags.map(t => `<span class="badge">${t}</span>`).join('')}</div></div>`;
-    }
-
-    function toggleTheme() { document.body.classList.toggle('light-mode'); }
-    function openDetail(title) { document.getElementById('mTitle').innerText = title; document.getElementById('mDesc').innerHTML = longDesc[title]; document.getElementById('modal').style.display = 'flex'; }
-    function closeModal() { document.getElementById('modal').style.display = 'none'; }
-    window.onclick = (e) => { if(e.target == document.getElementById('modal')) closeModal(); }
-    function hubungiMentor() { window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi tentang " + document.getElementById('mTitle').innerText); }
-
-    const text = "Gue belajar dengan cara yang paling brutal bahwa tidak semua orang layak mendapatkan akses ke ruang tersembunyi di hati lo. Gue pernah menganggap dia adalah prioritas, padahal bagi dia, gue hanyalah opsi yang bisa dibuang kapan saja. Sekarang, gue menarik garis tegas: gue lebih memilih kesendirian yang tenang daripada harus kembali membiarkan seseorang yang beracun menghancurkan kedamaian gue. Pelajaran termahal yang gue beli adalah berhenti menaruh ekspektasi pada orang yang tidak punya niat untuk menetap. Mulai detik ini, kode adalah satu-satunya hal yang akan gue prioritaskan, karena di dunia ini, hanya hasil kerja keras gue yang tidak akan pernah berkhianat dan tidak akan pernah pergi meninggalkan luka.";
-    let i = 0; function typeWriter() { if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 20); } }
-    
-    window.onload = () => { typeWriter(); setTimeout(() => document.getElementById('loader').style.display = 'none', 1000); };
-</script>
 </body>
 </html>
