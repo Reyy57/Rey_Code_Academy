@@ -9,7 +9,6 @@
         .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 300px; text-align: center; }
         input { width: 90%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 5px; }
         button { width: 95%; padding: 10px; margin-top: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        button:hover { background: #0056b3; }
     </style>
 </head>
 <body>
@@ -24,7 +23,7 @@
 
         <div id="member-area" style="display: none;">
             <h2>Halo Member!</h2>
-            <p>Selamat datang di dashboard lo.</p>
+            <p id="pesan-dari-admin" style="font-weight: bold; color: #333;"></p>
             <button id="btn-logout" style="background: #dc3545;">Logout</button>
         </div>
     </div>
@@ -32,6 +31,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCWxhWyiu9JLBsVzkHjE-x4UcSsMUzp8cI",
@@ -44,6 +44,7 @@
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const db = getFirestore(app);
 
         document.getElementById("btn-login").addEventListener("click", () => {
             const email = document.getElementById("email").value;
@@ -53,9 +54,16 @@
 
         document.getElementById("btn-logout").addEventListener("click", () => signOut(auth));
 
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
             document.getElementById("login-form").style.display = user ? "none" : "block";
             document.getElementById("member-area").style.display = user ? "block" : "none";
+            
+            if(user) {
+                const querySnapshot = await getDocs(collection(db, "pesan"));
+                querySnapshot.forEach((doc) => {
+                    document.getElementById("pesan-dari-admin").innerText = doc.data().teks;
+                });
+            }
         });
     </script>
 </body>
