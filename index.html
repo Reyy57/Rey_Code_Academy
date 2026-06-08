@@ -4,33 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rey Code Academy</title>
-    <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; background-color: #f4f4f9; }
-        .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 300px; text-align: center; }
-        input { width: 90%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 5px; }
-        button { width: 95%; padding: 10px; margin-top: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
 
-    <div class="container">
-        <div id="login-form">
-            <h2>Login Academy</h2>
-            <input type="email" id="email" placeholder="Email">
-            <input type="password" id="password" placeholder="Password">
-            <button id="btn-login">Login</button>
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-sm">
+        
+        <div id="login-form" class="space-y-4">
+            <h2 class="text-2xl font-bold text-gray-800 text-center">Login Academy</h2>
+            <input type="email" id="email" placeholder="Email" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-400 outline-none">
+            <input type="password" id="password" placeholder="Password" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-400 outline-none">
+            <button id="btn-login" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition">Login</button>
         </div>
 
-        <div id="member-area" style="display: none;">
-            <h2>Halo, <span id="user-email" style="color: #007bff;"></span>!</h2>
-            <p id="pesan-dari-admin" style="font-weight: bold; color: #333;"></p>
-            
-            <div id="admin-tools" style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 10px;">
-                <input type="text" id="input-pesan" placeholder="Update pesan di sini...">
-                <button id="btn-update" style="background: #28a745;">Update Pesan</button>
+        <div id="member-area" style="display: none;" class="space-y-4">
+            <h2 class="text-xl font-bold text-gray-800">Halo, <span id="user-email" class="text-blue-600"></span>!</h2>
+            <div class="p-4 bg-blue-50 rounded-xl border border-blue-100">
+                <p id="pesan-dari-admin" class="text-gray-700 font-medium"></p>
             </div>
             
-            <button id="btn-logout" style="background: #dc3545;">Logout</button>
+            <div class="border-t pt-4">
+                <input type="text" id="input-pesan" placeholder="Update pengumuman..." class="w-full p-2 border rounded-lg text-sm mb-2 outline-blue-400">
+                <button id="btn-update" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2 rounded-lg transition text-sm">Update Pesan</button>
+            </div>
+            
+            <button id="btn-logout" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold py-2 rounded-lg transition text-sm">Logout</button>
         </div>
     </div>
 
@@ -51,8 +49,6 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-
-        // ID Database lo
         const docId = "5dCeukL4hDZROHKnOUth"; 
 
         document.getElementById("btn-login").addEventListener("click", () => {
