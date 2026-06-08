@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rey Code Academy</title>
-    <link rel="manifest" href="manifest.json">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
@@ -20,7 +19,7 @@
         <div id="member-area" style="display: none;" class="space-y-4">
             <h2 class="text-lg font-bold">Halo, <span id="user-email" class="text-blue-600"></span></h2>
             
-            <div id="list-container" class="space-y-2 max-h-60 overflow-y-auto p-2 bg-gray-50 rounded-lg">
+            <div id="list-container" class="space-y-2 max-h-60 overflow-y-auto p-2 bg-gray-50 rounded-lg border">
                 </div>
 
             <div id="admin-tools" class="hidden border-t pt-4">
@@ -35,14 +34,29 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        const firebaseConfig = { /* ... isikan config lo ... */ };
+        const firebaseConfig = {
+            apiKey: "AIzaSyCWxhWyiu9JLBsVzkHjE-x4UcSsMUzp8cI",
+            authDomain: "rey-code-academy.firebaseapp.com",
+            projectId: "rey-code-academy",
+            storageBucket: "rey-code-academy.firebasestorage.app",
+            messagingSenderId: "777024739059",
+            appId: "1:777024739059:web:440f7a64ddf5bc7017c986"
+        };
+
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
+        const adminEmail = "rey@gmail.com"; // Ganti email lo di sini
 
-        // Fungsi Tambah Data
+        // Fungsi Global Hapus
+        window.hapusData = async (id) => {
+            if(confirm("Hapus catatan ini?")) {
+                await deleteDoc(doc(db, "catatan", id));
+            }
+        };
+
         document.getElementById("btn-add").addEventListener("click", async () => {
             const val = document.getElementById("input-data").value;
             if(val) {
@@ -57,18 +71,25 @@
             
             if(user) {
                 document.getElementById("user-email").innerText = user.email;
-                if(user.email === "rey@gmail.com") document.getElementById("admin-tools").classList.remove("hidden");
+                if(user.email === adminEmail) document.getElementById("admin-tools").classList.remove("hidden");
 
                 const q = query(collection(db, "catatan"), orderBy("date", "desc"));
                 onSnapshot(q, (snapshot) => {
                     const list = document.getElementById("list-container");
                     list.innerHTML = "";
-                    snapshot.forEach(doc => {
-                        list.innerHTML += `<div class="p-2 bg-white rounded shadow-sm text-sm border">${doc.data().teks}</div>`;
+                    snapshot.forEach(docItem => {
+                        const div = document.createElement("div");
+                        div.className = "p-2 bg-white rounded shadow-sm border flex justify-between items-center";
+                        div.innerHTML = `
+                            <span class="text-sm">${docItem.data().teks}</span>
+                            ${user.email === adminEmail ? `<button onclick="hapusData('${docItem.id}')" class="text-rose-500 font-bold ml-2">X</button>` : ''}
+                        `;
+                        list.appendChild(div);
                     });
                 });
             }
         });
+
         document.getElementById("btn-login").onclick = () => signInWithEmailAndPassword(auth, document.getElementById("email").value, document.getElementById("password").value);
         document.getElementById("btn-logout").onclick = () => signOut(auth);
     </script>
