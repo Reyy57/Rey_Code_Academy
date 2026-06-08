@@ -146,39 +146,39 @@
         grid.innerHTML += `<div class="card" onclick="openDetail('${key}')"><div class="card-header"><span class="card-icon">${modules[key].icon}</span><h3>${key}</h3></div><div class="card-tags-badge">${modules[key].tags.map(t => `<span class="badge">${t}</span>`).join('')}</div></div>`;
     }
 
-    // BOT LOGIC - Otak ReyBot yang diperbarui
+    // BOT LOGIC - Otak ReyBot yang sudah dioptimasi
     function getBotResponse(userText) {
         const text = userText.toLowerCase();
 
-        if (text.includes("harga") || text.includes("biaya") || text.includes("murah")) {
-            return "Harga itu investasi buat kualitas. Gue gak kasih harga sampah, tapi gue pastiin hasilnya brutal. Mau diskusi detailnya di WA?";
-        } 
-        else if (text.includes("web") || text.includes("coding") || text.includes("bisa buat")) {
-            return "Gue bisa bangun sistem dari nol sampai jadi. Mau e-commerce, SaaS, atau aplikasi mobile, semua gue hajar pake teknologi paling efisien.";
+        if (text.match(/menurut lo|opini|gimana|pendapat/)) {
+            return "Opini gue? Kebanyakan orang cuma sibuk nyari validasi, bukan solusi. Kalau lo nanya ke gue, mending lo fokus bikin karya yang nggak bisa dibantah sama siapa pun. Lo setuju?";
         }
-        else if (text.includes("capek") || text.includes("lelah") || text.includes("sedih") || text.includes("berat")) {
-            return "Gue tau rasanya. Dunia ini emang gak ramah, tapi jangan biarin emosi itu ngebunuh ambisi lo. Lo punya tujuan, fokus ke situ. Mau gue bantu alihin pikiran lo lewat ngoding?";
-        } 
-        else if (text.includes("gagal") || text.includes("salah")) {
-            return "Gagal itu cuma bug di sistem kehidupan lo. Jangan didiemin, di-debug, diperbaiki, terus deploy lagi. Jangan pernah berhenti di tengah jalan.";
+        else if (text.match(/bosen|malas|ngantuk|pengen berhenti/)) {
+            return "Bosen? Ngantuk? Itu cuma sinyal kalau lo lagi ada di zona nyaman. Orang sukses gak nunggu mood dateng, mereka yang ciptain mood itu sendiri. Mau lanjut atau mau kalah sama rasa males lo?";
         }
-        else if (text.includes("siapa") || text.includes("lo itu")) {
-            return "Gue adalah representasi dari ambisi lo. Gue asisten, gue partner, dan kadang gue cermin dari isi kepala lo sendiri.";
-        } 
-        else if (text.includes("arti") || text.includes("kenapa")) {
-            return "Kenapa? Karena lo nanya itu tandanya lo masih peduli. Kebanyakan orang cuma jalan kayak robot tanpa pernah nanya 'kenapa'. Teruslah bertanya sampai lo nemu jawabannya.";
+        else if (text.match(/harga|biaya|murah|mahal|jasa|bikin|project/)) {
+            return "Harga itu investasi buat kualitas. Gue gak kasih harga sampah, karena hasil kerja gue punya value jangka panjang. Cek WA gue, kita diskusi serius soal budget lo.";
         }
-        else if (text.includes("halo") || text.includes("hai") || text.includes("pagi") || text.includes("malam")) {
-            return "Halo. Gue stand by di sini. Ada yang bikin lo kepikiran atau mau langsung bahas project?";
+        else if (text.match(/capek|lelah|sedih|benci|stress|nyerah|patah hati/)) {
+            return "Gue ngerti rasanya. Dunia ini emang gak ramah, tapi jangan biarin emosi itu ngebunuh ambisi lo. Lo punya tujuan, fokus ke situ. Mau gue bantu alihin pikiran lo lewat ngoding?";
+        }
+        else if (text.match(/coding|program|bug|error|teknologi|stack|bahasa/)) {
+            return "Error itu cuma cara sistem bilang kalau lo lagi belajar. Kalau kodenya jalan lancar terus, itu baru bahaya—berarti lo gak lagi berkembang. Lo lagi stuck di bagian mana?";
+        }
+        else if (text.match(/siapa|nama|lo|kamu|arti|hidup/)) {
+            return "Gue ReyBot. Gue adalah cermin dari apa yang lo cari. Kalau lo cari jawaban, gue bakal kasih. Kalau lo cari temen debat, gue siap. Lo lagi cari apa?";
+        }
+        else if (text.match(/halo|hai|pagi|malam|oy|test/)) {
+            return "Halo. Gue stand by di sini. Ada yang bikin lo kepikiran atau mau langsung bahas project yang lagi lo garap?";
         }
         else {
-            const fallback = [
-                "Gue dengerin, coba ceritain lebih lanjut. Apa yang sebenernya lo cari?",
-                "Menarik. Tapi menurut lo sendiri, gimana caranya hal itu bisa jadi solusi?",
-                "Gue gak punya jawaban pasti buat itu, tapi gue rasa lo tau apa yang harus dilakuin.",
-                "Hmm, coba liat dari perspektif lain. Jangan terlalu kaku ngeliat masalah."
+            const randoms = [
+                "Menarik. Pertanyaan itu jarang gue denger. Menurut lo, kenapa itu jadi penting buat lo?",
+                "Coba ceritain lebih detail, gue lagi dengerin. Apa yang sebenernya lo cari?",
+                "Gue gak punya jawaban instan buat itu. Tapi kalau lo di posisi gue, lo bakal jawab apa?",
+                "Hmm, coba liat dari perspektif lain. Jangan terlalu kaku ngeliat masalah. Apa ada hal lain yang lo pikirin?"
             ];
-            return fallback[Math.floor(Math.random() * fallback.length)];
+            return randoms[Math.floor(Math.random() * randoms.length)];
         }
     }
 
