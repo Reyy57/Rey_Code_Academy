@@ -3,41 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Code Academy - Secret Chat</title>
+    <title>Rey Code Academy - Ultimate</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-900 min-h-screen flex items-center justify-center p-4">
 
     <div class="bg-white p-6 rounded-2xl shadow-2xl w-full max-w-sm">
         <div id="login-form" class="space-y-4">
-            <h2 class="text-2xl font-bold text-gray-800 text-center">Secret Room Login</h2>
-            <input type="email" id="email" placeholder="Email" class="w-full p-3 border rounded-xl outline-blue-400">
+            <h2 class="text-2xl font-bold text-gray-800 text-center">Secret Room</h2>
+            <input type="email" id="email" placeholder="Email (Daftar/Login)" class="w-full p-3 border rounded-xl outline-blue-400">
             <input type="password" id="password" placeholder="Password" class="w-full p-3 border rounded-xl outline-blue-400">
-            <button id="btn-login" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl">Login</button>
+            <button id="btn-login" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl transition hover:bg-blue-700">Masuk / Daftar</button>
         </div>
 
         <div id="member-area" style="display: none;" class="space-y-4">
-            <h2 class="text-sm font-bold text-gray-500">Room: Global Chat</h2>
+            <div class="flex justify-between items-center">
+                <h2 class="text-sm font-bold text-gray-500 uppercase">Global Chat</h2>
+                <span id="user-email" class="text-[10px] text-blue-500 font-mono"></span>
+            </div>
             
             <div id="list-container" class="space-y-3 h-64 overflow-y-auto p-2 bg-slate-50 rounded-lg border border-slate-200">
                 </div>
 
             <div class="border-t pt-4">
                 <input type="text" id="input-data" placeholder="Ketik pesan..." class="w-full p-2 border rounded-lg text-sm mb-2">
-                <button id="btn-add" class="w-full bg-blue-500 text-white py-2 rounded-lg text-sm font-bold">Kirim Pesan</button>
+                <button id="btn-add" class="w-full bg-blue-500 text-white py-2 rounded-lg text-sm font-bold transition hover:bg-blue-600">Kirim Pesan</button>
             </div>
             
-            <div class="border-t pt-2">
-                <input type="password" id="new-password" placeholder="Password baru..." class="w-full p-2 border rounded-lg text-xs mb-1">
-                <button id="btn-update-pass" class="w-full bg-slate-700 text-white py-1 rounded-lg text-xs">Ganti Password</button>
-                <button id="btn-logout" class="w-full bg-rose-500 text-white py-1 mt-2 rounded-lg text-xs">Logout</button>
+            <div class="border-t pt-2 space-y-1">
+                <input type="password" id="new-password" placeholder="Password baru..." class="w-full p-2 border rounded-lg text-xs">
+                <button id="btn-update-pass" class="w-full bg-slate-700 text-white py-1 rounded-lg text-xs hover:bg-slate-800">Ganti Password</button>
+                <button id="btn-logout" class="w-full bg-rose-500 text-white py-1 rounded-lg text-xs hover:bg-rose-600">Logout</button>
             </div>
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, updatePassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updatePassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -54,16 +57,25 @@
         const db = getFirestore(app);
         const adminEmail = "rey@gmail.com";
 
-        window.hapusData = async (id) => { if(confirm("Hapus pesan ini?")) await deleteDoc(doc(db, "chat", id)); };
+        window.hapusData = async (id) => { if(confirm("Hapus pesan?")) await deleteDoc(doc(db, "chat", id)); };
+
+        // Login / Daftar otomatis
+        document.getElementById("btn-login").onclick = async () => {
+            const email = document.getElementById("email").value;
+            const pass = document.getElementById("password").value;
+            try {
+                await signInWithEmailAndPassword(auth, email, pass);
+            } catch (e) {
+                if (e.code === 'auth/user-not-found' || e.code === 'auth/invalid-credential') {
+                    await createUserWithEmailAndPassword(auth, email, pass).then(() => alert("Akun baru dibuat!"));
+                } else { alert(e.message); }
+            }
+        };
 
         document.getElementById("btn-add").addEventListener("click", async () => {
             const input = document.getElementById("input-data");
             if(input.value) {
-                await addDoc(collection(db, "chat"), { 
-                    teks: input.value, 
-                    email: auth.currentUser.email,
-                    date: serverTimestamp() 
-                });
+                await addDoc(collection(db, "chat"), { teks: input.value, email: auth.currentUser.email, date: serverTimestamp() });
                 input.value = "";
             }
         });
@@ -71,22 +83,17 @@
         onAuthStateChanged(auth, async (user) => {
             document.getElementById("login-form").style.display = user ? "none" : "block";
             document.getElementById("member-area").style.display = user ? "block" : "none";
-            
             if(user) {
+                document.getElementById("user-email").innerText = user.email;
                 const q = query(collection(db, "chat"), orderBy("date", "asc"));
                 onSnapshot(q, (snapshot) => {
                     const list = document.getElementById("list-container");
                     list.innerHTML = "";
                     snapshot.forEach(docItem => {
                         const data = docItem.data();
-                        const isMe = data.email === user.email;
                         const div = document.createElement("div");
-                        div.className = `p-2 rounded-lg text-xs ${isMe ? 'bg-blue-100 ml-auto text-right' : 'bg-white mr-auto'} max-w-[80%]`;
-                        div.innerHTML = `
-                            <p class="font-bold text-[10px] text-gray-500">${data.email}</p>
-                            <p>${data.teks}</p>
-                            ${user.email === adminEmail ? `<button onclick="hapusData('${docItem.id}')" class="text-rose-400 font-bold">X</button>` : ''}
-                        `;
+                        div.className = `p-2 rounded-lg text-xs ${data.email === user.email ? 'bg-blue-100 ml-auto text-right' : 'bg-white mr-auto'} max-w-[80%] border`;
+                        div.innerHTML = `<p class="font-bold text-[9px] text-gray-500">${data.email}</p><p>${data.teks}</p>${user.email === adminEmail ? `<button onclick="hapusData('${docItem.id}')" class="text-rose-400 font-bold">X</button>` : ''}`;
                         list.appendChild(div);
                     });
                     list.scrollTop = list.scrollHeight;
@@ -95,12 +102,11 @@
         });
 
         document.getElementById("btn-update-pass").onclick = async () => {
-            const newPass = document.getElementById("new-password").value;
-            if (newPass.length < 6) return alert("Min 6 karakter!");
-            try { await updatePassword(auth.currentUser, newPass); alert("Sukses!"); } catch(e) { alert(e.message); }
+            const p = document.getElementById("new-password").value;
+            if(p.length < 6) return alert("Min 6 karakter!");
+            try { await updatePassword(auth.currentUser, p); alert("Password diganti!"); } catch(e) { alert(e.message); }
         };
 
-        document.getElementById("btn-login").onclick = () => signInWithEmailAndPassword(auth, document.getElementById("email").value, document.getElementById("password").value);
         document.getElementById("btn-logout").onclick = () => signOut(auth);
     </script>
 </body>
