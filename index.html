@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rey Code Academy | Expert Roadmap</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root { 
             --bg: #000; --text: #fff; --accent: #58a6ff; 
@@ -37,6 +36,7 @@
         .story-box { background: var(--card-bg); backdrop-filter: blur(10px); padding: 18px; border-radius: 15px; margin-bottom: 18px; border: 1px solid rgba(88, 166, 255, 0.15); }
         #typing-text { font-style: italic; line-height: 1.5; font-size: 0.82em; color: rgba(255,255,255,0.75); }
 
+        .grid { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
         .card { background: rgba(13, 17, 23, 0.55); border: 1px solid #30363d; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.3s; color: #fff; display: flex; flex-direction: column; }
         .card:hover { border-color: var(--accent); transform: scale(1.02); }
         .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
@@ -74,10 +74,6 @@
         <div onclick="toggleTheme()" style="cursor:pointer; font-size: 0.7em; color:var(--accent); margin-top: 5px;">🌓 Ganti Mode</div>
     </header>
 
-    <a href="app.html" class="block text-center border border-blue-500/30 bg-blue-500/10 p-3 rounded-xl text-blue-400 font-bold text-xs mb-6 hover:bg-blue-500/20 transition">
-        🚀 MASUK PORTAL CHAT
-    </a>
-
     <div class="story-box"><p id="typing-text"></p></div>
     
     <div style="display:flex; gap:10px; margin-bottom:18px; color:#fff;">
@@ -95,7 +91,15 @@
         <small style="color:#8b949e; font-size:0.65em;">Status: 85% Development</small>
     </div>
 
-    <div id="menu-grid" class="grid grid-cols-2 gap-3"></div>
+    <div id="menu-grid" class="grid"></div>
+
+    <div class="story-box" id="chat-container">
+        <h3 style="font-size:0.85em; color:var(--accent); margin-bottom:10px;">🤖 REY_BOT LIVE CHAT</h3>
+        <div id="chat-list" style="height: 150px; overflow-y: auto; background: #000; padding: 10px; border-radius: 8px; font-size: 0.75em; margin-bottom: 10px; border: 1px solid #30363d;">
+            <div style="color: #8b949e;">ReyBot: Halo. Gue lagi online. Mau ngobrol soal coding atau mau dengerin keluh kesah gue hari ini?</div>
+        </div>
+        <input type="text" id="chat-input" placeholder="Tulis sesuatu..." style="width: 100%; background: #161b22; border: 1px solid #30363d; padding: 8px; border-radius: 5px; color: white; font-size: 0.8em; box-sizing: border-box;">
+    </div>
 
     <div class="story-box" style="margin-top:18px;">
         <h3 style="font-size:0.85em; color:var(--accent); margin:0 0 10px 0;">FAQ</h3>
@@ -141,6 +145,43 @@
     for (let key in modules) {
         grid.innerHTML += `<div class="card" onclick="openDetail('${key}')"><div class="card-header"><span class="card-icon">${modules[key].icon}</span><h3>${key}</h3></div><div class="card-tags-badge">${modules[key].tags.map(t => `<span class="badge">${t}</span>`).join('')}</div></div>`;
     }
+
+    // BOT LOGIC
+    const botKarakter = {
+        jualan: ["Web lo butuh upgrade biar gak cupu? Serahin ke gue, hasil kerja keras gue gak bakal berkhianat.", "Lo mau bikin SaaS tapi bingung mulainya? Mending diskusi sama gue sekarang, mumpung slot gue lagi available.", "Harga bisa dibicarakan, tapi kualitas? Gue kasih yang brutal. Gas lah WA gue!"],
+        curhat: ["Jujur, kadang capek juga ya jadi developer. Tapi pas liat barisan kode beres, semuanya kerasa worth it.", "Kadang gue mikir, apa gunanya kita ngejar perfection kalau orang cuma liat hasil akhirnya doang? Tapi ya sudahlah.", "Dunia coding itu kejam, sama kayak hidup. Lo salah satu titik koma, semuanya hancur. Tapi itulah seninya, kan?"]
+    };
+
+    function getBotResponse(userText) {
+        const text = userText.toLowerCase();
+        if (text.includes("harga") || text.includes("web") || text.includes("bikin") || text.includes("jasa")) {
+            return botKarakter.jualan[Math.floor(Math.random() * botKarakter.jualan.length)];
+        } else {
+            return botKarakter.curhat[Math.floor(Math.random() * botKarakter.curhat.length)];
+        }
+    }
+
+    const chatInput = document.getElementById('chat-input');
+    const chatList = document.getElementById('chat-list');
+
+    chatInput.onkeypress = (e) => {
+        if(e.key === 'Enter' && chatInput.value.trim() !== "") {
+            const val = chatInput.value;
+            chatList.innerHTML += `<div class="mb-2"><b>Lo:</b> ${val}</div>`;
+            chatInput.value = "";
+            chatList.scrollTop = chatList.scrollHeight;
+            setTimeout(() => {
+                chatList.innerHTML += `<div class="mb-2" id="typing"><i>ReyBot lagi ngetik...</i></div>`;
+                chatList.scrollTop = chatList.scrollHeight;
+            }, 500);
+            setTimeout(() => {
+                document.getElementById('typing').remove();
+                const response = getBotResponse(val);
+                chatList.innerHTML += `<div class="mb-2"><b>ReyBot:</b> ${response}</div>`;
+                chatList.scrollTop = chatList.scrollHeight;
+            }, 2000);
+        }
+    };
 
     function toggleTheme() { document.body.classList.toggle('light-mode'); }
     function openDetail(title) { document.getElementById('mTitle').innerText = title; document.getElementById('mDesc').innerHTML = longDesc[title]; document.getElementById('modal').style.display = 'flex'; }
