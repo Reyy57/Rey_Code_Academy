@@ -86,6 +86,8 @@
     <h2 class="section-title">PRICE LIST & JASA</h2>
     <div class="service-grid-custom" id="price-grid"></div>
 
+    <div id="console-log" style="font-family: 'Courier New', monospace; font-size: 0.6em; color: #58a6ff; background: #000; padding: 10px; border: 1px solid #30363d; border-radius: 8px; margin-bottom: 20px; height: 80px; overflow: hidden;"></div>
+
     <div class="story-box" id="chat-container">
         <h3 style="font-size:0.85em; color:var(--accent); margin-bottom:10px;">🤖 REY_BOT LIVE CHAT</h3>
         <div id="chat-list" style="height: 150px; overflow-y: auto; background: #000; padding: 10px; border-radius: 8px; font-size: 0.75em; margin-bottom: 10px; border: 1px solid #30363d;">
@@ -116,6 +118,12 @@
 <div id="toast" class="toast">Klien baru saja memesan Web Development!</div>
 
 <script>
+    // Console Log Script
+    const logs = ["Initializing system...", "Loading assets...", "Authenticating user...", "System stable.", "Watching for potential bugs...", "Optimizing performance...", "Backend sync complete."];
+    const consoleDiv = document.getElementById('console-log');
+    function addLog() { const log = logs[Math.floor(Math.random() * logs.length)]; consoleDiv.innerHTML += `<div>> ${log}</div>`; if(consoleDiv.childNodes.length > 5) consoleDiv.removeChild(consoleDiv.firstChild); consoleDiv.scrollTop = consoleDiv.scrollHeight; setTimeout(addLog, 2500); }
+    addLog();
+
     const prices = { "Bikin Web": { icon: "🌐", desc: "<strong>Mulai Rp 1.5jt</strong><br>Web responsif & SEO friendly." }, "Mobile App": { icon: "📱", desc: "<strong>Mulai Rp 2.5jt</strong><br>App Android & iOS." }, "Fix Bug": { icon: "🛠️", desc: "<strong>Mulai Rp 200rb</strong><br>Perbaikan bug kodingan." }, "Data/AI": { icon: "🤖", desc: "<strong>Mulai Rp 2jt</strong><br>Analitik data & integrasi AI." } };
     function createCustomGrid(data, containerId) { const container = document.getElementById(containerId); for (let key in data) { container.innerHTML += `<div class="service-card-custom" onclick="openDetail('${key}', '${containerId}')"><span class="service-icon-custom">${data[key].icon}</span><div style="font-weight:bold; font-size:0.8em;">${key}</div></div>`; } }
     createCustomGrid(prices, 'price-grid');
