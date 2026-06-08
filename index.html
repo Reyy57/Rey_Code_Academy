@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rey Code Academy | Expert Digital Solutions</title>
+    <title>REY_CODE_ACADEMY</title>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
         :root {--bg:#000;--accent:#58a6ff;--glass:rgba(255,255,255,0.06)}
@@ -10,79 +10,59 @@
         #bg-video{position:fixed;right:0;bottom:0;min-width:100%;min-height:100%;z-index:-3;object-fit:cover}
         #particles-js{position:fixed;width:100%;height:100%;z-index:-2}
         .container{max-width:600px;margin:auto;padding:20px;padding-bottom:100px}
-        
-        /* Neon Title & Marquee */
-        .marquee-container { overflow: hidden; white-space: nowrap; margin-bottom: 10px; }
-        .neon-title { 
-            color: var(--accent); 
-            text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent); 
-            display: inline-block; 
-            animation: marquee 12s linear infinite; 
-        }
-        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        
-        /* Online Dot */
-        .online-dot { width: 10px; height: 10px; background: #25D366; border-radius: 50%; display: inline-block; animation: blink 1.2s infinite; margin-right: 8px; box-shadow: 0 0 10px #25D366; }
-        @keyframes blink{0%{opacity:1}50%{opacity:0.3}100%{opacity:1}}
-        
-        /* Cards, Badges, Progress Bar */
-        .card{background:var(--glass);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.1);padding:20px;border-radius:18px;margin:12px 0;cursor:pointer;transition:0.3s}
-        .badge{background:rgba(88,166,255,0.15);color:var(--accent);padding:4px 10px;border-radius:6px;font-size:0.75em;margin-right:5px;display:inline-block;border:1px solid rgba(88,166,255,0.3)}
-        .prog-bg{height:6px;background:#1a1a1a;border-radius:10px;margin-top:10px;overflow:hidden}
+        .marquee-wrap {overflow:hidden; white-space:nowrap; margin-bottom:10px;}
+        .neon-title {color:var(--accent); text-shadow:0 0 10px var(--accent), 0 0 20px var(--accent); display:inline-block; animation:marquee 12s linear infinite; margin:0; font-size:1.8em;}
+        @keyframes marquee {0% {transform:translateX(100%);} 100% {transform:translateX(-100%);}}
+        .online-dot {width:10px; height:10px; background:#25D366; border-radius:50%; display:inline-block; margin-right:10px; box-shadow:0 0 10px #25D366;}
+        .card{background:var(--glass);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.1);padding:20px;border-radius:18px;margin:12px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:0.3s}
+        .badge{background:rgba(88,166,255,0.15);color:var(--accent);padding:4px 10px;border-radius:6px;font-size:0.75em;margin-right:5px;border:1px solid rgba(88,166,255,0.3)}
+        .prog-bg{height:6px;background:#1a1a1a;border-radius:10px;margin:10px 0;overflow:hidden}
         .prog-fill{height:100%;background:linear-gradient(90deg,#58a6ff,#00d4ff);width:85%;}
-        
-        /* Modal & FAB */
         .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:2000;align-items:center;justify-content:center;padding:20px}
         .modal-content{background:#0d1117;padding:30px;border-radius:20px;width:100%;max-width:500px;border:1px solid var(--accent);max-height:80vh;overflow-y:auto}
-        .fab{position:fixed;bottom:30px;right:30px;background:#25D366;padding:15px 25px;border-radius:50px;color:#fff;font-weight:bold;z-index:1002;text-decoration:none;box-shadow:0 4px 15px rgba(0,0,0,0.3)}
+        .fab{position:fixed;bottom:30px;right:30px;background:#25D366;padding:15px 20px;border-radius:50px;color:#fff;font-weight:bold;z-index:1002;text-decoration:none;box-shadow:0 4px 15px rgba(37,211,102,0.3);display:flex;align-items:center;gap:8px;}
     </style>
 </head>
 <body>
     <div id="particles-js"></div>
     <video autoplay muted loop playsinline id="bg-video"><source src="VID_20250702_110744_839.mp4" type="video/mp4"></video>
-    
     <div class="container">
-        <div class="marquee-container">
-            <h1 class="neon-title"><span class="online-dot"></span> REY_CODE_ACADEMY</h1>
+        <div class="marquee-wrap"><h1 class="neon-title"><span class="online-dot"></span> REY_CODE_ACADEMY</h1></div>
+        <p id="typing-text" style="font-size:0.9em; color:#aaa; min-height:3em;"></p>
+        <div style="margin-bottom:20px;">
+            <span class="badge">Next.js 14</span><span class="badge">Node.js</span><span class="badge">Flutter</span><span class="badge">Python ML</span>
         </div>
-        <p id="typing-text" style="font-size:0.95em; color:#aaa; min-height:3em;"></p>
-        
-        <div style="margin-bottom:20px;"><span class="badge">Next.js</span><span class="badge">Node.js</span><span class="badge">Flutter</span></div>
-        
-        <div class="card" style="cursor:default;">
-            <h4 style="margin:0; color:#58a6ff;">Current Project: E-Commerce SaaS</h4>
-            <div class="prog-bg"><div class="prog-fill"></div></div>
+        <div class="card" style="cursor:default; flex-direction:column; align-items:flex-start;">
+            <h4 style="margin:0; color:#58a6ff;">Current Project Status: E-Commerce SaaS</h4>
+            <div class="prog-bg" style="width:100%"><div class="prog-fill"></div></div>
+            <p style="font-size:0.7em; margin:0; color:#8b949e;">Phase: Final Testing & Optimization</p>
         </div>
-
         <div id="menu-grid"></div>
-
-        <div class="card" style="border-style:dashed;"><h3>FAQ</h3><p style="font-size:0.85em;color:#8b949e;">Bisa custom web? Bisa, chat admin sekarang!</p></div>
-        <a href="https://wa.me/628xxxxxxxxxx" class="fab">💬 Chat Admin</a>
+        <div class="card" style="border-style:dashed;"><div><h3>FAQ & Support</h3><p style="font-size:0.85em;color:#8b949e;">Bisa custom web? Tentu, konsultasikan ide lo ke admin.</p></div></div>
+        <a href="https://wa.me/628xxxxxxxxxx" class="fab">💬 Chat Admin Expert</a>
     </div>
-
     <div id="modal" class="modal">
         <div class="modal-content">
             <h2 id="mTitle" style="color:var(--accent);margin-top:0;"></h2>
             <div id="mDesc" style="line-height:1.7; color:#c9d1d9;"></div>
-            <button style="width:100%;padding:15px;margin-top:25px;background:#238636;border:none;border-radius:10px;color:#fff;font-weight:bold;cursor:pointer;" onclick="hubungiMentor()">Start Consultation</button>
+            <button style="width:100%;padding:15px;margin-top:25px;background:#238636;border:none;border-radius:10px;color:#fff;font-weight:bold;cursor:pointer;" onclick="hubungiMentor()">Start Consultation Now</button>
         </div>
     </div>
-
     <script>
         particlesJS("particles-js", {"particles":{"number":{"value":80},"color":{"value":"#ffffff"},"opacity":{"value":0.4},"size":{"value":2},"move":{"speed":0.4}}});
         const mods = {
-            "Web Development": "<b>End-to-End Web Ecosystem:</b><br>1. <b>Frontend:</b> Next.js 14.<br>2. <b>Backend:</b> Node.js.<br>3. <b>Database:</b> PostgreSQL.<br>4. <b>Cloud:</b> Vercel.<br>5. <b>Performance:</b> 90+.",
-            "Mobile Development": "<b>Premium Mobile Applications:</b><br>1. <b>Cross-Platform:</b> Flutter.<br>2. <b>State:</b> BLoC.<br>3. <b>Integration:</b> Firebase.<br>4. <b>Offline:</b> SQLite.<br>5. <b>Store:</b> Ready.",
-            "Data Science": "<b>Insight & AI Intelligence:</b><br>1. <b>Data:</b> Processing.<br>2. <b>ML:</b> Scikit-learn.<br>3. <b>Viz:</b> Plotly.<br>4. <b>Automation:</b> Python.<br>5. <b>Big Data:</b> Large scale.",
-            "Game Development": "<b>Immersive Gaming:</b><br>1. <b>Engine:</b> Unity.<br>2. <b>Physics:</b> Mechanics.<br>3. <b>Assets:</b> 3D/2D.<br>4. <b>Multiplayer:</b> Photon.<br>5. <b>Export:</b> Multi-platform.",
-            "UI/UX Design": "<b>User-Centric Design:</b><br>1. <b>Research:</b> Analysis.<br>2. <b>Wireframing:</b> Flow.<br>3. <b>High-Fi:</b> Figma.<br>4. <b>Prototyping:</b> Interaction.<br>5. <b>System:</b> Design System."
+            "Web Development": "<b>End-to-End Web Ecosystem:</b><br>1. <b>Frontend:</b> Membangun UI responsif dan SEO Friendly menggunakan Next.js 14.<br>2. <b>Backend Arsitektur:</b> Node.js & Express untuk sistem skalabel.<br>3. <b>Database Management:</b> Optimasi query pada PostgreSQL/MongoDB.<br>4. <b>Cloud Deployment:</b> Setup server di Vercel atau AWS.<br>5. <b>Performance:</b> Skor Google PageSpeed 90+.",
+            "Mobile Development": "<b>Premium Mobile Applications:</b><br>1. <b>Cross-Platform:</b> Flutter untuk Android & iOS.<br>2. <b>State Management:</b> Implementasi BLoC/Riverpod.<br>3. <b>Integration:</b> Firebase, Push Notifications, Payment Gateway.<br>4. <b>Offline Capability:</b> Sinkronisasi data lokal menggunakan SQLite.<br>5. <b>Store Ready:</b> Bantuan rilis dan optimasi ke Play Store.",
+            "Data Science": "<b>Insight & AI Intelligence:</b><br>1. <b>Data Processing:</b> Pembersihan data mentah jadi info berharga.<br>2. <b>ML Modeling:</b> Scikit-learn/TensorFlow untuk prediksi tren.<br>3. <b>Advanced Visualization:</b> Dashboard interaktif Plotly/Tableau.<br>4. <b>Automation:</b> Python script untuk efisiensi tugas.<br>5. <b>Big Data:</b> Analisis efisiensi memori.",
+            "Game Development": "<b>Immersive Gaming Experience:</b><br>1. <b>Engine:</b> Unity 3D & C# Scripting.<br>2. <b>Physics:</b> Mekanik game kompleks dan simulasi akurat.<br>3. <b>Assets:</b> Optimasi 3D model & tekstur ringan.<br>4. <b>Multiplayer:</b> Integrasi Photon real-time.<br>5. <b>Cross-Platform:</b> Export PC, Mobile, WebGL.",
+            "UI/UX Design": "<b>User-Centric Visual Design:</b><br>1. <b>Research:</b> Analisis kebutuhan pengguna & kompetitor.<br>2. <b>Wireframing:</b> Sketsa alur fungsionalitas aplikasi.<br>3. <b>High-Fidelity:</b> Desain modern & elegan via Figma.<br>4. <b>Prototyping:</b> Simulasi aplikasi nyata sebelum koding.<br>5. <b>Design System:</b> Dokumentasi aset yang konsisten."
         };
         const grid = document.getElementById('menu-grid');
-        for(let k in mods){ grid.innerHTML += `<div class="card" onclick="openDetail('${k}')"><h3>🚀 ${k}</h3></div>`; }
+        for(let k in mods){ grid.innerHTML += `<div class="card" onclick="openDetail('${k}')"><h3>🚀 ${k}</h3><span style="font-size:0.7em; background:rgba(255,255,255,0.1); padding:4px 8px; border-radius:6px;">Details</span></div>`; }
         function openDetail(t){document.getElementById('mTitle').innerText=t;document.getElementById('mDesc').innerHTML=mods[t];document.getElementById('modal').style.display='flex';}
         function hubungiMentor(){window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya tertarik jasa " + document.getElementById('mTitle').innerText);}
         window.onclick = (e) => { if(e.target == document.getElementById('modal')) document.getElementById('modal').style.display = 'none'; };
-        const text = "Selamat datang di Rey Code Academy. Mari bangun masa depan digital lo.";
+        const text = "Selamat datang di REY_CODE_ACADEMY. Mari bangun masa depan digital lo.";
         let i = 0; function typeWriter() { if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 30); } }
         typeWriter();
     </script>
