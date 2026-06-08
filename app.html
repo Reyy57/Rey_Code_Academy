@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rey Code Academy | Portal Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: white; }
+        .dark-input { background-color: #1e293b !important; color: white !important; border: 1px solid #334155 !important; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div class="bg-slate-900 p-6 rounded-2xl shadow-2xl w-full max-w-sm border border-slate-700">
+        <h1 class="text-xl font-black italic text-center mb-6 text-blue-400">PORTAL CHAT</h1>
+
+        <div id="login-form" class="space-y-3">
+            <input type="email" id="email" placeholder="Email" class="w-full p-3 rounded-xl dark-input">
+            <input type="password" id="password" placeholder="Password" class="w-full p-3 rounded-xl dark-input">
+            <div class="grid grid-cols-2 gap-2">
+                <button id="btn-login" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl text-xs">LOGIN</button>
+                <button id="btn-register" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-xs">DAFTAR</button>
+            </div>
+        </div>
+
+        <div id="member-area" style="display: none;" class="space-y-4">
+            <div id="list-container" class="space-y-3 h-64 overflow-y-auto p-2 bg-slate-950 rounded-lg border border-slate-700"></div>
+            
+            <div class="border-t border-slate-700 pt-4">
+                <input type="text" id="input-data" placeholder="Ketik pesan..." class="w-full p-2 rounded-lg text-sm mb-2 dark-input">
+                <button id="btn-add" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg text-sm font-bold">KIRIM PESAN</button>
+            </div>
+            
+            <div class="space-y-2">
+                <input type="password" id="new-password" placeholder="Password baru..." class="w-full p-2 rounded-lg text-xs dark-input">
+                <button id="btn-update-pass" class="w-full bg-slate-700 hover:bg-slate-600 text-white py-2 rounded-lg text-xs">GANTI PASSWORD</button>
+                <button id="btn-logout" class="w-full bg-rose-900 hover:bg-rose-800 text-white py-2 rounded-lg text-xs">LOGOUT</button>
+            </div>
+            
+            <button id="btn-delete-all" class="hidden w-full bg-red-900 hover:bg-red-800 text-white py-2 rounded-lg text-xs">HAPUS SEMUA PESAN</button>
+        </div>
+        
+        <a href="index.html" class="block text-center text-[10px] text-slate-500 mt-6 hover:text-slate-300">← Kembali ke Halaman Utama</a>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updatePassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, deleteDoc, doc, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCWxhWyiu9JLBsVzkHjE-x4UcSsMUzp8cI",
+            authDomain: "rey-code-academy.firebaseapp.com",
+            projectId: "rey-code-academy",
+            storageBucket: "rey-code-academy.firebasestorage.app",
+            messagingSenderId: "777024739059",
+            appId: "1:777024739059:web:440f7a64ddf5bc7017c986"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const adminEmail = "rey@gmail.com"; 
+
+        async function runBot(teks, emailUser) {
+            const nama = emailUser.split('@')[0];
+            let reply = "";
+            if (teks === "/halo") reply = `Halo ${nama}, Rey Code Academy siap melayani!`;
+            if (teks === "/waktu") reply = `Sekarang jam ${new Date().toLocaleTimeString()}, ${nama}!`;
+            if (reply) await addDoc(collection(db, "chat"), { teks: "[BOT]: " + reply, email: "bot@academy.com", date: serverTimestamp() });
+        }
+
+        document.getElementById("btn-add").onclick = async () => {
+            const input = document.getElementById("input-data");
+            if(input.value) {
+                await addDoc(collection(db, "chat"), { teks: input.value, email: auth.currentUser.email, date: serverTimestamp() });
+                runBot(input.value, auth.currentUser.email);
+                input.value = "";
+            }
+        };
+
+        document.getElementById("btn-login").onclick = async () => {
+            try { await signInWithEmailAndPassword(auth, document.getElementById("email").value, document.getElementById("password").value); }
+            catch(e) { alert(e.message); }
+        };
+
+        document.getElementById("btn-register").onclick = async () => {
+            try { await createUserWithEmailAndPassword(auth, document.getElementById("email").value, document.getElementById("password").value); alert("Akun berhasil dibuat!"); }
+            catch(e) { alert(e.message); }
+        };
+
+        onAuthStateChanged(auth, (user) => {
+            document.getElementById("login-form").style.display = user ? "none" : "block";
+            document.getElementById("member-area").style.display = user ? "block" : "none";
+            if(user) {
+                if(user.email === adminEmail) document.getElementById("btn-delete-all").classList.remove("hidden");
+                const q = query(collection(db, "chat"), orderBy("date", "asc"));
+                onSnapshot(q, (snapshot) => {
+                    const list = document.getElementById("list-container");
+                    list.innerHTML = "";
+                    snapshot.forEach(d => {
+                        const data = d.data();
+                        list.innerHTML += `<div class="p-2 border-b border-slate-800"><p class="text-[9px] text-blue-400">${data.email}</p><p class="text-xs">${data.teks}</p></div>`;
+                    });
+                    list.scrollTop = list.scrollHeight;
+                });
+            }
+        });
+
+        document.getElementById("btn-update-pass").onclick = async () => {
+            try { await updatePassword(auth.currentUser, document.getElementById("new-password").value); alert("Password diganti!"); } catch(e) { alert(e.message); }
+        };
+
+        document.getElementById("btn-logout").onclick = () => signOut(auth);
+        document.getElementById("btn-delete-all").onclick = async () => {
+            if(confirm("Hapus semua pesan?")) {
+                const s = await getDocs(collection(db, "chat"));
+                s.forEach(d => deleteDoc(doc(db, "chat", d.id)));
+            }
+        };
+    </script>
+</body>
+</html>
