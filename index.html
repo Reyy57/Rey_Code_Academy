@@ -155,17 +155,6 @@
     const loaderText = document.getElementById("loading-text");
     const messages = ["Lagi nunggu sesuatu yang gak pasti...", "Mencoba logis di tengah hancurnya perasaan...", "Masih ada sisa rasa yang harus dibuang...", "Ya udah, gapapa. Yuk mulai."];
     let msgIndex = 0, charIndex = 0;
-    
-    function startMainApp() {
-        const loader = document.getElementById('loader');
-        if (loader.style.display !== 'none') {
-            loader.classList.add('fade-out');
-            setTimeout(() => { 
-                loader.style.display = 'none'; 
-                typeWriter(); 
-            }, 800);
-        }
-    }
 
     function typeLoader() {
         if (msgIndex < messages.length) {
@@ -181,12 +170,14 @@
                 }, 1000);
             }
         } else {
-            startMainApp();
+            const loader = document.getElementById('loader');
+            loader.classList.add('fade-out');
+            setTimeout(() => { 
+                loader.style.display = 'none'; 
+                typeWriter(); 
+            }, 800);
         }
     }
-    
-    // Safety Trigger: Paksa hilang setelah 7 detik
-    setTimeout(startMainApp, 7000);
     typeLoader();
 
     const logs = ["Initializing system...", "Loading assets...", "Authenticating user...", "System stable.", "Watching for potential bugs...", "Optimizing performance...", "Backend sync complete."];
