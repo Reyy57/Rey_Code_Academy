@@ -157,18 +157,23 @@
     const loaderText = document.getElementById("loading-text");
     const messages = ["Lagi nunggu sesuatu yang gak pasti...", "Mencoba logis di tengah hancurnya perasaan...", "Masih ada sisa rasa yang harus dibuang...", "Ya udah, gapapa. Yuk mulai."];
     let msgIndex = 0, charIndex = 0;
+
     function typeLoader() {
         if (msgIndex < messages.length) {
             if (charIndex < messages[msgIndex].length) {
-                loaderText.innerHTML += messages[msgIndex].charAt(charIndex);
+                loaderText.innerText = messages[msgIndex].substring(0, charIndex + 1);
                 charIndex++;
                 setTimeout(typeLoader, 50);
             } else {
-                setTimeout(() => { loaderText.innerHTML = ""; charIndex = 0; msgIndex++; typeLoader(); }, 1000);
+                setTimeout(() => { 
+                    charIndex = 0; 
+                    msgIndex++; 
+                    typeLoader(); 
+                }, 1000);
             }
         } else {
             document.getElementById('loader').classList.add('fade-out');
-            typeWriter();
+            setTimeout(() => { typeWriter(); }, 800);
         }
     }
     typeLoader();
