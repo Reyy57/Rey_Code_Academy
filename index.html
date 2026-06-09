@@ -9,12 +9,10 @@
         .light-mode { --bg: #f0f2f5; --text: #000; --accent: #0969da; --card-bg: rgba(0,0,0,0.03); --accent-glow: none; }
         body { margin: 0; font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); transition: 0.3s; overflow-x: hidden; }
         
-        /* Karakter Lompat Pixar Style */
         .loader-character { width: 40px; height: 50px; background: var(--accent); border-radius: 12px; position: relative; margin-bottom: 25px; animation: jump 0.6s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55); }
         .loader-character::before { content: ''; position: absolute; top: -15px; left: 10px; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; }
         @keyframes jump { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px) rotate(5deg); } }
 
-        /* Loader & Fade-out Smooth */
         #loader { 
             position: fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index: 9999; 
             display: flex; flex-direction: column; justify-content: center; align-items: center; 
@@ -157,6 +155,17 @@
     const loaderText = document.getElementById("loading-text");
     const messages = ["Lagi nunggu sesuatu yang gak pasti...", "Mencoba logis di tengah hancurnya perasaan...", "Masih ada sisa rasa yang harus dibuang...", "Ya udah, gapapa. Yuk mulai."];
     let msgIndex = 0, charIndex = 0;
+    
+    function startMainApp() {
+        const loader = document.getElementById('loader');
+        if (loader.style.display !== 'none') {
+            loader.classList.add('fade-out');
+            setTimeout(() => { 
+                loader.style.display = 'none'; 
+                typeWriter(); 
+            }, 800);
+        }
+    }
 
     function typeLoader() {
         if (msgIndex < messages.length) {
@@ -172,10 +181,12 @@
                 }, 1000);
             }
         } else {
-            document.getElementById('loader').classList.add('fade-out');
-            setTimeout(() => { typeWriter(); }, 800);
+            startMainApp();
         }
     }
+    
+    // Safety Trigger: Paksa hilang setelah 7 detik
+    setTimeout(startMainApp, 7000);
     typeLoader();
 
     const logs = ["Initializing system...", "Loading assets...", "Authenticating user...", "System stable.", "Watching for potential bugs...", "Optimizing performance...", "Backend sync complete."];
