@@ -14,6 +14,10 @@
         .loader-character::before { content: ''; position: absolute; top: -15px; left: 10px; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; }
         @keyframes jump { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px) rotate(5deg); } }
 
+        /* Loader & Fade-out */
+        #loader { position: fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--accent); transition: opacity 1s ease; opacity: 1; }
+        .fade-out { opacity: 0; pointer-events: none; }
+
         #canvas-matrix { position: fixed; top:0; left:0; z-index: -3; opacity: 0.2; pointer-events: none; }
         #auto-save { position: fixed; top: 10px; right: 20px; font-size: 0.6em; color: var(--accent); font-family: 'Courier New', monospace; z-index: 100; }
 
@@ -22,7 +26,6 @@
         #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%); z-index: -1; }
         
-        #loader { position: fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--accent); }
         #loading-text { font-family: 'Courier New', monospace; font-size: 1.2em; text-align: center; padding: 0 20px; }
         .container { max-width: 600px; margin: auto; padding: 15px; padding-bottom: 70px; transition: 0.3s; }
         @media (min-width: 768px) { .container { max-width: 900px; } }
@@ -96,7 +99,7 @@
     <div class="story-box" style="color:#fff;">
         <h4 style="margin:0; font-size:0.75em;">Current Project: E-Commerce SaaS</h4>
         <div class="progress-bar"><div class="progress-fill"></div></div>
-        <small style="color:#8b949e; font-size:0.65em;">Status: 90% Development</small>
+        <small style="color:#8b949e; font-size:0.65em;">Status: 85% Development</small>
     </div>
 
     <h2 class="section-title">SKILL & EXPERTISE</h2>
@@ -137,7 +140,6 @@
 <div id="toast" class="toast">Klien baru saja memesan Web Development!</div>
 
 <script>
-    // Fitur Matrix & Auto-Save
     const canvas = document.getElementById('canvas-matrix'); const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
     const drops = Array(Math.floor(canvas.width/20)).fill(1);
@@ -145,9 +147,8 @@
     setInterval(draw, 50);
     setInterval(() => document.getElementById('auto-save').innerText = `> [SYSTEM] Data synced: ${Math.floor(Math.random()*100)}%`, 3000);
 
-    // Loader
     const loaderText = document.getElementById("loading-text");
-    const messages = ["Selamat datang DiRey Code Academy...", "Disini tempat nya belajar ngeoding/Jasa web...", "Dan Disini Logika menang Atas perasaan...", "Web segera dimulai!"];
+    const messages = ["Lagi nunggu sesuatu yang gak pasti...", "Mencoba logis di tengah hancurnya perasaan...", "Masih ada sisa rasa yang harus dibuang...", "Ya udah, gapapa. Yuk mulai."];
     let msgIndex = 0, charIndex = 0;
     function typeLoader() {
         if (msgIndex < messages.length) {
@@ -159,19 +160,18 @@
                 setTimeout(() => { loaderText.innerHTML = ""; charIndex = 0; msgIndex++; typeLoader(); }, 1000);
             }
         } else {
-            document.getElementById('loader').style.display = 'none';
-            typeWriter();
+            document.getElementById('loader').classList.add('fade-out');
+            setTimeout(() => { document.getElementById('loader').style.display = 'none'; typeWriter(); }, 1000);
         }
     }
     typeLoader();
 
-    // Sisa Script
     const logs = ["Initializing system...", "Loading assets...", "Authenticating user...", "System stable.", "Watching for potential bugs...", "Optimizing performance...", "Backend sync complete."];
     const consoleDiv = document.getElementById('console-log');
     function addLog() { const log = logs[Math.floor(Math.random() * logs.length)]; consoleDiv.innerHTML += `<div>> ${log}</div>`; if(consoleDiv.childNodes.length > 5) consoleDiv.removeChild(consoleDiv.firstChild); consoleDiv.scrollTop = consoleDiv.scrollHeight; setTimeout(addLog, 2500); }
     addLog();
 
-    const prices = { "Bikin Web": { icon: "🌐", desc: "<strong>Mulai Rp 1.5jt</strong><br>Web responsif & SEO friendly." }, "Mobile App": { icon: "📱", desc: "<strong>Mulai Rp 2.5jt</strong><br>App Android & iOS." }, "Fix Bug": { icon: "🛠️", desc: "<strong>Mulai Rp 200rb</strong><br>Perbaikan bug kodingan." }, "Data/AI": { icon: "🤖", desc: "<strong>Mulai Rp 2jt</strong><br>Analitik data & integrasi AI." } };
+    const prices = { "Bikin Web": { icon: "🌐", desc: "<strong>Mulai Rp 1.5jt</strong><br>Web responsif & SEO friendly." }, "Mobile App": { icon: "📱", desc: "Mulai Rp 2.5jt<br>App Android & iOS." }, "Fix Bug": { icon: "🛠️", desc: "Mulai Rp 200rb<br>Perbaikan bug kodingan." }, "Data/AI": { icon: "🤖", desc: "Mulai Rp 2jt<br>Analitik data & integrasi AI." } };
     function createCustomGrid(data, containerId) { const container = document.getElementById(containerId); for (let key in data) { container.innerHTML += `<div class="service-card-custom" onclick="openDetail('${key}', '${containerId}')"><span class="service-icon-custom">${data[key].icon}</span><div style="font-weight:bold; font-size:0.8em;">${key}</div></div>`; } }
     createCustomGrid(prices, 'price-grid');
     function openDetail(key, type) { if(type === 'price-grid') { document.getElementById('mTitle').innerText = key; document.getElementById('mDesc').innerHTML = prices[key].desc; } else { document.getElementById('mTitle').innerText = key; document.getElementById('mDesc').innerHTML = longDesc[key]; } document.getElementById('modal').style.display = 'flex'; }
