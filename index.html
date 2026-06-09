@@ -9,8 +9,7 @@
         .light-mode { --bg: #f0f2f5; --text: #000; --accent: #0969da; --card-bg: rgba(0,0,0,0.03); --accent-glow: none; }
         body { margin: 0; font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); transition: 0.3s; overflow-x: hidden; }
         
-        /* Fitur Tambahan CSS */
-        #breach-screen { position: fixed; top:0; left:0; width:100%; height:100%; background: #000; z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; color: red; font-family: monospace; }
+        /* Fitur Tambahan (CSS) */
         #canvas-matrix { position: fixed; top:0; left:0; z-index: -3; opacity: 0.2; pointer-events: none; }
         #auto-save { position: fixed; top: 10px; right: 20px; font-size: 0.6em; color: var(--accent); font-family: 'Courier New', monospace; z-index: 100; }
 
@@ -56,11 +55,6 @@
 </head>
 <body>
 
-<div id="breach-screen">
-    <h1>ACCESS_DENIED</h1>
-    <input type="password" id="auth-key" placeholder="Enter Authorization Key" style="background:#000; color:red; border:1px solid red; padding:10px;">
-    <button onclick="checkAuth()" style="margin-top:10px; cursor:pointer;">AUTHORIZE</button>
-</div>
 <div id="auto-save">> [SYSTEM] Data synced: 98%</div>
 <canvas id="canvas-matrix"></canvas>
 
@@ -138,8 +132,7 @@
 <div id="toast" class="toast">Klien baru saja memesan Web Development!</div>
 
 <script>
-    // --- Fitur Tambahan ---
-    function checkAuth() { if(document.getElementById('auth-key').value === "rey57") document.getElementById('breach-screen').style.display = 'none'; else alert("WRONG KEY"); }
+    // --- Fitur Tambahan (Matrix, Auto-Save, Voice) ---
     const canvas = document.getElementById('canvas-matrix'); const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
     const drops = Array(Math.floor(canvas.width/20)).fill(1);
@@ -150,9 +143,9 @@
     rec.onresult = (e) => { if(e.results[0][0].transcript.includes("proyek")) window.scrollTo(0, 500); };
     try { rec.start(); } catch(e) {}
 
-    // --- Kode Asli Lo ---
+    // --- Script Asli Lo ---
     const loaderText = document.getElementById("loading-text");
-    const messages = ["Mencari ambisi yang hilang...", "Menyingkirkan kode sampah...", "Membangun standar yang tak bisa ditawar...", "Selamat datang di ruang gue."];
+    const messages = ["Selamat datang di Rey code Academy...", "Menyingkirkan kode sampah...", "Membangun standar yang tak bisa ditawar...", "Disini logika yang menang atas perasaan😈."];
     let msgIndex = 0, charIndex = 0;
     function typeLoader() {
         if (msgIndex < messages.length) {
