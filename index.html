@@ -17,41 +17,14 @@
         #breach-screen { position: fixed; top:0; left:0; width:100%; height:100%; background: #000; z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; color: red; font-family: monospace; }
         #canvas-matrix { position: fixed; top:0; left:0; z-index: -3; opacity: 0.2; }
         #auto-save { position: fixed; top: 10px; right: 20px; font-size: 0.6em; color: var(--accent); font-family: 'Courier New', monospace; z-index: 100; }
-        
+
         /* Loader & Komponen Asli */
         #loader { position: fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--accent); }
         #loading-text { font-family: 'Courier New', monospace; font-size: 1.2em; text-align: center; padding: 0 20px; }
         .container { max-width: 600px; margin: auto; padding: 15px; padding-bottom: 70px; transition: 0.3s; }
-        @media (min-width: 768px) { .container { max-width: 900px; } }
-        header { display: flex; flex-direction: column; align-items: flex-start; margin: 25px 0; }
-        .title-row { display: flex; align-items: center; width: 100%; }
-        .animated-title-container { overflow: hidden; white-space: nowrap; flex-grow: 1; }
-        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        .animated-title { animation: marquee 10s linear infinite; font-size: 1.6em; letter-spacing: 2px; color: var(--accent); text-shadow: var(--accent-glow); margin: 0; }
         .story-box { background: var(--card-bg); backdrop-filter: blur(10px); padding: 18px; border-radius: 15px; margin-bottom: 18px; border: 1px solid rgba(88, 166, 255, 0.15); }
         #typing-text { font-style: italic; line-height: 1.5; font-size: 0.82em; color: rgba(255,255,255,0.75); }
-        .section-title { color: var(--accent); margin: 40px 0 15px 0; font-size: 1.1em; border-left: 4px solid var(--accent); padding-left: 10px; }
-        .service-grid-custom { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; margin-bottom: 30px; }
-        .service-card-custom { background: rgba(13, 17, 23, 0.8); border: 1px solid #30363d; padding: 15px; border-radius: 12px; cursor: pointer; text-align: center; transition: 0.3s; }
-        .service-card-custom:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .service-icon-custom { font-size: 1.5em; display: block; margin-bottom: 5px; }
-        .grid { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
-        .card { background: rgba(13, 17, 23, 0.55); border: 1px solid #30363d; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.3s; color: #fff; display: flex; flex-direction: column; }
-        .card:hover { border-color: var(--accent); transform: scale(1.02); }
-        .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
-        .card h3 { margin: 0; font-size: 0.95em; }
-        .card-icon { font-size: 1.1em; color: var(--accent); }
-        .toast { position: fixed; bottom: 15px; left: 15px; background: var(--accent); color: white; padding: 8px 12px; border-radius: 8px; font-size: 0.65em; display: none; z-index: 1002; }
-        .badge-grid { display: flex; gap: 7px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 18px; }
-        .badge { background: #30363d; padding: 3px 7px; border-radius: 4px; font-size: 0.65em; white-space: nowrap; color: #fff; border: 1px solid rgba(255,255,255,0.1); }
-        .card-tags-badge { display: flex; gap: 4px; margin-top: 5px; }
-        .card .badge { background: #161b22; color: var(--accent); border-color: #30363d; font-size: 0.6em; }
-        .progress-bar { height: 7px; background: #30363d; border-radius: 4px; overflow: hidden; margin: 8px 0; }
-        .progress-fill { height: 100%; background: var(--accent); width: 85%; }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1001; align-items: center; justify-content: center; padding: 15px; }
-        .modal-content { background: var(--bg); padding: 18px; border-radius: 15px; max-width: 360px; width: 90%; border: 1px solid var(--accent); max-height: 65vh; overflow-y: auto; color: var(--text); }
-        .close-modal-btn { position: absolute; top: 10px; right: 15px; color: var(--accent); cursor: pointer; font-size: 1.2em; }
-        .btn-wa { background: #238636; color: white; padding: 11px; width: 100%; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 13px; font-size: 0.85em; }
+        .animated-title { font-size: 1.6em; letter-spacing: 2px; color: var(--accent); text-shadow: var(--accent-glow); margin: 0; }
     </style>
 </head>
 <body>
@@ -75,20 +48,13 @@
 
 <div class="container">
     <header>
-        <div class="title-row">
-            <div class="animated-title-container">
-                <h1 class="animated-title"><span class="online-dot"></span> REY_CODE_ACADEMY</h1>
-            </div>
-            <img src="ezgif.com-video-to-gif-converter.gif" alt="kucing" style="width: 45px; height: 45px; margin-left: 10px; border-radius: 50%; flex-shrink: 0;">
-        </div>
-        <div onclick="toggleTheme()" style="cursor:pointer; font-size: 0.7em; color:var(--accent); margin-top: 5px;">🌓 Ganti Mode</div>
+        <h1 class="animated-title">REY_CODE_ACADEMY</h1>
     </header>
-
     <div class="story-box"><p id="typing-text"></p></div>
-    </div>
+</div>
 
 <script>
-    // Breach & Matrix Logic
+    // 1. Breach & Matrix Logic
     function checkAuth() { if(document.getElementById('auth-key').value === "rey57") document.getElementById('breach-screen').style.display = 'none'; else alert("WRONG KEY"); }
     const canvas = document.getElementById('canvas-matrix'); const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
@@ -96,17 +62,31 @@
     function draw() { ctx.fillStyle = 'rgba(0,0,0,0.05)'; ctx.fillRect(0,0,canvas.width,canvas.height); ctx.fillStyle = '#0F0'; drops.forEach((y, i) => { ctx.fillText(Math.floor(Math.random()*2), i*20, y*20); if(y*20 > canvas.height) drops[i] = 0; drops[i]++; }); }
     setInterval(draw, 50);
     setInterval(() => document.getElementById('auto-save').innerText = `> [SYSTEM] Data synced: ${Math.floor(Math.random()*100)}%`, 3000);
-    
-    // Voice
-    const rec = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    rec.onresult = (e) => { if(e.results[0][0].transcript.includes("proyek")) window.scrollTo(0, 500); };
-    rec.start();
 
-    // Loader & Teks Utama (Perbaikan Kutip)
+    // 2. Loader Logic
+    const loaderText = document.getElementById("loading-text");
+    const messages = ["Mencari ambisi yang hilang...", "Menyingkirkan kode sampah...", "Membangun standar yang tak bisa ditawar...", "Selamat datang di ruang gue."];
+    let msgIndex = 0, charIndex = 0;
+    function typeLoader() {
+        if (msgIndex < messages.length) {
+            if (charIndex < messages[msgIndex].length) {
+                loaderText.innerHTML += messages[msgIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(typeLoader, 50);
+            } else {
+                setTimeout(() => { loaderText.innerHTML = ""; charIndex = 0; msgIndex++; typeLoader(); }, 1000);
+            }
+        } else {
+            document.getElementById('loader').style.display = 'none';
+            typeWriter();
+        }
+    }
+    typeLoader();
+
+    // 3. Main Text Logic
     const text = "Selamat datang di Rey Code Academy. Tempat di mana gue menukar air mata dengan logika. Gue pernah berada di titik terendah, dihancurkan oleh ekspektasi dan ditinggalkan oleh orang yang gue pikir bakal ada di sana selamanya. Perihnya masih kerasa, tapi gue nggak akan membiarkan itu jadi akhir cerita gue. Gue mengubah rasa sakit itu jadi bahan bakar. Gue lebih milih menatap syntax sampai pagi daripada harus menatap layar kosong menunggu kabar dari dia yang sudah lupa. Ini bukan lagi soal dia, ini tentang membuktikan ke diri sendiri bahwa gue bisa membangun sesuatu yang jauh lebih berharga daripada hubungan yang sudah mati. Di sini, logika yang menang di atas perasaan.";
-    
-    // (Masukkan sisa fungsi asli lo di sini seperti typeLoader, addLog, dll)
-    // ...
+    let i = 0; 
+    function typeWriter() { if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 20); } }
 </script>
 </body>
 </html>
