@@ -12,7 +12,13 @@
         @keyframes blink { 50% { opacity: 0; } }
         #bg-video { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%); z-index: -1; }
-        /* Loader Baru */
+        
+        /* Fitur Baru */
+        #breach-screen { position: fixed; top:0; left:0; width:100%; height:100%; background: #000; z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; color: red; font-family: monospace; }
+        #canvas-matrix { position: fixed; top:0; left:0; z-index: -3; opacity: 0.2; }
+        #auto-save { position: fixed; top: 10px; right: 20px; font-size: 0.6em; color: var(--accent); font-family: 'Courier New', monospace; z-index: 100; }
+        
+        /* Loader & Komponen Asli */
         #loader { position: fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--accent); }
         #loading-text { font-family: 'Courier New', monospace; font-size: 1.2em; text-align: center; padding: 0 20px; }
         .container { max-width: 600px; margin: auto; padding: 15px; padding-bottom: 70px; transition: 0.3s; }
@@ -50,6 +56,15 @@
 </head>
 <body>
 
+<div id="breach-screen">
+    <h1>ACCESS_DENIED</h1>
+    <input type="password" id="auth-key" placeholder="Enter Authorization Key" style="background:#000; color:red; border:1px solid red; padding:10px;">
+    <button onclick="checkAuth()" style="margin-top:10px; cursor:pointer;">AUTHORIZE</button>
+</div>
+
+<div id="auto-save">> [SYSTEM] Data synced: 98%</div>
+<canvas id="canvas-matrix"></canvas>
+
 <div id="loader">
     <div id="loading-text"></div>
     <div style="font-size: 0.6em; margin-top:10px; color: #58a6ff; letter-spacing: 2px;">REY_CODE_ACADEMY_SYSTEM</div>
@@ -70,103 +85,28 @@
     </header>
 
     <div class="story-box"><p id="typing-text"></p></div>
-    
-    <div style="display:flex; gap:10px; margin-bottom:18px; color:#fff;">
-        <div class="story-box" style="width:50%; text-align:center; padding:10px;"><h3>120+</h3><small style="color:#8b949e;">Proyek Selesai</small></div>
-        <div class="story-box" style="width:50%; text-align:center; padding:10px;"><h3>24/7</h3><small style="color:#8b949e;">Support Aktif</small></div>
     </div>
-
-    <div class="badge-grid">
-        <div class="badge">Next.js</div><div class="badge">Node.js</div><div class="badge">Flutter</div><div class="badge">Python</div><div class="badge">Figma</div>
-    </div>
-
-    <div class="story-box" style="color:#fff;">
-        <h4 style="margin:0; font-size:0.75em;">Current Project: E-Commerce SaaS</h4>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-        <small style="color:#8b949e; font-size:0.65em;">Status: 85% Development</small>
-    </div>
-
-    <h2 class="section-title">SKILL & EXPERTISE</h2>
-    <div id="menu-grid" class="grid"></div>
-
-    <h2 class="section-title">PRICE LIST & JASA</h2>
-    <div class="service-grid-custom" id="price-grid"></div>
-
-    <div id="console-log" style="font-family: 'Courier New', monospace; font-size: 0.6em; color: #58a6ff; background: #000; padding: 10px; border: 1px solid #30363d; border-radius: 8px; margin-bottom: 20px; height: 80px; overflow: hidden;"></div>
-
-    <div class="story-box" id="chat-container">
-        <h3 style="font-size:0.85em; color:var(--accent); margin-bottom:10px;">🤖 REY_BOT LIVE CHAT</h3>
-        <div id="chat-list" style="height: 150px; overflow-y: auto; background: #000; padding: 10px; border-radius: 8px; font-size: 0.75em; margin-bottom: 10px; border: 1px solid #30363d;">
-            <div style="color: #8b949e;">ReyBot: Halo. Gue lagi online. Mau ngobrol soal coding atau mau dengerin keluh kesah gue hari ini?</div>
-        </div>
-        <input type="text" id="chat-input" placeholder="Tulis sesuatu..." style="width: 100%; background: #161b22; border: 1px solid #30363d; padding: 8px; border-radius: 5px; color: white; font-size: 0.8em; box-sizing: border-box;">
-    </div>
-
-    <div class="story-box" style="margin-top:18px;">
-        <h3 style="font-size:0.85em; color:var(--accent); margin:0 0 10px 0;">FAQ</h3>
-        <p style="font-size:0.7em; color:#8b949e;"><strong>Q: Bisa custom web?</strong><br>A: Bisa banget, langsung diskusi via WA ya!</p>
-    </div>
-
-    <footer style="text-align:center; margin-top:20px; font-size:0.65em; color:#8b949e;">
-        Chat WhatsApp: <a href="https://wa.me/628xxxxxxxxxx" style="color:var(--accent);">Klik di sini</a> | © 2026 REY_CODE_ACADEMY.
-    </footer>
-</div>
-
-<div id="modal" class="modal">
-    <div class="modal-content" style="position:relative;">
-        <span class="close-modal-btn" onclick="closeModal()">×</span>
-        <h2 id="mTitle" style="color:var(--accent); font-size:1.1em; margin-top:0;"></h2>
-        <div id="mDesc" style="font-size:0.75em; line-height:1.5; color:#c9d1d9;"></div>
-        <button class="btn-wa" onclick="hubungiMentor()">Start Consultation</button>
-    </div>
-</div>
-
-<div id="toast" class="toast">Klien baru saja memesan Web Development!</div>
 
 <script>
-    // New Brutal Loader Logic
-    const loaderText = document.getElementById("loading-text");
-    const messages = ["Mencari ambisi yang hilang...", "Menyingkirkan kode sampah...", "Membangun standar yang tak bisa ditawar...", "Selamat datang di ruang gue."];
-    let msgIndex = 0, charIndex = 0;
-    function typeLoader() {
-        if (msgIndex < messages.length) {
-            if (charIndex < messages[msgIndex].length) {
-                loaderText.innerHTML += messages[msgIndex].charAt(charIndex);
-                charIndex++;
-                setTimeout(typeLoader, 50);
-            } else {
-                setTimeout(() => { loaderText.innerHTML = ""; charIndex = 0; msgIndex++; typeLoader(); }, 1000);
-            }
-        } else {
-            document.getElementById('loader').style.display = 'none';
-            typeWriter();
-        }
-    }
-    typeLoader();
+    // Breach & Matrix Logic
+    function checkAuth() { if(document.getElementById('auth-key').value === "rey57") document.getElementById('breach-screen').style.display = 'none'; else alert("WRONG KEY"); }
+    const canvas = document.getElementById('canvas-matrix'); const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    const drops = Array(Math.floor(canvas.width/20)).fill(1);
+    function draw() { ctx.fillStyle = 'rgba(0,0,0,0.05)'; ctx.fillRect(0,0,canvas.width,canvas.height); ctx.fillStyle = '#0F0'; drops.forEach((y, i) => { ctx.fillText(Math.floor(Math.random()*2), i*20, y*20); if(y*20 > canvas.height) drops[i] = 0; drops[i]++; }); }
+    setInterval(draw, 50);
+    setInterval(() => document.getElementById('auto-save').innerText = `> [SYSTEM] Data synced: ${Math.floor(Math.random()*100)}%`, 3000);
+    
+    // Voice
+    const rec = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    rec.onresult = (e) => { if(e.results[0][0].transcript.includes("proyek")) window.scrollTo(0, 500); };
+    rec.start();
 
-    // Console Log Script
-    const logs = ["Initializing system...", "Loading assets...", "Authenticating user...", "System stable.", "Watching for potential bugs...", "Optimizing performance...", "Backend sync complete."];
-    const consoleDiv = document.getElementById('console-log');
-    function addLog() { const log = logs[Math.floor(Math.random() * logs.length)]; consoleDiv.innerHTML += `<div>> ${log}</div>`; if(consoleDiv.childNodes.length > 5) consoleDiv.removeChild(consoleDiv.firstChild); consoleDiv.scrollTop = consoleDiv.scrollHeight; setTimeout(addLog, 2500); }
-    addLog();
-
-    const prices = { "Bikin Web": { icon: "🌐", desc: "<strong>Mulai Rp 1.5jt</strong><br>Web responsif & SEO friendly." }, "Mobile App": { icon: "📱", desc: "<strong>Mulai Rp 2.5jt</strong><br>App Android & iOS." }, "Fix Bug": { icon: "🛠️", desc: "<strong>Mulai Rp 200rb</strong><br>Perbaikan bug kodingan." }, "Data/AI": { icon: "🤖", desc: "<strong>Mulai Rp 2jt</strong><br>Analitik data & integrasi AI." } };
-    function createCustomGrid(data, containerId) { const container = document.getElementById(containerId); for (let key in data) { container.innerHTML += `<div class="service-card-custom" onclick="openDetail('${key}', '${containerId}')"><span class="service-icon-custom">${data[key].icon}</span><div style="font-weight:bold; font-size:0.8em;">${key}</div></div>`; } }
-    createCustomGrid(prices, 'price-grid');
-    function openDetail(key, type) { if(type === 'price-grid') { document.getElementById('mTitle').innerText = key; document.getElementById('mDesc').innerHTML = prices[key].desc; } else { document.getElementById('mTitle').innerText = key; document.getElementById('mDesc').innerHTML = longDesc[key]; } document.getElementById('modal').style.display = 'flex'; }
-    setTimeout(() => { document.getElementById('toast').style.display = 'block'; setTimeout(() => document.getElementById('toast').style.display = 'none', 3000); }, 3000);
-    const modules = { "Web Development": { icon: "🌐", tags: ["Next.js", "Node.js"] }, "Mobile Development": { icon: "📱", tags: ["Flutter", "Firebase"] }, "Data Science": { icon: "📊", tags: ["Python", "Pandas"] }, "Game Development": { icon: "🎮", tags: ["Unity", "C#"] }, "UI/UX Design": { icon: "🎨", tags: ["Figma"] } };
-    const longDesc = { "Web Development": "1. Advanced Fullstack Architecture: Membangun ekosistem web modern dengan Next.js 14, TypeScript, dan Tailwind CSS. Fokus pada performa maksimal dan SEO.<br>2. Scalable Backend: Pengembangan API tangguh dengan Node.js/Express, autentikasi enterprise (JWT/OAuth), dan manajemen user.<br>3. Database & Caching: PostgreSQL, Prisma, dan Redis untuk latensi rendah.<br>4. DevOps: Deployment Vercel, CI/CD, dan Dockerization.<br>5. Security: Proteksi XSS, CSRF, dan audit performa Lighthouse.", "Mobile Development": "1. Advanced Cross-Platform: Flutter/Dart native-feel (Android/iOS). Fokus pada Clean Architecture.<br>2. State Management: BLoC, Riverpod, GetX untuk data sinkronisasi kompleks.<br>3. Cloud: Integrasi penuh Firebase (Auth, Firestore, FCM, Remote Config).<br>4. Performance: SQLite/Hive local storage, Multi-threading (Isolates).<br>5. Production: Crashlytics, CI/CD, distribusi ke Play Store/App Store.", "Data Science": "1. Data Pipeline: Automasi ETL menggunakan Python, Pandas, PySpark.<br>2. Advanced Viz: Dashboard interaktif dengan Plotly/Dash.<br>3. ML Engineering: Feature engineering, Scikit-learn/XGBoost, validasi model.<br>4. AI/DL: Arsitektur neural networks (PyTorch/TensorFlow).<br>5. MLOps: Versioning dengan MLflow, containerizing model, FastAPI.", "Game Development": "1. Game Architecture: Unity 3D/2D, ECS, OOP/DOTS.<br>2. Mechanics: Fisika kompleks, NavMesh AI, Shader Graph, Rendering Pipeline.<br>3. Optimization: Asset management (Occlusion, LOD, Texture Atlasing).<br>4. Multiplayer: Photon Fusion/Mirror (real-time).<br>5. Multi-Platform: PC/Console/Mobile/WebGL, In-App Purchase.", "UI/UX Design": "1. Research: User persona, empathy mapping, usability testing mendalam.<br>2. Architecture: IA, user flow, wireframing intuitif.<br>3. Design Systems: Atomic components, tokens, responsive constraints.<br>4. High-Fi Prototype: Logic, variables, smart animation di Figma.<br>5. Handoff: Spesifikasi teknis, dev-handoff presisi pixel-perfect." };
-    const grid = document.getElementById('menu-grid');
-    for (let key in modules) { grid.innerHTML += `<div class="card" onclick="openDetail('${key}')"><div class="card-header"><span class="card-icon">${modules[key].icon}</span><h3>${key}</h3></div><div class="card-tags-badge">${modules[key].tags.map(t => `<span class="badge">${t}</span>`).join('')}</div></div>`; }
-    function getBotResponse(userText) { const text = userText.toLowerCase(); if (text.includes("harga") || text.includes("biaya") || text.includes("murah")) { return "Harga itu investasi buat kualitas. Gue gak kasih harga sampah, tapi gue pastiin hasilnya brutal. Mau diskusi detailnya di WA?"; } else if (text.includes("web") || text.includes("coding") || text.includes("bisa buat")) { return "Gue bisa bangun sistem dari nol sampai jadi. Mau e-commerce, SaaS, atau aplikasi mobile, semua gue hajar pake teknologi paling efisien."; } else if (text.includes("capek") || text.includes("lelah") || text.includes("sedih") || text.includes("berat")) { return "Gue tau rasanya. Dunia ini emang gak ramah, tapi jangan biarin emosi itu ngebunuh ambisi lo. Lo punya tujuan, fokus ke situ. Mau gue bantu alihin pikiran lo lewat ngoding?"; } else if (text.includes("gagal") || text.includes("salah")) { return "Gagal itu cuma bug di sistem kehidupan lo. Jangan didiemin, di-debug, diperbaiki, terus deploy lagi. Jangan pernah berhenti di tengah jalan."; } else if (text.includes("siapa") || text.includes("lo itu")) { return "Gue adalah representasi dari ambisi lo. Gue asisten, gue partner, dan kadang gue cermin dari isi kepala lo sendiri."; } else if (text.includes("arti") || text.includes("kenapa")) { return "Kenapa? Karena lo nanya itu tandanya lo masih peduli. Kebanyakan orang cuma jalan kayak robot tanpa pernah nanya 'kepana'. Teruslah bertanya sampai lo nemu jawabannya."; } else if (text.includes("halo") || text.includes("hai") || text.includes("pagi") || text.includes("malam")) { return "Halo. Gue stand by di sini. Ada yang bikin lo kepikiran atau mau langsung bahas project?"; } else { const fallback = [ "Gue dengerin, coba ceritain lebih lanjut. Apa yang sebenernya lo cari?", "Menarik. Tapi menurut lo sendiri, gimana caranya hal itu bisa jadi solusi?", "Gue gak punya jawaban pasti buat itu, tapi gue rasa lo tau apa yang harus dilakuin.", "Hmm, coba liat dari perspektif lain. Jangan terlalu kaku ngeliat masalah." ]; return fallback[Math.floor(Math.random() * fallback.length)]; } }
-    const chatInput = document.getElementById('chat-input'); const chatList = document.getElementById('chat-list'); chatInput.onkeypress = (e) => { if(e.key === 'Enter' && chatInput.value.trim() !== "") { const val = chatInput.value; chatList.innerHTML += `<div class="mb-2"><b>Lo:</b> ${val}</div>`; chatInput.value = ""; chatList.scrollTop = chatList.scrollHeight; setTimeout(() => { chatList.innerHTML += `<div class="mb-2" id="typing"><i>ReyBot lagi ngetik...</i></div>`; chatList.scrollTop = chatList.scrollHeight; }, 500); setTimeout(() => { document.getElementById('typing').remove(); const response = getBotResponse(val); chatList.innerHTML += `<div class="mb-2"><b>ReyBot:</b> ${response}</div>`; chatList.scrollTop = chatList.scrollHeight; }, 2000); } };
-    function toggleTheme() { document.body.classList.toggle('light-mode'); }
-    function closeModal() { document.getElementById('modal').style.display = 'none'; }
-    window.onclick = (e) => { if(e.target == document.getElementById('modal')) closeModal(); }
-    function hubungiMentor() { window.open("https://wa.me/628xxxxxxxxxx?text=Halo Rey, saya ingin diskusi tentang " + document.getElementById('mTitle').innerText); }
-    const text ="Selamat datang di Rey Code Academy. Tempat di mana gue menukar air mata dengan logika. Gue pernah berada di titik terendah, dihancurkan oleh ekspektasi dan ditinggalkan oleh orang yang gue pikir bakal ada di sana selamanya. Perihnya masih kerasa, tapi gue nggak akan membiarkan itu jadi akhir cerita gue. Gue mengubah rasa sakit itu jadi bahan bakar. Gue lebih milih menatap syntax sampai pagi daripada harus menatap layar kosong menunggu kabar dari dia yang sudah lupa. Ini bukan lagi soal dia, ini tentang membuktikan ke diri sendiri bahwa gue bisa membangun sesuatu yang jauh lebih berharga daripada hubungan yang sudah mati. Di sini, logika yang menang di atas perasaan.";
-    let i = 0; function typeWriter() { if (i < text.length) { document.getElementById("typing-text").innerHTML += text.charAt(i); i++; setTimeout(typeWriter, 20); } }
+    // Loader & Teks Utama (Perbaikan Kutip)
+    const text = "Selamat datang di Rey Code Academy. Tempat di mana gue menukar air mata dengan logika. Gue pernah berada di titik terendah, dihancurkan oleh ekspektasi dan ditinggalkan oleh orang yang gue pikir bakal ada di sana selamanya. Perihnya masih kerasa, tapi gue nggak akan membiarkan itu jadi akhir cerita gue. Gue mengubah rasa sakit itu jadi bahan bakar. Gue lebih milih menatap syntax sampai pagi daripada harus menatap layar kosong menunggu kabar dari dia yang sudah lupa. Ini bukan lagi soal dia, ini tentang membuktikan ke diri sendiri bahwa gue bisa membangun sesuatu yang jauh lebih berharga daripada hubungan yang sudah mati. Di sini, logika yang menang di atas perasaan.";
+    
+    // (Masukkan sisa fungsi asli lo di sini seperti typeLoader, addLog, dll)
+    // ...
 </script>
 </body>
 </html>
